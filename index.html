@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="/_vercel/insights/script.js"></script>
     <link
+      href="custom.css" 
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
     />
@@ -89,6 +90,19 @@ Create Document that is downloadable to your phone/computer
   <button class="demo" onclick="location.href='Projects.html'"><strong>Project Page</strong></button>
   <button class="demo" onclick="location.href='Timer.html'"><strong>Timer Page</strong></button>
 </p>
+
+<p>Click on the Menu Icon to transform it to "X":</p>
+<div class="container" onclick="myFunction(this)">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+</div>
+
+<script>
+function myFunction(x) {
+  x.classList.toggle("change");
+}
+</script>
 
     <!--
     <p>
