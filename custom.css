@@ -77,14 +77,18 @@
 /*Body*/
 
 /*Footer*/
-table{
-  width: 100%;
-  background-color: rgb(25, 25, 25);
-  text-align: center;
-  position: sticky;
-  top: 0;
-  /*if I wanted to make the table smaller. This centers it*/
-  /* margin-left: auto;
-  margin-right: auto; */
+/*  table{
+    width: 100%;
+    background-color: rgb(25, 25, 25);
+    text-align: center;
+    position: sticky;
+    top: 0;
+    /*if I wanted to make the table smaller. This centers it*/
+    /* margin-left: auto;
+    margin-right: auto;
+  }
+*/
+table, th, td {
+  border:1px solid black;
 }
 
