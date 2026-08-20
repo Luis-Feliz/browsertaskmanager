@@ -1,3 +1,29 @@
+head{
+  width: 100%; 
+  background-color: gray; 
+  text-align: center; 
+  position: sticky; 
+  top: 0;
+}
+
+body{
+  width: 100%; 
+  background-color: white; 
+  text-align: center; 
+  position: sticky; 
+  top: 0
+}
+
+footer{
+  width: 100%; 
+  background-color: red; 
+  text-align: center; 
+  position: sticky; 
+  top: 0;
+}
+
+
+
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */
