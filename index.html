@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="/_vercel/insights/script.js"></script>
+    <link
+      href="CSS/custom.css" 
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+    />
+    <title>Task Management Demo</title>
+    <meta
+      name="description"
+      content="High-performance HTML based website template."
+    />
+    <script>
+      function myFunction(x) {
+      x.classList.toggle("change");
+      }
+      function toggleNav() {
+      var element = document.getElementById("mySidenav");
+        /*if the element is open close it*/  
+        if (document.getElementById("mySidenav").style.width == "250px") {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft = "0";
+        } else {
+        /*if element closed, open it*/
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+        }
+      }
+      /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+  
+      /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+    </script>
+    
+    <table style="width: 100%; background-color: gray; text-align: center; position: sticky; top: 0;">
+      <th style= "text-align: left"><!-- 1 -->
+           <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+          <div id="main">
+            <div class="container" onclick="myFunction(this); toggleNav()">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+            </div>
+          </div>
+          
+          <div id="mySidenav" class="sidenav">
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+          </div>
+      </th>
+      <th style="text-align: right;">
+        <button class="demo" onclick="" style="text-align: justify;"> New Project</button>
+      </th>
+    </table>
+</head>
+
+
+
+
+  <!--This is a comment-->
+  <body>
+    <h1>Task Management Demo</h1>
+    <p>
+      Okay with that's massive progress. How about we start a TODO list and from there work on getting the rest of this right? This is a test to see...
+    </p>
+
+    <h2>What do you want?</h2>
+
+    <p>Alright let's just write till I get the whole idea out.
+
+It's getting more and more harder to divulge in what I'm doing. Main thing is this.
+
+I want to make an app that will keep track of a project that you're doing and has color coded options to say what kind of skills needed to take care of it along with a level system to quantify how ready I am for this task.
+
+The main perk of this app is this.
+
+A pdf document can be uploaded to your phone or Computer stating your completion including When it started and when it's been finished. It’s a good way to answer a simple question.
+
+How long on adverage can I get my projects done.
+
+I don't have to develop a level system. If you think about it. All things I want can be done with enough time. It's the time that I want to analize.
+
+Set a check in system so you can set a set time that you can work on things. It should be easy to access like a hot key for a button 
+
+could get different effects like pangoro timer or other timers that may affect your ability to work on things. 
+
+No way to enforce things however if you want to be accurate on your ability to do things. You will have to pay attention.
+
+It will evolve into multiple things.
+
+Create project 
+Add what skills are Necessary to finish these projects
+Create a timer and establish what you are working on today.
+Write end report explaining progress 
+Give's Option to establish when done
+Create Document that is downloadable to your phone/computer 
+</p>
+
+<h3>Create Project</h3>
+<p>
+    • What's the name<br>
+    • What skills are required to make it<br>
+    • When do you think you can finish it?<br>
+    • If started now, Put in document.<br>
+    • If not. Give an estamate of when teh project began<br>
+    • Generate a document that is downloadable to your phone/computer<br>
+</p>
+<h3>Generate TimeDoc</h3>
+<p>
+    • Generate a pdf document that is downloadable to your phone/computer<br>
+    • Contains <br>
+    • Generate a document that is downloadable to your phone/computer<br>
+    • Generate a document that is downloadable to your phone/computer<br>
+    • Generate a document that is downloadable to your phone/computer<br>
+    • Generate a document that is downloadable to your phone/computer<br>
+    • Generate a document that is downloadable to your phone/computer<br>
+</p>
+<h3>Have Pandoro Timer section</h3>
+<p>
+    • Said timer must have a checklist of things to do<br>
+    • Said timer must have a way to check off things once / during timer<br>
+    • Music to play (Can be toggled on or off)<br>
+    • Music is mp4 filed and made by creator of project (I can add my own if needed)<br>
+    • Write list of progress made<br>
+</p>
+    <!--
+    <p>
+      This template is a simple, but powerful single
+      <code>index.html</code> file deployed to
+      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
+      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
+      globally to every
+      <a href="https://vercel.com/docs/concepts/edge-network/overview"
+        >Vercel Edge Network</a
+      >
+      region
+    </p>
+    <h2>Simple, privacy-friendly analytics</h2>
+    <p>
+      Want to understand your visitor traffic? Vercel Analytics gives you
+      first-party, privacy-friendly traffic analytics for your HTML site. This
+      template is already configured using the following script:
+    </p>
+    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
+    <p>
+      Learn more about
+      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
+    </p>
+    <h2>Integrated with git</h2>
+    <p>
+      Deploying updates to your site is as simple as
+      <code>git push</code> thanks to Vercel's advanced
+      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
+      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
+      flexible Vercel CLI and API, you can integrate with any tool possible.
+    </p>
+    <p>
+      Learn more about
+      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
+    </p>
+    <h2>Fast <code>gzip</code> compression</h2>
+    <p>
+      To help ensure the smallest possible file sizes for your static assets,
+      the Vercel Edge Network compresses files by default using
+      <code>gzip</code>. You can also optionally use
+      <code>brotli</code> compressesion if you prefer.
+    </p>
+    <p>
+      Learn more about
+      <a href="https://vercel.com/docs/concepts/edge-network/compression"
+        >compression</a
+      >.
+    </p>
+    <h2>Advanced routing configuration</h2>
+    <p>
+      Vercel gives you a variety of ways to configure the routing of your
+      website. For example, adding redirects, rewrites, or headers to your page.
+      While you can use <code>vercel.json</code> to define these through JSON,
+      you can also express your routing configuration as code using
+      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
+        >Vercel Edge Middleware</a
+      >.
+    </p>
+    <p>
+      Middleware runs before the
+      <a href="https://vercel.com/docs/concepts/edge-network/caching"
+        >Vercel Edge Network Cache</a
+      >, so you can configure routing exactly as your application needs. For
+      example, this template uses <code>middleware.js</code> defined in the root
+      of the repository to add additional security headers to the site:
+    </p>
+    <pre><code>referrer-policy: origin-when-cross-origin
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-content-type-options: nosniff
+x-dns-prefetch-control: on
+x-frame-options: DENY</code></pre>
+    <p>
+      Learn more about
+      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
+        >Vercel Edge Middleware</a
+      >.
+    </p>
+  -->
+  </body>
+<footer>
+  <p>This is to ensure ability to switch between panels. A Projects Panel and Pandoro Panel maybe even a acomplished panel?</p>
+  <button class="demo" onclick="location.href='Projects.html'"><strong>Project Page</strong></button>
+  <button class="demo" onclick="location.href='Timer.html'"><strong>Timer Page</strong></button>
+</footer>
+
+</html>
