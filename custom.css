@@ -104,16 +104,14 @@ footer{
 /*******************************************************************************/
 /* Timer Script CSS */
 
-.timer-container {
-  text-align: center;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+#start {
+    background-color: #009779;
 }
 
-#countdownDisplay {
-  margin-top: 20px;
-  font-size: 24px;
-  font-weight: bold;
+#stop {
+    background-color: #0e85fc;
+}
+
+#reset {
+    background-color: #c91400;
 }
