@@ -32,7 +32,7 @@ document.addEventListener('keydown', function(event) {
     // Check if the user pressed the "Enter" key
     if (event.key === 'a') {
         event.preventDefault(); // Stop default browser behaviors if necessary
-        document.getElementById('myButton').click(); // Simulate a click
+        document.getElementById('stopBtn').click(); // Simulate a click
     }
 });
 
