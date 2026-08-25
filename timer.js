@@ -28,6 +28,14 @@ resetBtn.addEventListener('click', function () {
     document.getElementById('count').innerHTML = "00";
 });
 
+document.addEventListener('keydown', function(event) {
+    // Check if the user pressed the "Enter" key
+    if (event.key === 'a') {
+        event.preventDefault(); // Stop default browser behaviors if necessary
+        document.getElementById('myButton').click(); // Simulate a click
+    }
+});
+
 function stopWatch() {
     if (timer) {
         count++;
