@@ -30,9 +30,13 @@ resetBtn.addEventListener('click', function () {
 
 document.addEventListener('keydown', function(event) {
     // Check if the user pressed the "Enter" key
-    if (event.key === 'a') {
+    if (event.key === 'q') {
         event.preventDefault(); // Stop default browser behaviors if necessary
-        document.getElementById('stopBtn').click(); // Simulate a click
+        document.getElementById('start').click(); // Simulate a click
+    }
+    else if(event.key === 'w'){
+        event.preventDefault(); // Stop default browser behaviors if necessary
+        document.getElementById('stop').click(); // Simulate a click
     }
 });
 
