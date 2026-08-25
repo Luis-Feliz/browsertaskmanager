@@ -1,17 +1,21 @@
-let startBtn = document.getElementById('start');
-let stopBtn = document.getElementById('stop');
-let resetBtn = document.getElementById('reset');
+let startBtn = document.getElementById('start');    //assign variable via Start ID
+let stopBtn = document.getElementById('stop');      //assign variable via Stop ID
+let resetBtn = document.getElementById('reset');    //assign variable via Reset ID
 let hour = 00;
 let minute = 00;
 let second = 00;
 let count = 00;
+
+
 startBtn.addEventListener('click', function () {
     timer = true;
     stopWatch();
 });
+
 stopBtn.addEventListener('click', function () {
     timer = false;
 });
+
 resetBtn.addEventListener('click', function () {
     timer = false;
     hour = 0;

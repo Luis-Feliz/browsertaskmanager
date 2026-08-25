@@ -76,10 +76,7 @@
 </head>
 
 <body>
-  <!--Stopwatch Script Html-->
-  <!-- 
-  <my-header></my-header> -->
-  <!----->
+<!--Stopwatch Script Html-->
   <div class="container">
     <h1>Geeks For Geeks <br>
         Stop Watch</h1>
@@ -97,7 +94,7 @@
             00</span>
     </div>
     <div id="buttons">
-        <button accesskey="\"  class="btn" id="start">
+        <button class="btn" id="start" accesskey="s">
             Start</button>
         <button class="btn" id="stop">
             Stop</button>
@@ -105,6 +102,18 @@
             Reset</button>
     </div>
   </div>
+  <button id="myButton" onclick="alert('Action Triggered!')">Submit</button>
+
+  <script>
+    // Listen for key presses anywhere on the page
+    document.addEventListener('keydown', function(event) {
+      // Check if the user pressed the "Enter" key
+      if (event.key === 'a') {
+        event.preventDefault(); // Stop default browser behaviors if necessary
+        document.getElementById('myButton').click(); // Simulate a click
+      }
+    });
+  </script>
   <script src=timer.js></script>  
 </main>
 </body>
