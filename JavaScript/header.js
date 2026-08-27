@@ -3,36 +3,7 @@ class MyHeader extends HTMLElement
     connectedCallback()
     {
         this.innerHTML = 
-        `    
-            <script>
-            function myFunction(x) {
-            x.classList.toggle("change");
-            }
-            function toggleNav() {
-            var element = document.getElementById("mySidenav");
-                /*if the element is open close it*/  
-                if (document.getElementById("mySidenav").style.width == "250px") {
-                document.getElementById("mySidenav").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-                } else {
-                /*if element closed, open it*/
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-                }
-            }
-            /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
-        
-            /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            }
-            </script>
-            
+        `                
             <table style="width: 100%; background-color: gray; text-align: center; position: sticky; top: 0;">
             <th style= "text-align: left"><!-- 1 -->
                 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
