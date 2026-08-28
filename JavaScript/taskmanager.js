@@ -8,6 +8,7 @@ addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
     const priority = priorityInput.value;
     const deadline = deadlineInput.value;
+
     if (task.trim() === "" || deadline === "") {
         alert("Please select an upcoming date for the deadline.")
         return; // Don't add task if task or deadline is empty
@@ -24,12 +25,15 @@ addTaskButton.addEventListener("click", () => {
 
     const taskItem = document.createElement("div");
     taskItem.classList.add("task");
-    taskItem.innerHTML = `
-    <p>${task}</p>
-    <p>Priority: ${priority}</p>
-    <p>Deadline: ${deadline}</p>
-    <button class="mark-done">Mark Done</button>
-  `;
+    taskItem.innerHTML =
+    `
+        <table>    
+            <p>${task}</p>
+            <p>Priority: ${priority}</p>
+            <p>Deadline: ${deadline}</p>
+            <button class="mark-done">Mark Done</button>
+        </table>
+    `;
 
     taskList.appendChild(taskItem);
 
@@ -38,6 +42,8 @@ addTaskButton.addEventListener("click", () => {
     deadlineInput.value = "";
 });
 
+
+//This marks the completion of the task
 taskList.addEventListener("click", (event) => {
     if (event.target.classList.contains("mark-done")) {
         const taskItem = event.target.parentElement;
