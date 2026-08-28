@@ -27,11 +27,13 @@ addTaskButton.addEventListener("click", () => {
     taskItem.classList.add("task");
     taskItem.innerHTML =
     `
-        <table>    
-            <p>${task}</p>
-            <p>Priority: ${priority}</p>
-            <p>Deadline: ${deadline}</p>
-            <button class="mark-done">Mark Done</button>
+        <table> 
+            <tr>   
+                <p>${task}</p>
+                <p>Priority: ${priority}</p>
+                <p>Deadline: ${deadline}</p>
+                <button class="mark-done">Mark Done</button>
+            </tr>
         </table>
     `;
 
