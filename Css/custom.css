@@ -119,24 +119,6 @@ footer{
 /*******************************************************************************/
 /* Taskmanager Css */
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-}
 
 .task-form {
     display: flex;
@@ -147,6 +129,8 @@ main {
 .task-list {
     border: 1px solid #ddd;
     padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .task {
@@ -165,4 +149,15 @@ main {
     border: none;
     border-radius: 3px;
     cursor: pointer;
+}
+.scrollable-table {
+    max-height: 400px; /* Set the desired height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: flex;
+    gap: 4vw;
+    padding-left: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-marker-group: after;
 }

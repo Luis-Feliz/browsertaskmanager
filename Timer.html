@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head style="width: 100%; background-color: gray; border: 1px solid black;">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="/_vercel/insights/script.js"></script>
     <link
-      href="custom.css" 
+      href="Css/custom.css" 
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
     />
@@ -15,90 +15,72 @@
       content="High-performance HTML based website template."
     />
     <script>
-      function myFunction(x) {
-      x.classList.toggle("change");
-      }
-      function toggleNav() {
-      var element = document.getElementById("mySidenav");
-        /*if the element is open close it*/  
-        if (document.getElementById("mySidenav").style.width == "250px") {
-          document.getElementById("mySidenav").style.width = "0";
-          document.getElementById("main").style.marginLeft = "0";
-        } else {
-        /*if element closed, open it*/
-          document.getElementById("mySidenav").style.width = "250px";
-          document.getElementById("main").style.marginLeft = "250px";
-        }
-      }
-      /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-      }
-  
-      /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
-      }
-    </script>
-    
-    <table style="width: 100%; background-color: gray; text-align: center; position: sticky; top: 0;">
-      <th style= "text-align: left"><!-- 1 -->
-           <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-          <div id="main">
-            <div class="container" onclick="myFunction(this); toggleNav()">
-              <div class="bar1"></div>
-              <div class="bar2"></div>
-              <div class="bar3"></div>
-            </div>
-          </div>
-          
-          <div id="mySidenav" class="sidenav">
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
-          </div>
-      </th>
-    <!--  
-    <th>
-        <p>block 1</p>
-      </th>      
-      <th>
-        <p>block 2</p>
-      </th>
-    -->
-      <th style="text-align: right;">
-        <button class="demo" onclick="" style="text-align: justify;"> New Project</button>
-      </th>
-    </table>
-    
-
-
-    
-    <!-- Use any element to open the sidenav 
-    
-    <span onclick="openNav()">open</span>
-    -->
+            function myFunction(x) {
+            x.classList.toggle("change");
+            }
+            function toggleNav() {
+            var element = document.getElementById("mySidenav");
+                /*if the element is open close it*/  
+                if (document.getElementById("mySidenav").style.width == "250px") {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                } else {
+                /*if element closed, open it*/
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                }
+            }
+            /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+        
+            /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+      </script>
+    <script src=JavaScript/header.js></script>
+    <my-header></my-header>
 </head>
 
 <body>
-  <table style="width: 100%; background-color: gray; text-align: center; top: 0;">
-    <td style="height: 150px; border: 1px solid black;">
-      <p>block 1</p>
-    </td>
-    <td style=" border: 1px solid black;">
-      <p>block 1</p>
-    </td>    
-    <td style="border: 1px solid black;">
-      <p>block 2</p>
-    </td>
-  </table>
-  <table style=" width: 100%; border: 1px solid black;">
-    <td><p> Current song playing: </p></td>
-  </table>
-  
+<!--Stopwatch Script Html-->
+  <div class="container">
+    <h1>Geeks For Geeks <br>
+        Stop Watch</h1>
+    <div id="time">
+        <span class="digit" id="hr">
+            00</span>
+        <span class="txt">Hr</span>
+        <span class="digit" id="min">
+            00</span>
+        <span class="txt">Min</span>
+        <span class="digit" id="sec">
+            00</span>
+        <span class="txt">Sec</span>
+        <span class="digit" id="count">
+            00</span>
+    </div>
+    <div id="buttons">
+        <button class="btn" id="start" accesskey="s">
+            Start</button>
+        <button class="btn" id="stop">
+            Stop</button>
+        <button class="btn" id="reset">
+            Reset</button>
+    </div>
+  </div>
+  <button id="myButton" onclick="alert('Action Triggered!')">Submit</button>
+
+  <script>
+    // Listen for key presses anywhere on the page
+    
+  </script>
+  <script src=JavaScript/timer.js></script>  
+</main>
 </body>
 
 <footer>
@@ -106,4 +88,3 @@
     <button class="demo" onclick="location.href='Projects.html'"><strong>Project Page</strong></button>
     <button class="demo" onclick="location.href='index.html'"><strong>Main Page</strong></button>
 </footer>
-</html>
