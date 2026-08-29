@@ -53,45 +53,50 @@
     </header>
     <main>
         <table>
-            <th>
+            <thead>
                 Project 1
-            </th>
-            <tr>
-                <div class="task-form">
-                <input type="text" id="task" placeholder="Enter task...">
-                <select id="priority">
-                    <option value="top">Top Priority</option>
-                    <option value="middle">Middle Priority</option>
-                    <option value="low">Less Priority</option>
-                </select>
-                <input type="date" id="deadline">
-                <button id="add-task">Add Task</button>
-                </div>
-                <div class="task-list" id="task-list">
-                <p>5</p>
-                <!-- Tasks will be added here dynamically -->
-                </div>
-                <script src="JavaScript/taskmanager.js"></script>
-            </tr>
-            <tr>
-                <div class="task-form">
-                <input type="text" id="task" placeholder="Enter task...">
-                <select id="priority">
-                    <option value="top">Top Priority</option>
-                    <option value="middle">Middle Priority</option>
-                    <option value="low">Less Priority</option>
-                </select>
-                <input type="date" id="deadline">
-                <button id="add-task">Add Task</button>
-                </div>
-                <div class="task-list" id="task-list">
-                <p>5</p>
-                <!-- Tasks will be added here dynamically -->
-                </div>
-                <script src="JavaScript/taskmanager.js"></script>
-            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="task-form">
+                        <input type="text" id="task" placeholder="Enter task...">
+                        <select id="priority">
+                            <option value="top">Top Priority</option>
+                            <option value="middle">Middle Priority</option>
+                            <option value="low">Less Priority</option>
+                        </select>
+                        <input type="date" id="deadline">
+                        <button id="add-task">Add Task</button>
+                        </div>
+                        <div class="task-list" id="task-list">
+                        <p>5</p>
+                        <!-- Tasks will be added here dynamically -->
+                        </div>
+                    </td>
+                    <td>
+                        <div class="task-form">
+                        <input type="text" id="task" placeholder="Enter task...">
+                        <select id="priority">
+                            <option value="top">Top Priority</option>
+                            <option value="middle">Middle Priority</option>
+                            <option value="low">Less Priority</option>
+                        </select>
+                        <input type="date" id="deadline">
+                        <button id="add-task">Add Task</button>
+                        </div>
+                        <div class="task-list" id="task-list">
+                        <p>5</p>
+                        <!-- Tasks will be added here dynamically -->
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+
+            </tfoot>
         </table>
-        
+        <script src="JavaScript/taskmanager.js"></script>
         
         
     </main>
