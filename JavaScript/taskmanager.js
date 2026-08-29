@@ -36,7 +36,7 @@ addTaskButton.addEventListener("click", () => {
     taskList.appendChild(taskItem);
 
     taskInput.value = "";
-    priorityInput.value = "";
+    priorityInput.value = "Top";
     deadlineInput.value = "";
 });
 
