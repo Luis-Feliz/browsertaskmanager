@@ -1,3 +1,22 @@
+head{
+  width: 100%; 
+  background-color: gray;
+  border: 1px solid black;  
+}
+
+/*
+body{
+  width: 100%; 
+  background-color: rgb(214, 214, 214); 
+}
+*/
+footer{
+  width: 100%; 
+  background-color: red; 
+}
+/*********************************************************************************************************************************************************/
+
+
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */
@@ -73,7 +92,7 @@
 
 /********************************************************************************************************************************/
 .line{
-    background-color: white;
+    background-color: black;
     width: 90%;
     height: 1px;
     margin-top: 20px;
@@ -81,24 +100,69 @@
     margin-left: auto;
     margin-right: auto;
   }
-/*Header*/
 
-/*Body*/
+/*******************************************************************************/
+/* Timer Script CSS */
 
-/*Footer*/
-/*  table{
-    width: 100%;
-    background-color: rgb(25, 25, 25);
-    text-align: center;
-    position: sticky;
-    top: 0;
-    /*if I wanted to make the table smaller. This centers it*/
-    /* margin-left: auto;
-    margin-right: auto;
-  }
-*/
-/*
-table, th, td {
-  border:1px solid black;
+#start {
+    background-color: #009779;
 }
-*/
+
+#stop {
+    background-color: #0e85fc;
+}
+
+#reset {
+    background-color: #c91400;
+}
+
+/*******************************************************************************/
+/* Taskmanager Css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.task-list {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.task button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

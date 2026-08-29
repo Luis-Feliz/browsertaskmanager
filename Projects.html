@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head style="width: 100%; background-color: gray; border: 1px solid black;">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="/_vercel/insights/script.js"></script>
     <link
-      href="custom.css" 
+      href="Css/custom.css" 
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
     />
@@ -15,235 +15,182 @@
       content="High-performance HTML based website template."
     />
     <script>
-      function myFunction(x) {
-      x.classList.toggle("change");
-      }
-      function toggleNav() {
-      var element = document.getElementById("mySidenav");
-        /*if the element is open close it*/  
-        if (document.getElementById("mySidenav").style.width == "250px") {
-          document.getElementById("mySidenav").style.width = "0";
-          document.getElementById("main").style.marginLeft = "0";
-        } else {
-        /*if element closed, open it*/
-          document.getElementById("mySidenav").style.width = "250px";
-          document.getElementById("main").style.marginLeft = "250px";
-        }
-      }
-      /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-      }
-  
-      /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
-      }
-    </script>
-    
-    <table style="width: 100%; background-color: gray; text-align: center; position: sticky; top: 0;">
-      <th style= "text-align: left"><!-- 1 -->
-           <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-          <div id="main">
-            <div class="container" onclick="myFunction(this); toggleNav()">
-              <div class="bar1"></div>
-              <div class="bar2"></div>
-              <div class="bar3"></div>
-            </div>
-          </div>
-          
-          <div id="mySidenav" class="sidenav">
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
-          </div>
-      </th>
-    <!--  
-    <th>
-        <p>block 1</p>
-      </th>      
-      <th>
-        <p>block 2</p>
-      </th>
-    -->
-      <th style="text-align: right;">
-        <button class="demo" onclick="" style="text-align: justify;"> New Project</button>
-      </th>
-    </table>
-    
-
-
-    
-    <!-- Use any element to open the sidenav 
-    
-    <span onclick="openNav()">open</span>
-    -->
+            function myFunction(x) {
+            x.classList.toggle("change");
+            }
+            function toggleNav() {
+            var element = document.getElementById("mySidenav");
+                /*if the element is open close it*/  
+                if (document.getElementById("mySidenav").style.width == "250px") {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                } else {
+                /*if element closed, open it*/
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                }
+            }
+            /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+        
+            /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+      </script>
+    <script src=JavaScript/header.js></script>
+    <my-header></my-header>
 </head>
 
 <body>
-<p>Testing but to a greater effect. yur</p>
-<button class="demo" onclick="location.href='index.html'"><strong>Main Page</strong></button>
-<button class="demo" onclick="location.href='Timer.html'"><strong>Timer Page</strong></button>
-
-    <h1 style="text-align: center"><u>Projects</u></h1>
-    <!-- One Way Ticket -->
-    <table style="width: 100%; border: 1px solid black;">
-      
-      <th style="height: 20%; text-align: left"><H1><u>Project 1:</u></H1></th>
-      
-      <tr style="border: 1px solid black;">
-        
-        <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-        
-        <td style="width: 60%; height: 100%; border: 1px solid black;">
-            <p>
-              Description of Project <br>
-            </p>
-        </td>
-        <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
-          <p>
-            Skills needed:<br>
-            Completion of selected skills:<br>
-          </p>
-        </td>
-      </tr>
-    </table>
-    <table style="border: 1px solid black; text-align: center; width: 100%;">
-      <th>Current task:</th>
-    </table>   
-
-
-    <div class="line"></div>
-
-    <!-- Puzzle -->
-    <table style="width: 100%; border: 1px solid black;">
-      
-      <th style="height: 20%; text-align: left"><H1><u>Project 2:</u></H1></th>
-      
-      <tr style="border: 1px solid black;">
-        
-        <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-        
-        <td style="width: 60%; height: 100%; border: 1px solid black;">
-            <p>
-              Description of Project <br>
-            </p>
-        </td>
-        <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
-          <p>
-            Skills needed:<br>
-            Completion of selected skills:<br>
-          </p>
-        </td>
-      </tr>
-    </table>
-    <table style="border: 1px solid black; text-align: center; width: 100%;">
-      <th>Current task:</th>
-    </table>   
-
-    <div class="line"></div>
+  <h1 style="text-align: center"><u>Projects</u></h1>
+  <!-- One Way Ticket -->
+  <table style="width: 100%; border: 1px solid black;">
     
-    <!-- Diagnosis Simulator -->
-    <table style="width: 100%; border: 1px solid black;">
-      
-      <th style="height: 20%; text-align: left"><H1><u>Project 3:</u></H1></th>
-      
-      <tr style="border: 1px solid black;">
-        
-        <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-        
-        <td style="width: 60%; height: 100%; border: 1px solid black;">
-            <p>
-              Description of Project <br>
-            </p>
-        </td>
-        <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
-          <p>
-            Skills needed:<br>
-            Completion of selected skills:<br>
-          </p>
-        </td>
-      </tr>
-    </table>
-    <table style="border: 1px solid black; text-align: center; width: 100%;">
-      <th>Current task:</th>
-    </table>
 
-    <div class="line"></div>
-
-    <!-- WallRunners -->
-    <table style="width: 100%; border: 1px solid black;">
-      
-      <th style="height: 20%; text-align: left"><H1><u>Project 4:</u></H1></th>
-      
-      <tr style="border: 1px solid black;">
-        
-        <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-        
-        <td style="width: 60%; height: 100%; border: 1px solid black;">
-            <p>
-              Description of Project <br>
-            </p>
-        </td>
-        <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
-          <p>
-            Skills needed:<br>
-            Completion of selected skills:<br>
-          </p>
-        </td>
-      </tr>
-    </table>
-    <table style="border: 1px solid black; text-align: center; width: 100%;">
-      <th>Current task:</th>
-    </table>
+    <th style="height: 20%; text-align: left"><a href="Proj_Demo.html"><H1><u>Project 1:</u></H1></a></th>
     
-    <div class="line"></div>
-
-    <!-- SlimeHunter -->
-    <table style="width: 100%; border: 1px solid black;">
+    <tr style="border: 1px solid black;">
       
-      <th style="height: 20%; text-align: left"><H1><u>Project 5:</u></H1></th>
+      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
       
-      <tr style="border: 1px solid black;">
-        
-        <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-        
-        <td style="width: 60%; height: 100%; border: 1px solid black;">
-            <p>
-              Description of Project <br>
-            </p>
-        </td>
-        <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
+      <td style="width: 60%; height: 100%; border: 1px solid black;">
           <p>
-            Skills needed:<br>
-            Completion of selected skills:<br>
+            Description of Project <br>
           </p>
-        </td>
-      </tr>
-    </table>
-    <table style="border: 1px solid black; text-align: center; width: 100%;">
-      <th>Current task:</th>
-    </table>
-    
-    <!--
-    <div class="row" style="background-color: aliceblue;"> 
-      <img src="GIF/SlimeHunter.gif" alt="SlimeHunter Gif" width= 400px; height= 300px>
-      <div class="description">
-        <h1><u>SlimeHunter (2022)</u></h1>
+      </td>
+      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
         <p>
-          Made in Unity for a 3D Game Development Course.
-          <br><br> 
-          Although not fully complete, contains an inventory and combat system fully 
-          coded by me! Containing a turn-based battle system, inventory, and switching cameras 
-          inside and outside combat to see and play the games from different angles.
-          <br><br>
-          <i>Animations and textures are not created by me, however, slime animation was.</i>
+          Skills needed:<br>
+          Completion of selected skills:<br>
         </p>
-      </div>
-    </div>
-  -->
+      </td>
+    </tr>
   </table>
+  <table style="border: 1px solid black; text-align: center; width: 100%;">
+    <th>Current task:</th>
+  </table>   
+
+  <div class="line"></div>
+
+  <!-- Puzzle -->
+  <table style="width: 100%; border: 1px solid black;">
+    
+    <th style="height: 20%; text-align: left"><H1><u>Project 2:</u></H1></th>
+    
+    <tr style="border: 1px solid black;">
+      
+      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
+      
+      <td style="width: 60%; height: 100%; border: 1px solid black;">
+          <p>
+            Description of Project <br>
+          </p>
+      </td>
+      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
+        <p>
+          Skills needed:<br>
+          Completion of selected skills:<br>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table style="border: 1px solid black; text-align: center; width: 100%;">
+    <th>Current task:</th>
+  </table>   
+
+  <div class="line"></div>
+  
+  <!-- Diagnosis Simulator -->
+  <table style="width: 100%; border: 1px solid black;">
+    
+    <th style="height: 20%; text-align: left"><H1><u>Project 3:</u></H1></th>
+    
+    <tr style="border: 1px solid black;">
+      
+      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
+      
+      <td style="width: 60%; height: 100%; border: 1px solid black;">
+          <p>
+            Description of Project <br>
+          </p>
+      </td>
+      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
+        <p>
+          Skills needed:<br>
+          Completion of selected skills:<br>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table style="border: 1px solid black; text-align: center; width: 100%;">
+    <th>Current task:</th>
+  </table>
+
+  <div class="line"></div>
+
+  <!-- WallRunners -->
+  <table style="width: 100%; border: 1px solid black;">
+    
+    <th style="height: 20%; text-align: left"><H1><u>Project 4:</u></H1></th>
+    
+    <tr style="border: 1px solid black;">
+      
+      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
+      
+      <td style="width: 60%; height: 100%; border: 1px solid black;">
+          <p>
+            Description of Project <br>
+          </p>
+      </td>
+      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
+        <p>
+          Skills needed:<br>
+          Completion of selected skills:<br>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table style="border: 1px solid black; text-align: center; width: 100%;">
+    <th>Current task:</th>
+  </table>
+  
+  <div class="line"></div>
+
+  <!-- SlimeHunter -->
+  <table style="width: 100%; border: 1px solid black;">
+    
+    <th style="height: 20%; text-align: left"><H1><u>Project 5:</u></H1></th>
+    
+    <tr style="border: 1px solid black;">
+      
+      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
+      
+      <td style="width: 60%; height: 100%; border: 1px solid black;">
+          <p>
+            Description of Project <br>
+          </p>
+      </td>
+      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
+        <p>
+          Skills needed:<br>
+          Completion of selected skills:<br>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table style="border: 1px solid black; text-align: center; width: 100%;">
+    <th>Current task:</th>
+  </table>
+
 </body>
+
+<footer>
+    <p>Timer Page</p>
+    <button class="demo" onclick="location.href='index.html'"><strong>Main Page</strong></button>
+    <button class="demo" onclick="location.href='Timer.html'"><strong>Timer Page</strong></button>
+</footer>

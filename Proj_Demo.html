@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="/_vercel/insights/script.js"></script>
+    <link
+      href="Css/custom.css" 
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+    />
+    <title>Task Management Demo</title>
+    <meta
+      name="description"
+      content="High-performance HTML based website template."
+    />
+    <script>
+            function myFunction(x) {
+            x.classList.toggle("change");
+            }
+            function toggleNav() {
+            var element = document.getElementById("mySidenav");
+                /*if the element is open close it*/  
+                if (document.getElementById("mySidenav").style.width == "250px") {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                } else {
+                /*if element closed, open it*/
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                }
+            }
+            /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+        
+            /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+      </script>
+    <script src=JavaScript/header.js></script>
+    <my-header></my-header>
+</head>
+
+<body>
+    <header>
+        <h1>Task Scheduler</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                Project 1
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="task-form">
+                        <input type="text" id="task" placeholder="Enter task...">
+                        <select id="priority">
+                            <option value="top">Top Priority</option>
+                            <option value="middle">Middle Priority</option>
+                            <option value="low">Less Priority</option>
+                        </select>
+                        <input type="date" id="deadline">
+                        <button id="add-task">Add Task</button>
+                        </div>
+                        <div class="task-list" id="task-list">
+
+
+                        <p>10</p>
+                        
+                        
+                        
+                        
+                        <!-- Tasks will be added here dynamically -->
+                        </div>
+                        <script src="JavaScript/taskmanager.js"></script>
+                    </td>
+                    <td>
+                        <div class="task-form">
+                        <input type="text" id="task" placeholder="Enter task...">
+                        <select id="priority">
+                            <option value="top">Top Priority</option>
+                            <option value="middle">Middle Priority</option>
+                            <option value="low">Less Priority</option>
+                        </select>
+                        <input type="date" id="deadline">
+                        <button id="add-task">Add Task</button>
+                        </div>
+                        <div class="task-list" id="task-list">
+                        <!-- Tasks will be added here dynamically -->
+                        </div>
+                        <script src="JavaScript/taskmanager.js"></script>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+        
+        
+        
+    </main>
+</body>
+
+<footer>
+    <button class="demo" onclick="location.href='index.html'"><strong>Main Page</strong></button>
+    <button class="demo" onclick="location.href='Projects.html'"><strong>Project Page</strong></button>
+    <button class="demo" onclick="location.href='Timer.html'"><strong>Timer Page</strong></button>
+</footer>
+</html>
