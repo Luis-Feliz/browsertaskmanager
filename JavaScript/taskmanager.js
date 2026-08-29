@@ -28,20 +28,16 @@ addTaskButton.addEventListener("click", () => {
 
     taskItem.innerHTML =
     `
-        <table> 
-            <tr>   
-                <p>${task}</p>
-                <p>Priority: ${priority}</p>
-                <p>Deadline: ${deadline}</p>
-                <button class="mark-done">Mark Done</button>
-            </tr>
-        </table>
+        <p>${task}</p>
+        <p>Priority: ${priority}</p>
+        <p>Deadline: ${deadline}</p>
+        <button class="mark-done">Mark Done</button>
     `;
     PARENTNODE.appendChild(childnode)
     taskList.appendChild(taskItem);
 
     taskInput.value = "";
-    priorityInput.value = "";
+    priorityInput.value = "Top";
     deadlineInput.value = "";
 });
 
