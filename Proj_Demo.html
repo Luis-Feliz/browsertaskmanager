@@ -52,23 +52,48 @@
         <h1>Task Scheduler</h1>
     </header>
     <main>
-        <div class="task-form">
-            <input type="text" id="task" placeholder="Enter task...">
-            <select id="priority">
-                <option value="top">Top Priority</option>
-                <option value="middle">Middle Priority</option>
-                <option value="low">Less Priority</option>
-            </select>
-            <input type="date" id="deadline">
-            <button id="add-task">Add Task</button>
-        </div>
-
+        <table>
+            <th>
+                Project 1
+            </th>
+            <tr>
+                <div class="task-form">
+                <input type="text" id="task" placeholder="Enter task...">
+                <select id="priority">
+                    <option value="top">Top Priority</option>
+                    <option value="middle">Middle Priority</option>
+                    <option value="low">Less Priority</option>
+                </select>
+                <input type="date" id="deadline">
+                <button id="add-task">Add Task</button>
+                </div>
                 <div class="task-list" id="task-list">
-                <p>Any output will be show on top here test 4</p>
+                <p>5</p>
                 <!-- Tasks will be added here dynamically -->
                 </div>
+                <script src="JavaScript/taskmanager.js"></script>
+            </tr>
+            <tr>
+                <div class="task-form">
+                <input type="text" id="task" placeholder="Enter task...">
+                <select id="priority">
+                    <option value="top">Top Priority</option>
+                    <option value="middle">Middle Priority</option>
+                    <option value="low">Less Priority</option>
+                </select>
+                <input type="date" id="deadline">
+                <button id="add-task">Add Task</button>
+                </div>
+                <div class="task-list" id="task-list">
+                <p>5</p>
+                <!-- Tasks will be added here dynamically -->
+                </div>
+                <script src="JavaScript/taskmanager.js"></script>
+            </tr>
+        </table>
         
-        <script src="JavaScript/taskmanager.js"></script>
+        
+        
     </main>
 </body>
 

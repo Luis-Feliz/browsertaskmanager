@@ -14,8 +14,8 @@ addTaskButton.addEventListener("click", () => {
         return; // Don't add task if task or deadline is empty
     }
 
-    const selectedDate = new Date(deadline);
-    const currentDate = new Date();
+    const selectedDate = new Date(deadline); // assign html date onto variable
+    const currentDate = new Date(); // assign today's date onto variable
 
     if (selectedDate <= currentDate) {
         alert("Please select an upcoming date for the deadline.");
@@ -25,6 +25,7 @@ addTaskButton.addEventListener("click", () => {
 
     const taskItem = document.createElement("div");
     taskItem.classList.add("task");
+
     taskItem.innerHTML =
     `
         <table> 
@@ -36,11 +37,11 @@ addTaskButton.addEventListener("click", () => {
             </tr>
         </table>
     `;
-
+    PARENTNODE.appendChild(childnode)
     taskList.appendChild(taskItem);
 
     taskInput.value = "";
-    priorityInput.value = "top";
+    priorityInput.value = "";
     deadlineInput.value = "";
 });
 
