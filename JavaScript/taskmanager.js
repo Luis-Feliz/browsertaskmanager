@@ -3,7 +3,7 @@ const catagoryInput = document.getElementById("catagory");
 //const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
 //const taskList;
-const taskList = document.getElementById("task-list-c");
+const taskList = document.getElementById("task-list");
 addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
     const catagory = catagoryInput.value;
@@ -22,7 +22,7 @@ addTaskButton.addEventListener("click", () => {
         return; // Don't add task if deadline is not in the future
     }
     */
-    switch (catagory) {
+    /*switch (catagoryInput) {
     case Coding:
         const taskList = document.getElementById("task-list-c");
         break;
@@ -40,7 +40,7 @@ addTaskButton.addEventListener("click", () => {
         break;
     default:
         break;
-    }
+}*/
     const taskItem = document.createElement("div");
     taskItem.classList.add("task");
 
