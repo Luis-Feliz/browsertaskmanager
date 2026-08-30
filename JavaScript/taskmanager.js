@@ -5,24 +5,11 @@ const addTaskButton = document.getElementById("add-task");
 //const taskList;
 const taskList = document.getElementById("task-list");
 addTaskButton.addEventListener("click", () => {
+    console.log("consol ran");
     const task = taskInput.value;
     const catagory = catagoryInput.value;
     //const deadline = deadlineInput.value;
-    /*
-    if (task.trim() === "" || deadline === "") {
-        alert("Please select an upcoming date for the deadline.")
-        return; // Don't add task if task or deadline is empty
-    }
-
-    const selectedDate = new Date(deadline); // assign html date onto variable
-    const currentDate = new Date(); // assign today's date onto variable
-
-    if (selectedDate <= currentDate) {
-        alert("Please select an upcoming date for the deadline.");
-        return; // Don't add task if deadline is not in the future
-    }
-    */
-    switch (catagory) {
+    /*switch (catagory) {
     case Coding:
         console.log("Coding ran");
         const taskList = document.getElementById("task-list-c");
@@ -46,7 +33,7 @@ addTaskButton.addEventListener("click", () => {
     default:
         console.log("Coding ran");
         break;
-}*/
+    }*/
     const taskItem = document.createElement("div");
     taskItem.classList.add("task");
 
