@@ -32,6 +32,7 @@ addTaskButton.addEventListener("click", () => {
         <p>Catagory: ${catagory}</p>
         <p>Deadline: ${deadline}</p>
         <button class="mark-done">Mark Done</button>
+        <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
     `;
     taskList.appendChild(taskItem);
 
