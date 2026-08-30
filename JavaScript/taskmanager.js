@@ -22,8 +22,6 @@ switch (catagoryInput) {
     default:
         break;
     }
- 
-
 addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
     const catagory = catagoryInput.value;
