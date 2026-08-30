@@ -3,7 +3,7 @@ const catagoryInput = document.getElementById("catagory");
 //const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
 const taskList;
-//const taskList = document.getElementById("task-list");
+const taskList = document.getElementById("task-list");
 
 switch (catagoryInput) {
     case Coding:
