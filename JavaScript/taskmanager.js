@@ -41,12 +41,14 @@ addTaskButton.addEventListener("click", () => {
     `
         <button class="mark-done">Mark Done</button>
         <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
-        <p>${taskInput}</p>
-        <p>${catagoryInput}</p>
-        <p>${addTaskButton}</p>
-        <p>${taskItem}</p>
-        <p>${catagory}</p>
-        <p>${task}</p>
+        <ul>
+            <li>${taskInput}</li>
+            <li>${catagoryInput}</li>
+            <li>${addTaskButton}</li>
+            <li>${taskItem}</li>
+            <li>${catagory}</li>
+            <li>${task}</li>
+        </ul>
     `;
     taskList.appendChild(taskItem);
 
