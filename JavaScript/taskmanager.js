@@ -8,7 +8,7 @@ addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
     const catagory = catagoryInput.value;
     const deadline = deadlineInput.value;
-
+    /*
     if (task.trim() === "" || deadline === "") {
         alert("Please select an upcoming date for the deadline.")
         return; // Don't add task if task or deadline is empty
@@ -21,19 +21,64 @@ addTaskButton.addEventListener("click", () => {
         alert("Please select an upcoming date for the deadline.");
         return; // Don't add task if deadline is not in the future
     }
-
+    */
 
     const taskItem = document.createElement("div");
-    taskItem.classList.add("task");
-
-    taskItem.innerHTML =
-    `
-        <p>${task}</p>
-        <p>Catagory: ${catagory}</p>
-        <p>Deadline: ${deadline}</p>
-        <button class="mark-done">Mark Done</button>
-        <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
-    `;
+    
+    switch (catagory) {
+        case Coding:
+            taskItem.classList.add("task");
+            taskItem.innerHTML =
+            `
+                <button class="mark-done">Mark Done</button>
+                <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            
+                <p>${task}</p>
+            `;
+            break;
+        case Writing:
+            taskItem.classList.add("task");
+            taskItem.innerHTML =
+            `
+                <button class="mark-done">Mark Done</button>
+                <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            
+                <p>${task}</p>
+            `;
+            break;
+        case Music:
+            taskItem.classList.add("task");
+            taskItem.innerHTML =
+            `
+                <button class="mark-done">Mark Done</button>
+                <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            
+                <p>${task}</p>
+            `;
+            break;
+        case Art:
+            taskItem.classList.add("task");
+            taskItem.innerHTML =
+            `
+                <button class="mark-done">Mark Done</button>
+                <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            
+                <p>${task}</p>
+            `;
+            break;
+        case Misc:
+            taskItem.classList.add("task");
+            taskItem.innerHTML =
+            `
+                <button class="mark-done">Mark Done</button>
+                <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            
+                <p>${task}</p>
+            `;
+            break;
+        default:
+            break;
+    }
     taskList.appendChild(taskItem);
 
     taskInput.value = "";
