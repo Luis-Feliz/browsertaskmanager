@@ -7,19 +7,19 @@ const taskList = document.getElementById("task-list");
 
 /*switch (catagoryInput) {
     case Coding:
-        taskList = document.getElementById("task-list-c");
+        const taskList = document.getElementById("task-list-c");
         break;
     case Music:
-        taskList = document.getElementById("task-list-mu");
+        const taskList = document.getElementById("task-list-mu");
         break;
     case Art:
-        taskList = document.getElementById("task-list-a");
+        const taskList = document.getElementById("task-list-a");
         break;
     case Writing:
-        taskList = document.getElementById("task-list-w");
+        const taskList = document.getElementById("task-list-w");
         break;
     case Misc:
-        taskList = document.getElementById("task-list-mi");
+        const taskList = document.getElementById("task-list-mi");
         break;
     default:
         break;
