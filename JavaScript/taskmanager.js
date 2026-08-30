@@ -7,6 +7,7 @@ addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
     const catagory = catagoryInput.value;
     //const deadline = deadlineInput.value;
+    /*
     switch (catagory) {
     case Coding:
         
@@ -128,6 +129,7 @@ addTaskButton.addEventListener("click", () => {
         console.log("Coding ran");
         break;
     }
+    */
     /*
     const taskItem = document.createElement("div");
     taskItem.classList.add("task");
