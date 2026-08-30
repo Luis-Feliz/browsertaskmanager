@@ -22,23 +22,29 @@ addTaskButton.addEventListener("click", () => {
         return; // Don't add task if deadline is not in the future
     }
     */
-    /*switch (catagoryInput) {
+    switch (catagoryInput) {
     case Coding:
+        console.log("Coding ran");
         const taskList = document.getElementById("task-list-c");
         break;
     case Music:
+        console.log("Coding ran");
         const taskList = document.getElementById("task-list-mu");
         break;
     case Art:
+        console.log("Coding ran");
         const taskList = document.getElementById("task-list-a");
         break;
     case Writing:
+        console.log("Coding ran");
         const taskList = document.getElementById("task-list-w");
         break;
     case Misc:
+        console.log("Coding ran");
         const taskList = document.getElementById("task-list-mi");
         break;
     default:
+        console.log("Coding ran");
         break;
 }*/
     const taskItem = document.createElement("div");
