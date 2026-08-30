@@ -3,9 +3,9 @@ const catagoryInput = document.getElementById("catagory");
 //const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
 //const taskList;
-const taskList = document.getElementById("task-list");
+//const taskList = document.getElementById("task-list");
 
-/*switch (catagoryInput) {
+switch (catagoryInput) {
     case Coding:
         const taskList = document.getElementById("task-list-c");
         break;
@@ -23,7 +23,7 @@ const taskList = document.getElementById("task-list");
         break;
     default:
         break;
-}*/
+}
 
     addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
@@ -51,7 +51,6 @@ const taskList = document.getElementById("task-list");
     `
         <button class="mark-done">Mark Done</button>
         <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
-    
         <p>${task}</p>
     `;
     taskList.appendChild(taskItem);
