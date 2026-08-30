@@ -8,4 +8,3 @@ function updateSpecificColumn() {
   // 3. Target the specific column cell (index 1 is Column 2)
   row.cells[1].innerText = "Updated!"; 
 }
-}
