@@ -36,7 +36,7 @@ addTaskButton.addEventListener("click", () => {
     taskList.appendChild(taskItem);
 
     taskInput.value = "";
-    catagoryInput.value = "";
+    catagoryInput.value = "Coding";
     deadlineInput.value = "";
 });
 
