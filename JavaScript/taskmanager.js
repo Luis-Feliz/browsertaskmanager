@@ -3,29 +3,8 @@ const catagoryInput = document.getElementById("catagory");
 //const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
 //const taskList;
-const taskList = document.getElementById("task-list");
-
-/*switch (catagoryInput) {
-    case Coding:
-        const taskList = document.getElementById("task-list-c");
-        break;
-    case Music:
-        const taskList = document.getElementById("task-list-mu");
-        break;
-    case Art:
-        const taskList = document.getElementById("task-list-a");
-        break;
-    case Writing:
-        const taskList = document.getElementById("task-list-w");
-        break;
-    case Misc:
-        const taskList = document.getElementById("task-list-mi");
-        break;
-    default:
-        break;
-}*/
-
-    addTaskButton.addEventListener("click", () => {
+//const taskList = document.getElementById("task-list");
+addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
     const catagory = catagoryInput.value;
     //const deadline = deadlineInput.value;
@@ -43,7 +22,25 @@ const taskList = document.getElementById("task-list");
         return; // Don't add task if deadline is not in the future
     }
     */
-
+    switch (catagory) {
+    case Coding:
+        const taskList = document.getElementById("task-list-c");
+        break;
+    case Music:
+        const taskList = document.getElementById("task-list-mu");
+        break;
+    case Art:
+        const taskList = document.getElementById("task-list-a");
+        break;
+    case Writing:
+        const taskList = document.getElementById("task-list-w");
+        break;
+    case Misc:
+        const taskList = document.getElementById("task-list-mi");
+        break;
+    default:
+        break;
+    }
     const taskItem = document.createElement("div");
     taskItem.classList.add("task");
 
