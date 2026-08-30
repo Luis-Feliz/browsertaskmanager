@@ -1,6 +1,6 @@
 const taskInput = document.getElementById("task");
 const catagoryInput = document.getElementById("catagory");
-const deadlineInput = document.getElementById("deadline");
+//const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
 const taskList;
 switch (catagoryInput) {
@@ -25,7 +25,7 @@ switch (catagoryInput) {
 addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
     const catagory = catagoryInput.value;
-    const deadline = deadlineInput.value;
+    //const deadline = deadlineInput.value;
     /*
     if (task.trim() === "" || deadline === "") {
         alert("Please select an upcoming date for the deadline.")
@@ -55,7 +55,7 @@ addTaskButton.addEventListener("click", () => {
 
     taskInput.value = "";
     catagoryInput.value = "Coding";
-    deadlineInput.value = "";
+    //deadlineInput.value = "";
 
 
     /*
