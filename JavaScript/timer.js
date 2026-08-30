@@ -29,11 +29,11 @@ resetBtn.addEventListener('click', function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'q') { //Identify which key will be held as Shortcut
+    if (event.key === 'q' || event.key === 'Q') { //Identify which key will be held as Shortcut
         event.preventDefault(); // Stop default browser behaviors if necessary
         document.getElementById('start').click(); // Simulate a click | all identified by ID
     }
-    else if(event.key === 'w'){
+    else if(event.key === 'w' || event.key === 'W'){
         event.preventDefault(); // Stop default browser behaviors if necessary
         document.getElementById('stop').click(); // Simulate a click | all identified by ID
     }

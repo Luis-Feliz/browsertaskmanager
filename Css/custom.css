@@ -151,13 +151,7 @@ footer{
     cursor: pointer;
 }
 .scrollable-table {
-    max-height: 400px; /* Set the desired height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    display: flex;
-    gap: 4vw;
-    padding-left: 0;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-marker-group: after;
+  max-height: 150px;       /* Control how tall the visible area is */
+  overflow-y: auto;        /* Adds vertical scrollbar only when needed */
+  border: 1px solid #ccc;  /* Optional formatting border */
 }
