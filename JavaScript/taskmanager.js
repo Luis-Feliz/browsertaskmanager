@@ -22,7 +22,7 @@ addTaskButton.addEventListener("click", () => {
         return; // Don't add task if deadline is not in the future
     }
     */
-    switch (catagoryInput) {
+    switch (catagory) {
     case Coding:
         console.log("Coding ran");
         const taskList = document.getElementById("task-list-c");
