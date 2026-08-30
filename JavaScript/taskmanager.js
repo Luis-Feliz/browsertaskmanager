@@ -1,39 +1,134 @@
 const taskInput = document.getElementById("task");
 const catagoryInput = document.getElementById("catagory");
-//const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
 //const taskList;
-const taskList = document.getElementById("task-list");
+//const taskList = document.getElementById("task-list");
 addTaskButton.addEventListener("click", () => {
-    console.log("consol ran");
     const task = taskInput.value;
     const catagory = catagoryInput.value;
     //const deadline = deadlineInput.value;
-    /*switch (catagory) {
+    switch (catagory) {
     case Coding:
-        console.log("Coding ran");
+        
         const taskList = document.getElementById("task-list-c");
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("task");
+
+        taskItem.innerHTML =
+        `
+            <button class="mark-done">Mark Done</button>
+            <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            <ul>
+                <li>${taskInput}</li>
+                <li>${catagoryInput}</li>
+                <li>${addTaskButton}</li>
+                <li>${taskItem}</li>
+                <li>${catagory}</li>
+                <li>${task}</li>
+            </ul>
+        `;
+        taskList.appendChild(taskItem);
+
+        taskInput.value = "";
+        catagoryInput.value = "Coding";
         break;
     case Music:
-        console.log("Coding ran");
         const taskList = document.getElementById("task-list-mu");
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("task");
+
+        taskItem.innerHTML =
+        `
+            <button class="mark-done">Mark Done</button>
+            <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            <ul>
+                <li>${taskInput}</li>
+                <li>${catagoryInput}</li>
+                <li>${addTaskButton}</li>
+                <li>${taskItem}</li>
+                <li>${catagory}</li>
+                <li>${task}</li>
+            </ul>
+        `;
+        taskList.appendChild(taskItem);
+
+        taskInput.value = "";
+        catagoryInput.value = "Coding";
         break;
     case Art:
-        console.log("Coding ran");
         const taskList = document.getElementById("task-list-a");
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("task");
+
+        taskItem.innerHTML =
+        `
+            <button class="mark-done">Mark Done</button>
+            <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            <ul>
+                <li>${taskInput}</li>
+                <li>${catagoryInput}</li>
+                <li>${addTaskButton}</li>
+                <li>${taskItem}</li>
+                <li>${catagory}</li>
+                <li>${task}</li>
+            </ul>
+        `;
+        taskList.appendChild(taskItem);
+
+        taskInput.value = "";
+        catagoryInput.value = "Coding";
         break;
     case Writing:
-        console.log("Coding ran");
         const taskList = document.getElementById("task-list-w");
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("task");
+
+        taskItem.innerHTML =
+        `
+            <button class="mark-done">Mark Done</button>
+            <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            <ul>
+                <li>${taskInput}</li>
+                <li>${catagoryInput}</li>
+                <li>${addTaskButton}</li>
+                <li>${taskItem}</li>
+                <li>${catagory}</li>
+                <li>${task}</li>
+            </ul>
+        `;
+        taskList.appendChild(taskItem);
+
+        taskInput.value = "";
+        catagoryInput.value = "Coding";
         break;
     case Misc:
-        console.log("Coding ran");
         const taskList = document.getElementById("task-list-mi");
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("task");
+
+        taskItem.innerHTML =
+        `
+            <button class="mark-done">Mark Done</button>
+            <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+            <ul>
+                <li>${taskInput}</li>
+                <li>${catagoryInput}</li>
+                <li>${addTaskButton}</li>
+                <li>${taskItem}</li>
+                <li>${catagory}</li>
+                <li>${task}</li>
+            </ul>
+        `;
+        taskList.appendChild(taskItem);
+
+        taskInput.value = "";
+        catagoryInput.value = "Coding";
         break;
     default:
         console.log("Coding ran");
         break;
-    }*/
+    }
+    /*
     const taskItem = document.createElement("div");
     taskItem.classList.add("task");
 
