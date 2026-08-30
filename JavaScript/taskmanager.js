@@ -2,10 +2,10 @@ const taskInput = document.getElementById("task");
 const catagoryInput = document.getElementById("catagory");
 //const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
-const taskList;
+//const taskList;
 const taskList = document.getElementById("task-list");
 
-switch (catagoryInput) {
+/*switch (catagoryInput) {
     case Coding:
         taskList = document.getElementById("task-list-c");
         break;
@@ -23,7 +23,7 @@ switch (catagoryInput) {
         break;
     default:
         break;
-    }
+}*/
 
     addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
