@@ -150,8 +150,3 @@ footer{
     border-radius: 3px;
     cursor: pointer;
 }
-.scrollable-table {
-  max-height: 150px;       /* Control how tall the visible area is */
-  overflow-y: auto;        /* Adds vertical scrollbar only when needed */
-  border: 1px solid #ccc;  /* Optional formatting border */
-}
