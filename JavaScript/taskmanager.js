@@ -1,12 +1,12 @@
 const taskInput = document.getElementById("task");
-const priorityInput = document.getElementById("priority");
+const catagoryInput = document.getElementById("catagory");
 const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
 const taskList = document.getElementById("task-list");
 
 addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
-    const priority = priorityInput.value;
+    const catagory = catagoryInput.value;
     const deadline = deadlineInput.value;
 
     if (task.trim() === "" || deadline === "") {
@@ -29,14 +29,14 @@ addTaskButton.addEventListener("click", () => {
     taskItem.innerHTML =
     `
         <p>${task}</p>
-        <p>Priority: ${priority}</p>
+        <p>Catagory: ${catagory}</p>
         <p>Deadline: ${deadline}</p>
         <button class="mark-done">Mark Done</button>
     `;
     taskList.appendChild(taskItem);
 
     taskInput.value = "";
-    priorityInput.value = "Top";
+    catagoryInput.value = "";
     deadlineInput.value = "";
 });
 
