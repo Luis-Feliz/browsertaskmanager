@@ -46,19 +46,20 @@
     <my-header></my-header>
 </head>
 <body>
-    <table>
-    <tr id="data-row">
-        <td style="border: 1px solid black;" class="col-target">Column 1</td>
-    </tr>
-        <tr id="data-row">
-        <td style="border: 1px solid black;" class="col-target">Column 1</td>
-    </tr>
-        <tr id="data-row">
-        <td style="border: 1px solid black;" class="col-target">Column 1</td>
-    </tr>
+    <table id="myTable" border="1">
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+        </tr>
+        <tr>
+            <td>Old Value</td>
+            <td>Old Value</td>
+            <td>Old Value</td>
+        </tr>
     </table>
 
-    <button onclick="populateTableColumns()">Fill Columns</button>
+    <button onclick="updateSpecificColumn()">Update Column 2 Only</button>
     <script src=JavaScript/tableDemo.js></script>
 <!--
 <body>

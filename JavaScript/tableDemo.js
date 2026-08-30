@@ -1,11 +1,11 @@
-function populateTableColumns() {
-  const newValue = "Updated Data";
+function updateSpecificColumn() {
+  // 1. Get the table
+  const table = document.getElementById("myTable");
   
-  // 1. Select all columns sharing the class name
-  const columns = document.querySelectorAll('#data-row .col-target');
+  // 2. Target the specific row (e.g., row index 1 is the first data row)
+  const row = table.rows[1];
   
-  // 2. Loop through each column cell and set its content
-  columns.forEach(column => {
-    column.textContent = newValue;
-  });
+  // 3. Target the specific column cell (index 1 is Column 2)
+  row.cells[1].innerText = "Updated!"; 
+}
 }
