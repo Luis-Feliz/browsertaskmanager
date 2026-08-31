@@ -133,42 +133,6 @@ footer{
     overflow-y: auto;
 }
 
-.task-list-c {
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.task-list-mu {
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.task-list-a {
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.task-list-w {
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.task-list-mi {
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-
 .task {
     display: flex;
     justify-content: space-between;

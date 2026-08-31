@@ -1,105 +1,63 @@
 const taskInput = document.getElementById("task");
 const catagoryInput = document.getElementById("catagory");
+// const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
-//const taskList;
-//const taskList = document.getElementById("task-list");
 
-function addColumn() {
-    const table = document.getElementById("myTable");
-    
+
+addTaskButton.addEventListener("click", () => {
     const task = taskInput.value;
     const catagory = catagoryInput.value;
+    // const deadline = deadlineInput.value;
 
+    // if (task.trim() === "" || deadline === "") {
+    //     alert("Please select an upcoming date for the deadline.")
+    //     return; // Don't add task if task or deadline is empty
+    // }
+
+    // const selectedDate = new Date(deadline); // assign html date onto variable
+    // const currentDate = new Date(); // assign today's date onto variable
+
+    // if (selectedDate <= currentDate) {
+    //     alert("Please select an upcoming date for the deadline.");
+    //     return; // Don't add task if deadline is not in the future
+    // }
+    
     switch (catagory) {
-    case Coding:
-        
-        const taskList = document.getElementById("task-list-c");
-        const cellsNum = 0;
+        case "Coding":
+            taskList = document.getElementById("task-list");
+            break;
+        case "Writing":
+            taskList = document.getElementById("task-list1");
+            break;
+        case "Music":
+            taskList = document.getElementById("task-list2");
+            break;
+        case "Art":
+            taskList = document.getElementById("task-list3");
+            break;
+        case "Misc":
+            taskList = document.getElementById("task-list4");
+            break;
+        default:
+            console.error("Unknown category:", catagory);
+    }   
 
-        break;
-    case Music:
-        const taskList = document.getElementById("task-list-mu");
-        const cellsNum = 1;
-
-        break;
-    case Art:
-        const taskList = document.getElementById("task-list-a");
-        const cellsNum = 2;
-        break;
-
-    case Writing:
-        const taskList = document.getElementById("task-list-w");
-        const cellsNum = 3;
-        
-        break;
-    case Misc:
-        const taskList = document.getElementById("task-list-mi");
-        const cellsNum = 4;
-        break;
-    default:
-        break;
-    }
-    const cells = table.cells[cellsNum];
-    
-    //now add cells for table
     const taskItem = document.createElement("div");
     taskItem.classList.add("task");
 
     taskItem.innerHTML =
-    `
+    `   
         <button class="mark-done">Mark Done</button>
         <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
-    
-        <p>${task}</p>
+        <p>${task}</p>        
     `;
     taskList.appendChild(taskItem);
-}
-/*
-addTaskButton.addEventListener("click", () => {
     
-    //const deadline = deadlineInput.value;
-    
-    
-    */
-    /*
-    const taskItem = document.createElement("div");
-    taskItem.classList.add("task");
-
-    taskItem.innerHTML =
-    `
-        <button class="mark-done">Mark Done</button>
-        <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
-        <ul>
-            <li>${taskInput}</li>
-            <li>${catagoryInput}</li>
-            <li>${addTaskButton}</li>
-            <li>${taskItem}</li>
-            <li>${catagory}</li>
-            <li>${task}</li>
-        </ul>
-    `;
-    taskList.appendChild(taskItem);
-
     taskInput.value = "";
     catagoryInput.value = "Coding";
-    //deadlineInput.value = "";
-
-
-    /*
-    const taskItem = document.createElement("div");
-    taskItem.classList.add("task");
-
-    taskItem.innerHTML =
-    `
-        <button class="mark-done">Mark Done</button>
-        <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
-    
-        <p>${task}</p>
-    `;
-    taskList.appendChild(taskItem);
-    
+    // deadlineInput.value = "";
 });
-*/
+
 
 //This marks the completion of the task
 taskList.addEventListener("click", (event) => {
