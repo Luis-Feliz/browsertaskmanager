@@ -20,7 +20,8 @@ footer{
 
 .TableH{
   font-size: large;
-  border: 1px solid black;  
+  border: 1px solid black;
+  height: 20px;  
 }
 
 .TableB{
@@ -29,6 +30,7 @@ footer{
 
 .TableF{
   border: 1px solid black;  
+  height: 40px;
 }
 
 /*********************************************************************************************************************************************************/
