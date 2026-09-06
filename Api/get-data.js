@@ -8,26 +8,23 @@ export default async function handler(request, response) {
 
   try {
     await client.connect();
+    
+    const result = await client.query('SELECT * FROM users;');
+    
+    // 👇 CATCH 1: Log to your Vercel Backend Console to see raw database arrays
+    console.log("RAW DB ROWS FETCHED:", result.rows);
 
-    // 1. HANDLE EDITING / INSERTING DATA (POST Request)
-    if (request.method === 'POST') {
-      const { username } = request.body; // Expecting data from frontend
-      
-      if (!username) {
-        return response.status(400).json({ error: 'Username is required' });
-      }
-
-      // Inserts a new user into a table named 'users'
-      await client.query('INSERT INTO users (name) VALUES ($1);', [username]);
-      return response.status(200).json({ success: true, message: 'User added successfully!' });
+    if (!result.rows || result.rows.length === 0) {
+      console.warn("Database connected, but the table is completely EMPTY.");
     }
 
-    // 2. HANDLE DISPLAYING DATA (GET Request - Default)
-    const result = await client.query('SELECT id, name FROM users;');
+    // Return the JSON data
     return response.status(200).json(result.rows);
 
   } catch (error) {
-    return response.status(500).json({ error: error.message });
+    // 👇 CATCH 2: Log connection or query crashes explicitly
+    console.error("DATABASE CONNECTION/QUERY CRASHED:", error.message);
+    return response.status(500).json({ error: "Failed to read database", details: error.message });
   } finally {
     await client.end();
   }
