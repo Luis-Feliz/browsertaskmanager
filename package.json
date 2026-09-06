@@ -1,13 +1,7 @@
 {
-  "name": "TimeDoc",
-  "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com"
-  },
-
   "private": true,
   "dependencies": {
-    "@vercel/edge": "^0.1.2"
+    "@vercel/edge": "^0.1.2",
+    "pg": "^8.11.0"
   }
 }
