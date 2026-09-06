@@ -1,55 +1,49 @@
-const userForm = document.getElementById('userForm');
-const usernameInput = document.getElementById('usernameInput');
-const userList = document.getElementById('userList');
-
-// --- FUNCTION 1: FETCH AND DISPLAY DATA ---
 async function displayDatabaseRecords() {
+  const userList = document.getElementById('userList');
+  
   try {
-    // Fetches from your Vercel API endpoint
     const response = await fetch('/api/get-data');
-    const users = await response.json();
+    
+    // 👇 CATCH 3: Check if the server responded with an error code (e.g., 500 or 404)
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Server responded with status ${response.status}: ${errorText}`);
+    }
 
-    // Clear the loading message
+    // 👇 CATCH 4: Verify if the response is actually valid JSON
+    let users;
+    try {
+      users = await response.json();
+    } catch (jsonError) {
+      throw new Error("The backend sent a response, but it was NOT valid JSON text.");
+    }
+
+    // 👇 CATCH 5: Ensure the JSON parsed into an array (Postgres rows match as an array)
+    console.log("FRONTEND RECEIVED VALID JSON:", users);
+    
+    if (!Array.isArray(users)) {
+      throw new Error("JSON data received, but it is not formatted as an Array list.");
+    }
+
+    // Clear loading text and render elements if all catches pass safely
     userList.innerHTML = '';
+    if (users.length === 0) {
+      userList.innerHTML = '<li>Database connected, but no records found!</li>';
+      return;
+    }
 
-    // Loop through rows and add them to the page
     users.forEach(user => {
       const li = document.createElement('li');
-      li.textContent = `ID: ${user.id} | Name: ${user.name}`;
+      // Adjust keys (like .id or .name) depending on your table columns
+      li.textContent = JSON.stringify(user); 
       userList.appendChild(li);
     });
 
   } catch (error) {
-    userList.innerHTML = '<li>Error loading database records</li>';
-    console.error(error);
+    // 👇 CATCH 6: Visually output the exact error directly onto your web page for easy reading
+    console.error("Frontend verification failed:", error);
+    userList.innerHTML = `<li style="color: red; font-weight: bold;">⚠️ Error reading JSON: ${error.message}</li>`;
   }
 }
 
-// --- FUNCTION 2: EDIT / SUBMIT NEW DATA ---
-userForm.addEventListener('submit', async (event) => {
-  event.preventDefault(); // Prevents the page from refreshing
-
-  const newName = usernameInput.value;
-
-  try {
-    const response = await fetch('/api/get-data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: newName }), // Sends the typed name
-    });
-
-    if (response.ok) {
-      usernameInput.value = ''; // Clear the input field
-      displayDatabaseRecords(); // Refresh the list automatically to show changes
-    } else {
-      alert('Failed to save to database');
-    }
-  } catch (error) {
-    console.error('Error submitting data:', error);
-  }
-});
-
-// Run this automatically as soon as the page opens
 displayDatabaseRecords();
