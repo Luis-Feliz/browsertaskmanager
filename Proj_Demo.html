@@ -120,9 +120,25 @@
             </tr>
         </table>
         <script src="JavaScript/taskmanager.js"></script>
-        
-        
     </main>
+    
+    <div class="line"></div>
+    
+    <h3>Add a New User</h3>
+    <form id="userForm">
+        <input type="text" id="usernameInput" placeholder="Enter name" required />
+        <button type="submit">Submit to DB</button>
+    </form>
+
+    <!-- SECTION 2: DISPLAY DATA CONTAINER -->
+    <h3>Database Records</h3>
+    <ul id="userList">Loading records...</ul>
+
+    <script src="database.js"></script>
+
+
+
+
 </body>
 
 <footer style="position:bottom; bottom:0; width:100%; height:60px;">
