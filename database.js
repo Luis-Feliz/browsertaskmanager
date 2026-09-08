@@ -4,13 +4,13 @@ async function displayDatabaseRecords() {
   try {
     const response = await fetch('/api/get-data');
     
-    // 👇 CATCH 3: Check if the server responded with an error code (e.g., 500 or 404)
+    // CATCH 3: Check if the server responded with an error code (e.g., 500 or 404)
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`Server responded with status ${response.status}: ${errorText}`);
     }
 
-    // 👇 CATCH 4: Verify if the response is actually valid JSON
+    // CATCH 4: Verify if the response is actually valid JSON
     let users;
     try {
       users = await response.json();
@@ -18,7 +18,7 @@ async function displayDatabaseRecords() {
       throw new Error("The backend sent a response, but it was NOT valid JSON text.");
     }
 
-    // 👇 CATCH 5: Ensure the JSON parsed into an array (Postgres rows match as an array)
+    // CATCH 5: Ensure the JSON parsed into an array (Postgres rows match as an array)
     console.log("FRONTEND RECEIVED VALID JSON:", users);
     
     if (!Array.isArray(users)) {
@@ -40,9 +40,9 @@ async function displayDatabaseRecords() {
     });
 
   } catch (error) {
-    // 👇 CATCH 6: Visually output the exact error directly onto your web page for easy reading
+    // CATCH 6: Visually output the exact error directly onto your web page for easy reading
     console.error("Frontend verification failed:", error);
-    userList.innerHTML = `<li style="color: red; font-weight: bold;">⚠️ Error reading JSON: ${error.message}</li>`;
+    userList.innerHTML = `<li style="color: red; font-weight: bold;"> Error reading JSON: ${error.message}</li>`;
   }
 }
 
