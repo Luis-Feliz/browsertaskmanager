@@ -3,6 +3,7 @@
   "dependencies": {
     "@vercel/edge": "^0.1.2",
     "init": "^0.1.2",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.24.4"
   }
 }
