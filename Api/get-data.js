@@ -11,7 +11,7 @@ export default async function handler(request, response) {
     
     const result = await client.query('SELECT * FROM users;');
     
-    // 👇 CATCH 1: Log to your Vercel Backend Console to see raw database arrays
+    // CATCH 1: Log to your Vercel Backend Console to see raw database arrays
     console.log("RAW DB ROWS FETCHED:", result.rows);
 
     if (!result.rows || result.rows.length === 0) {
@@ -22,7 +22,7 @@ export default async function handler(request, response) {
     return response.status(200).json(result.rows);
 
   } catch (error) {
-    // 👇 CATCH 2: Log connection or query crashes explicitly
+    // CATCH 2: Log connection or query crashes explicitly
     console.error("DATABASE CONNECTION/QUERY CRASHED:", error.message);
     return response.status(500).json({ error: "Failed to read database", details: error.message });
   } finally {
