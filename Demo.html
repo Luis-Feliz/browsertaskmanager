@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head style="width: 100%; background-color: gray; border: 1px solid black;">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      href="Css/custom.css" 
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Task Management Demo</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-    <script>
-            function myFunction(x) {
-            x.classList.toggle("change");
-            }
-            function toggleNav() {
-            var element = document.getElementById("mySidenav");
-                /*if the element is open close it*/  
-                if (document.getElementById("mySidenav").style.width == "250px") {
-                document.getElementById("mySidenav").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-                } else {
-                /*if element closed, open it*/
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-                }
-            }
-            /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
-        
-            /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            }
-      </script>
-    <script src=JavaScript/header.js></script>
-    <my-header></my-header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f7f6;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #009879;
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
 </head>
-
 <body>
 
+    <h2>Database Query Output</h2>
+    
+    <!-- The table container where data will be injected -->
+    <table id="data-table">
+        <thead>
+            <tr id="table-header">
+                <!-- JavaScript will inject headers here -->
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- JavaScript will inject rows here -->
+        </tbody>
+    </table>
+
+    <script src="Demo.js"></script>
+
 </body>
-
-<footer>
-  <button class="demo" onclick="location.href='index.html'"><strong>Main Page</strong></button>
-</footer>
-
 </html>
