@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PostgreSQL Data Display</title>
+    <style>
+        table { width: 50%; border-collapse: collapse; margin-top: 20px; font-family: sans-serif; }
+        th, td { border: 1px solid #dddddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h2>PostgreSQL Table Records</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Value 1</th>
+                <th>Value 2</th>
+            </tr>
+        </thead>
+        <tbody id="data-table-body">
+            <!-- Data injected here -->
+        </tbody>
+    </table>
+
+    <script src="app.js"></script>
+</body>
+</html>
