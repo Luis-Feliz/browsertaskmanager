@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit to PostgreSQL</title>
+</head>
+<body>
+    <h2>Add User Input</h2>
+    <form id="userForm">
+        <label for="ids">ids:</label>
+        <input type="integer" id="ids" name="ids" required>
+        <label for="stat1">stat1:</label>
+        <input type="text" id="stat1" name="stat1" required>
+        <label for="stat2">stat2:</label>
+        <input type="text" id="stat2" name="stat2" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="responseMsg"></p>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const responseMsg = document.getElementById('responseMsg');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent standard page reload
+
+            const idsValue = document.getElementById('ids').value;
+            const stat1Value = document.getElementById('stat1').value;
+            const stat2Value = document.getElementById('stat2').value;
+
+            
+            responseMsg.textContent = 'Failed to give data.';
+            
+            try {
+                const response = await fetch('http://localhost:3050/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ids: idsValue, stat1: stat1Value, stat2: stat2Value })
+                });
+                
+                const result = await response.json();
+
+                if (response.ok) {
+                    responseMsg.style.color = 'green';
+                    responseMsg.textContent = result.message;
+                    form.reset();
+                } else {
+                    responseMsg.style.color = 'red';
+                    responseMsg.textContent = 'Failed to save data.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                responseMsg.style.color = 'red';
+                responseMsg.textContent = 'Could not connect to the server.';
+            }
+        });
+    </script>
+</body>
+</html>

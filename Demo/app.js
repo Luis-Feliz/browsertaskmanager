@@ -1,6 +1,6 @@
 async function fetchPostgresData() {
     try {
-        const response = await fetch('http://localhost:3000/api/data');
+        const response = await fetch('http://localhost:3050/api/data');
         const data = await response.json();
         
         const tableBody = document.getElementById('data-table-body');

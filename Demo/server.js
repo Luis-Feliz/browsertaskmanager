@@ -3,6 +3,7 @@ const { Pool } = require('pg'); // Import the Postgres connection pool
 const cors = require('cors');
 
 const app = express();
+const port = 3050
 app.use(cors());
 
 // PostgreSQL Connection Configuration
@@ -28,4 +29,4 @@ app.get('/api/data', async (req, res) => {
     }
 });
 
-app.listen(3000, () => console.log('Postgres backend running on http://localhost:3000'));
+app.listen(port, () => console.log(`Postgres backend running on http://localhost:${port}`));
