@@ -1,3 +1,11 @@
+//TODO:
+// 1. Link this file to the main project database
+// 2. Create Error Handling for when the database is not available
+// 3. Make a progress bar on most recently used project
+// 4. 
+// 5. 
+
+
 class MyHeader extends HTMLElement
 {
     connectedCallback()

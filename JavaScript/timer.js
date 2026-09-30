@@ -1,10 +1,10 @@
 let startBtn = document.getElementById('start');    //assign variable via Start ID
 let stopBtn = document.getElementById('stop');      //assign variable via Stop ID
 let resetBtn = document.getElementById('reset');    //assign variable via Reset ID
-// let hour = 00;
-// let minute = 00;
-// let second = 00;
-// let count = 00;
+let hour = 0;
+let minute = 0;
+let second = 0;
+let count = 0;
 
 
 startBtn.addEventListener('click', function () {

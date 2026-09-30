@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head style="width: 100%; background-color: gray; border: 1px solid black;">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="../_vercel/insights/script.js"></script>
+    <link
+      href="../Css/custom.css" 
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+    />
+    <title>Task Management Demo</title>
+    <meta
+      name="description"
+      content="High-performance HTML based website template."
+    />
+</head>
+
+<body>
+    <table style="width: 816px; height: 1056px; text-align: center; margin: 0 auto; border: 1px solid black;">
+        <thead class="TableH">
+            <th>#Project Name#</th>
+        </thead>
+        <tbody class="TableB">
+            <tr>
+                <th>SubTask</th><th>Catagory</th><th>Time</th>
+            </tr>
+            <tr>
+                <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
+            </tr>
+            <tr>
+                <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
+            </tr>
+            <tr>
+                <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
+            </tr>
+            <tr>
+                <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
+            </tr>
+        </tbody>
+        <tfoot class="TableF">
+            <tr>
+                <th>Stats</th>
+            </tr>
+            <tr>
+                <th> Longest SubTask </th>
+            </tr>
+            <tr>
+                <td>#SubTask Name#</td>
+                <td>#SubTask Time#</td>
+            </tr>
+            <tr>
+                <th> Most Used Category</th>
+                <td>#Catagory Name#</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable & Downloadable Document</title>
+    <style>
+        /* --- General Layout Styles --- */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .download-btn {
+            background-color: #28a745;
+        }
+        .download-btn:hover {
+            background-color: #218838;
+        }
+        .content-area {
+            border: 1px solid #ddd;
+            padding: 30px;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+
+        /* --- Print Styles Configuration --- */
+        @media print {
+            /* Hide the web buttons entirely during physical print/PDF save */
+            .action-buttons {
+                display: none;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                color: #000;
+                background: #fff;
+            }
+            .content-area {
+                border: none;
+                padding: 0;
+                background: transparent;
+            }
+            /* Explicit page rules for cleaner paper format margins */
+            @page {
+                size: A4;
+                margin: 20mm;
+            }
+        }
+    </style>
+</head>
+<body>
+-->
+    <!-- Action panel excluded automatically during print output -->
+<!--
+    <div class="action-buttons">
+        <button onclick="window.print()">🖨️ Print to Paper or PDF</button>
+        <button class="download-btn" onclick="downloadContent()">💾 Download Raw Text</button>
+    </div>
+-->
+    <!-- The physical document container target -->
+<!--    <div class="content-area" id="printable-document">
+        <h1>Monthly Executive Report</h1>
+        <p><strong>Date:</strong> September 2026</p>
+        <hr>
+        <p>This section is optimized cleanly for physical print output. When an end user clicks the print command or invokes standard keyboard control paths (Ctrl+P / Cmd+P), the layout removes the control buttons above and shifts structural margins into a precise alignment profile ready for desktop document rendering software.</p>
+        
+        <h2>Key Metrics</h2>
+        <ul>
+            <li>User Retention: Up 14%</li>
+            <li>Operational Latency: Down 40ms</li>
+            <li>Completed Deliverables: 42 units</li>
+        </ul>
+    </div>
+-->
+    <!-- Handling Client-Side Export Downloads safely -->
+<!--    <script>
+        function downloadContent() {
+            // Target content payload extraction
+            const documentElement = document.getElementById('printable-document');
+            const documentText = documentElement.innerText;
+            
+            // Build temporary virtual file object mapping raw system data 
+            const textBlob = new Blob([documentText], { type: 'text/plain' });
+            const fileDownloadUrl = URL.createObjectURL(textBlob);
+            
+            // Generate virtual downstream action element triggering execution behavior
+            const virtualAnchor = document.createElement('a');
+            virtualAnchor.href = fileDownloadUrl;
+            virtualAnchor.download = 'Executive_Report_Summary.txt';
+            
+            // Execute automated layout trigger path sequence safely
+            document.body.appendChild(virtualAnchor);
+            virtualAnchor.click();
+            
+            // Clean up persistent runtime structures cleanly
+            document.body.removeChild(virtualAnchor);
+            URL.revokeObjectURL(fileDownloadUrl);
+        }
+    </script>
+</body>
+</html> 
+-->
