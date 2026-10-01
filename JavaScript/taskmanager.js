@@ -9,40 +9,42 @@ async function fetchPostgresData() {
         const response = await fetch('http://localhost:3000/api/data');
         const data = await response.json();
 
-        const listContainer = document.getElementById("task-test");
-
+        // Parse the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const receivedNumber = urlParams.get('projectId'); //number to compare with proj_id to determine what tasks to show
+        
         data.subtasks.forEach(row => {
-            const task = row.name;
-            //const taskItem = row.task;
-            switch (row.catagory) {
-                case "Coding":
-                taskList = document.getElementById("task-list");
-                break;
-                case "Writing":
-                taskList = document.getElementById("task-list1");
-                break;
-                case "Music":
-                taskList = document.getElementById("task-list2");
-                break;
-                case "Art":
-                taskList = document.getElementById("task-list3");
-                break;
-                case "Misc":
-                taskList = document.getElementById("task-list4");
-                break;
-                default:
-                console.error("Unknown category:", row.catagory);
-            }
-            const taskItem = document.createElement("div");
-            taskItem.classList.add("task");
+            if(receivedNumber == row.proj_id) { //only show tasks that match the project number
+                switch (row.catagory) {
+                    case "Coding":
+                    taskList = document.getElementById("task-list");
+                    break;
+                    case "Writing":
+                    taskList = document.getElementById("task-list1");
+                    break;
+                    case "Music":
+                    taskList = document.getElementById("task-list2");
+                    break;
+                    case "Art":
+                    taskList = document.getElementById("task-list3");
+                    break;
+                    case "Misc":
+                    taskList = document.getElementById("task-list4");
+                    break;
+                    default:
+                    console.error("Unknown category:", row.catagory);
+                }
+                const taskItem = document.createElement("div");
+                taskItem.classList.add("task");
 
-            taskItem.innerHTML =
-            `   
-                <button class="mark-done">Mark Done</button>
-                <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
-                <p>${row.name}</p>        
-            `;
-            taskList.appendChild(taskItem);                    
+                taskItem.innerHTML =
+                `   
+                    <button class="mark-done">Mark Done</button>
+                    <button class="demo" onclick="location.href='Timer.html'">Start Subtask</button>
+                    <p>${row.name}</p>        
+                `;
+                taskList.appendChild(taskItem);    
+            }                
         });
     } 
     catch (error) {
@@ -81,14 +83,14 @@ addTaskButton.addEventListener("click", () => {
     taskItem.innerHTML =
     `   
         <button class="mark-done">Mark Done</button>
-        <button class="demo" onclick="location.href='Timer.html'">Main Page</button>
+        <button class="demo" onclick="location.href='Timer.html'">Start Subtask</button>
         <p>${task}</p>        
     `;
     taskList.appendChild(taskItem);
     
     taskInput.value = "";
     catagoryInput.value = "Coding";
-    // deadlineInput.value = "";
+
 });
 
 

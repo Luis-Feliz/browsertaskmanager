@@ -51,7 +51,19 @@
 
 
 <body>
-    <p>I WANT THIS TO CHANGE TO NUMBER BAISED ON HOW I CLICK THIS PAGE</p>
+    <!-- Display the received number -->
+    <span id="project-number">I WANT THIS TO CHANGE TO NUMBER BAISED ON HOW I CLICK THIS PAGE</span>
+    <script>
+        // Parse the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const receivedNumber = urlParams.get('projectId');
+        
+        // Display it on the page
+        document.getElementById('project-number').innerText = receivedNumber;
+    </script>
+    
+    
+    <!-- Demo Table -->
     <table style="width: 100%;">
         <tr>
             <td style="border: 1px solid black; text-align: left;">
@@ -118,6 +130,9 @@
         </tr>
     </table>
     <script src="../JavaScript/taskmanager.js"></script>
+
+
+    
 </body>
 
 <footer style="position:bottom; bottom:0; width:100%; height:60px;">

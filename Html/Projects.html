@@ -57,7 +57,7 @@
       try {
         const response = await fetch('http://localhost:3000/api/data');
         const data = await response.json();
-        
+
         const projectTable = document.getElementById('project-table');
         
         data.projects.forEach(row => {
@@ -66,7 +66,7 @@
 
           
           projectTable.innerHTML += `
-            <th style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html">${row.name}:</u></H1></th>
+            <th style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}:</u></H1></th>
             <tr style="border: 1px solid black;">
               <td style="width: 20%; height: 100%; border: 1px solid black">${completionPercentage}</td>
               <td style="width: 60%; height: 100%; border: 1px solid black;">${row.description}</td>
