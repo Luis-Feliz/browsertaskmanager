@@ -48,7 +48,47 @@
 
 <body>
   <h1 style="text-align: center"><u>Projects</u></h1>
-  <!-- One Way Ticket -->
+  <!-- Demo Table -->
+
+    <!-- Actual Project -->
+  <table id="project-table" style="width: 100%; border: 1px solid black;"></table>  
+  <script>
+    async function fetchPostgresData() {
+      try {
+        const response = await fetch('http://localhost:3000/api/data');
+        const data = await response.json();
+        
+        const projectTable = document.getElementById('project-table');
+        
+        data.projects.forEach(row => {
+          const completionPercentage = (+row.sub_code + +row.sub_write + +row.sub_music + +row.sub_art + +row.sub_misc) / 5;
+          const totalTime = JSON.stringify(row.time); // Assuming row.time is in the format "HH:MM:SS"
+
+          
+          projectTable.innerHTML += `
+            <th style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html">${row.name}:</u></H1></th>
+            <tr style="border: 1px solid black;">
+              <td style="width: 20%; height: 100%; border: 1px solid black">${completionPercentage}</td>
+              <td style="width: 60%; height: 100%; border: 1px solid black;">${row.description}</td>
+              <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">${totalTime}</td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="line"></div>
+              </td>
+            </tr>
+            `;
+        });
+      } 
+      catch (error) {
+          console.error('Error fetching data from API:', error);
+      }
+    }
+
+  fetchPostgresData();
+  </script>
+
+
   <table style="width: 100%; border: 1px solid black;">
     
 
@@ -71,122 +111,9 @@
       </td>
     </tr>
   </table>
-  <table style="border: 1px solid black; text-align: center; width: 100%;">
+    <table style="border: 1px solid black; text-align: center; width: 100%;">
     <th>Current task:</th>
   </table>   
-
-  <div class="line"></div>
-
-  <!-- Puzzle -->
-  <table style="width: 100%; border: 1px solid black;">
-    
-    <th style="height: 20%; text-align: left"><H1><u>Project 2:</u></H1></th>
-    
-    <tr style="border: 1px solid black;">
-      
-      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-      
-      <td style="width: 60%; height: 100%; border: 1px solid black;">
-          <p>
-            Description of Project <br>
-          </p>
-      </td>
-      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
-        <p>
-          Skills needed:<br>
-          Completion of selected skills:<br>
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table style="border: 1px solid black; text-align: center; width: 100%;">
-    <th>Current task:</th>
-  </table>   
-
-  <div class="line"></div>
-  
-  <!-- Diagnosis Simulator -->
-  <table style="width: 100%; border: 1px solid black;">
-    
-    <th style="height: 20%; text-align: left"><H1><u>Project 3:</u></H1></th>
-    
-    <tr style="border: 1px solid black;">
-      
-      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-      
-      <td style="width: 60%; height: 100%; border: 1px solid black;">
-          <p>
-            Description of Project <br>
-          </p>
-      </td>
-      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
-        <p>
-          Skills needed:<br>
-          Completion of selected skills:<br>
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table style="border: 1px solid black; text-align: center; width: 100%;">
-    <th>Current task:</th>
-  </table>
-
-  <div class="line"></div>
-
-  <!-- WallRunners -->
-  <table style="width: 100%; border: 1px solid black;">
-    
-    <th style="height: 20%; text-align: left"><H1><u>Project 4:</u></H1></th>
-    
-    <tr style="border: 1px solid black;">
-      
-      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-      
-      <td style="width: 60%; height: 100%; border: 1px solid black;">
-          <p>
-            Description of Project <br>
-          </p>
-      </td>
-      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
-        <p>
-          Skills needed:<br>
-          Completion of selected skills:<br>
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table style="border: 1px solid black; text-align: center; width: 100%;">
-    <th>Current task:</th>
-  </table>
-  
-  <div class="line"></div>
-
-  <!-- SlimeHunter -->
-  <table style="width: 100%; border: 1px solid black;">
-    
-    <th style="height: 20%; text-align: left"><H1><u>Project 5:</u></H1></th>
-    
-    <tr style="border: 1px solid black;">
-      
-      <td style="width: 20%; height: 100%; border: 1px solid black">Percentage of completion></td>
-      
-      <td style="width: 60%; height: 100%; border: 1px solid black;">
-          <p>
-            Description of Project <br>
-          </p>
-      </td>
-      <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">
-        <p>
-          Skills needed:<br>
-          Completion of selected skills:<br>
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table style="border: 1px solid black; text-align: center; width: 100%;">
-    <th>Current task:</th>
-  </table>
-
 </body>
 
 <footer>
