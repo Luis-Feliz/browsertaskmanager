@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="../_vercel/insights/script.js"></script>
+    <link
+      href="../Css/custom.css" 
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+    />
+    <title>Task Management Demo</title>
+    <meta
+      name="description"
+      content="High-performance HTML based website template."
+    />
+    <script>
+            function myFunction(x) {
+            x.classList.toggle("change");
+            }
+            function toggleNav() {
+            var element = document.getElementById("mySidenav");
+                /*if the element is open close it*/  
+                if (document.getElementById("mySidenav").style.width == "250px") {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                } else {
+                /*if element closed, open it*/
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                }
+            }
+            /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+        
+            /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+      </script>
+    <script src="../JavaScript/header.js"></script>
+    <my-header></my-header>
+</head>
+
+
+
+
+
+<body>
+<h1>New Project</h1>
+<p>Values needed for the new project.</p>
+name|description|time|sub_code|sub_write|sub_music|sub_art|sub_misc
+    <form id="userForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+        
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Write</th>
+                <th>Music</th>
+                <th>Art</th>
+                <th>Misc</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="sub_code" name="sub_code" required></td>
+                <td><input type="text" id="sub_write" name="sub_write" required></td>
+                <td><input type="text" id="sub_music" name="sub_music" required></td>
+                <td><input type="text" id="sub_art" name="sub_art" required></td>
+                <td><input type="text" id="sub_misc" name="sub_misc" required></td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="responseMsg"></p>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const responseMsg = document.getElementById('responseMsg');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent standard page reload
+
+            const nameValue = document.getElementById('name').value;
+            const descriptionValue = document.getElementById('description').value;
+            const subCodeValue = document.getElementById('sub_code').value;
+            const subWriteValue = document.getElementById('sub_write').value;
+            const subMusicValue = document.getElementById('sub_music').value;
+            const subArtValue = document.getElementById('sub_art').value;
+            const subMiscValue = document.getElementById('sub_misc').value;
+
+            responseMsg.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch('http://localhost:3050/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: nameValue, description: descriptionValue, sub_code: subCodeValue, sub_write: subWriteValue, sub_music: subMusicValue, sub_art: subArtValue, sub_misc: subMiscValue })
+                });
+                
+                const result = await response.json();
+
+                if (response.ok) {
+                    responseMsg.style.color = 'green';
+                    responseMsg.textContent = result.message;
+                    form.reset();
+                } else {
+                    responseMsg.style.color = 'red';
+                    responseMsg.textContent = 'Failed to save data.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                responseMsg.style.color = 'red';
+                responseMsg.textContent = 'Could not connect to the server.';
+            }
+        });
+    </script>
+</body>
+
+<footer style="position:bottom; bottom:0; width:100%; height:60px;">
+    <button class="demo" onclick="location.href='../index.html'"><strong>Main Page</strong></button>
+    <button class="demo" onclick="location.href='../Html/Projects.html'"><strong>Project Page</strong></button>
+    <button class="demo" onclick="location.href='../Html/Timer.html'"><strong>Timer Page</strong></button>
+</footer>
+</html>

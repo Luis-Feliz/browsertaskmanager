@@ -31,7 +31,7 @@ class MyHeader extends HTMLElement
                 </div>
             </th>
             <th style="text-align: right;">
-                <button class="demo" onclick="" style="text-align: justify;"> New Project</button>
+                <button class="demo" onclick="location.href='../Html/New_Project.html'" style="text-align: justify;"> New Project</button>
             </th>
             </table>
         `
