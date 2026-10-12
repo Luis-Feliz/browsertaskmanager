@@ -18,27 +18,18 @@
 
 <body>
     <table style="width: 816px; height: 1056px; text-align: center; margin: 0 auto; border: 1px solid black;">
-        <thead class="TableH">
-            <th>#Project Name#</th>
+        <thead class="TableH" style="border: 1px solid black;">
+            <th id="Proj_Name">#Project Name#</th>
         </thead>
-        <tbody class="TableB">
+        <tbody class="TableB" style="border: 1px solid black;">
             <tr>
                 <th>SubTask</th><th>Catagory</th><th>Time</th>
             </tr>
-            <tr>
-                <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
-            </tr>
-            <tr>
-                <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
-            </tr>
-            <tr>
-                <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
-            </tr>
-            <tr>
+            <tr id="timedoc_body">
                 <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
             </tr>
         </tbody>
-        <tfoot class="TableF">
+        <tfoot class="TableF" style="border: 1px solid black;">
             <tr>
                 <th>Stats</th>
             </tr>
@@ -46,13 +37,12 @@
                 <th> Longest SubTask </th>
             </tr>
             <tr>
-                <td>#SubTask Name#</td>
-                <td>#SubTask Time#</td>
+                <td id="total_time_name">#SubTask Name#</td>
+                <td id="total_time">#SubTask Time#</td>
             </tr>
             <tr>
-                <th> Most Used Category</th>
-                <td>#Catagory Name#</td>
-                
+                <th>Most Used Category</th>
+                <td id="catagory">#Catagory Name#</td>
             </tr>
             <tr>
                 <th>In memory of those who inspired us to create</th>
@@ -60,7 +50,57 @@
         </tfoot>
         
     </table>
-    
+
+
+
+    <script>
+        async function fetchPostgresData() {
+            try {
+                const response = await fetch('http://localhost:3000/api/data');
+                const data = await response.json();
+
+                const bodytable = document.getElementById('timedoc_body');
+                const totalname = document.getElementById('total_time_name');
+                const totaltime = document.getElementById('total_time');
+                const catagory = document.getElementById('catagory');
+                
+                const highesttime = 0;
+                const highesttimename = null;
+
+                //data.projects.forEach(row => {
+                data.subtasks.forEach(row => {
+                    if(recevedNumber === row.proj_id){
+                        bodytable.innerHTML += `
+                            <tr>
+                                <td>${row.name}</td><td>${row.category}</td><td>${row.time}</td>
+                            </tr>
+                        `;
+                        
+                        if (row.time > highesttime){
+                            highesttimename = row.name;
+                            highesttime = row.time;
+                        }
+                        total_time_name.textContent = `${highesttimename}`;
+                        total_time_name.textContent = `${highesttime}`;
+                    }   
+                });
+
+                data.project.forEach(row => {
+                    if(recevedNumber === row.id){
+                        const data = [row.sub_code, row.sub_write, row.sub_music, row.sub_art, row.sub_misc];
+                        const maxInt = Math.max(data.filter(item => typeof item === 'number' && Number.isSafeInteger(item)));  
+                        catagory.textContent = `${maxInt}`;
+                    }   
+                });
+            } 
+            catch (error) {
+                console.error('Error fetching data from API:', error);
+            }
+        }
+
+    fetchPostgresData();
+  </script>
+
 </body>
 
 <!-- 
