@@ -48,38 +48,39 @@
 
 <body>
 <!--Stopwatch Script Html-->
-  <div class="container">
-    <h1>Geeks For Geeks <br>
-        Stop Watch</h1>
-    <div id="time">
-        <span class="digit" id="hr">
-            00</span>
-        <span class="txt">Hr</span>
-        <span class="digit" id="min">
-            00</span>
-        <span class="txt">Min</span>
-        <span class="digit" id="sec">
-            00</span>
-        <span class="txt">Sec</span>
-        <span class="digit" id="count">
-            00</span>
-    </div>
+    <div class="container">
+    <h1 id="title"> Stopwatch page</h1>
+    <form id="userTime">
+        <div id="time">
+            <span class="digit" id="hr">
+                00</span>
+            <span class="txt">Hr</span>
+            <span class="digit" id="min">
+                00</span>
+            <span class="txt">Min</span>
+            <span class="digit" id="sec">
+                00</span>
+            <span class="txt">Sec</span>
+            <span class="digit" id="count">
+                00</span>
+            </div>
+            <button type="submit" class="btn" id="submit">
+                Submit</button>
+    </form>
     <div id="buttons">
-        <button accesskey="S"  class="btn" id="start">
-            Start</button>
-        <button accesskey="s" onclick="alert('Button Pressed!')">Submit</button>
-        <button class="btn" id="stop">
-            Stop</button>
-        <button class="btn" id="reset">
-            Reset</button>
+            <button class="btn" id="start">
+                Start</button>
+            <button class="btn" id="stop">
+                Stop</button>
+            <button class="btn" id="reset">
+                Reset</button>
+            
+        </div>
+    <p id="responseMsg"></p>
     </div>
-  </div>
-  <button id="myButton" onclick="alert('Action Triggered!')">Submit</button>
-
-  <script>
-    // Listen for key presses anywhere on the page
     
-  </script>
+  
+
   <script src="../JavaScript/timer.js"></script>  
 </main>
 </body>

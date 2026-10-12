@@ -2,6 +2,13 @@ const taskInput = document.getElementById("task");
 const catagoryInput = document.getElementById("catagory");
 // const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
+// Parse the URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const receivedNumber = urlParams.get('projectId');
+const finishForm = document.getElementById("finish-form");
+        
+// Display it on the page
+document.getElementById('project-number').innerText = receivedNumber;
 
 
 async function fetchPostgresData() {
@@ -38,9 +45,10 @@ async function fetchPostgresData() {
                 taskItem.classList.add("task");
 
                 taskItem.innerHTML =
-                `   
-                    <button class="mark-done">Mark Done</button>
-                    <button class="demo" onclick="location.href='Timer.html'">Start Subtask</button>
+                `   <form id="finish-form" method="POST">
+                        <button class="mark-done">Mark Done</button>
+                    </form>
+                    <button class="demo" onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
                     <p>${row.name}</p>        
                 `;
                 taskList.appendChild(taskItem);    
@@ -53,45 +61,75 @@ async function fetchPostgresData() {
 }
 fetchPostgresData();
 
-addTaskButton.addEventListener("click", () => {
-    const task = taskInput.value;
-    const catagory = catagoryInput.value;
 
-    switch (catagory) {
-        case "Coding":
-            taskList = document.getElementById("task-list");
-            break;
-        case "Writing":
-            taskList = document.getElementById("task-list1");
-            break;
-        case "Music":
-            taskList = document.getElementById("task-list2");
-            break;
-        case "Art":
-            taskList = document.getElementById("task-list3");
-            break;
-        case "Misc":
-            taskList = document.getElementById("task-list4");
-            break;
-        default:
-            console.error("Unknown category:", catagory);
-    }   
-
-    const taskItem = document.createElement("div");
-    taskItem.classList.add("task");
-
-    taskItem.innerHTML =
-    `   
-        <button class="mark-done">Mark Done</button>
-        <button class="demo" onclick="location.href='Timer.html'">Start Subtask</button>
-        <p>${task}</p>        
-    `;
-    taskList.appendChild(taskItem);
+// Event listener for the "Add Task" button
+addTaskButton.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent standard page reload
     
-    taskInput.value = "";
-    catagoryInput.value = "Coding";
+    const projectId = receivedNumber; // Use the received project ID from the URL
+    const name = document.getElementById('task').value;
+    const catagory = document.getElementById('catagory').value;
+    const description = document.getElementById('description').value;
 
+    try {
+        const input = await fetch('http://localhost:3050/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({title: 'newsubtask', name: name, catagory: catagory, description: description, proj_id: projectId}) // Send the time data as JSON
+        });
+        const result = await input.json();
+
+        if (input.ok) {
+            responseMsg.style.color = 'green';
+            responseMsg.textContent = result.message + "Refresh the page to see the new subtask.";
+        } else {
+            responseMsg.style.color = 'red';
+            responseMsg.textContent = 'result.message: ' + result.message;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        responseMsg.style.color = 'red';
+        responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+    }  
 });
+
+// Event listener for the "Add Task" button
+// finish-form.addEventListener('submit', async (e) => {
+//     e.preventDefault(); // Prevent standard page reload
+    
+    
+//     // have values to make so Sub task isn't shown in databse once finished
+//     const projectId = receivedNumber; // Use the received project ID from the URL
+//     const name = document.getElementById('task').value;
+//     const catagory = document.getElementById('catagory').value;
+//     const description = document.getElementById('description').value;
+
+//     try {
+//         const input = await fetch('http://localhost:3050/api/users', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({title: 'finishsubtask', name: name, catagory: catagory, description: description, proj_id: projectId}) // Send the time data as JSON
+//         });
+//         const result = await input.json();
+
+//         if (input.ok) {
+//             responseMsg.style.color = 'green';
+//             responseMsg.textContent = result.message + "Refresh the page to see the new subtask.";
+//         } else {
+//             responseMsg.style.color = 'red';
+//             responseMsg.textContent = 'result.message: ' + result.message;
+//         }
+//     } catch (error) {
+//         console.error('Error:', error);
+//         responseMsg.style.color = 'red';
+//         responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+//     }  
+// });
+
 
 
 //This marks the completion of the task
@@ -102,3 +140,45 @@ taskList.addEventListener("click", (event) => {
         event.target.disabled = true;
     }
 });
+
+
+
+// addTaskButton.addEventListener("click", () => {
+//     const task = taskInput.value;
+//     const catagory = catagoryInput.value;
+
+//     switch (catagory) {
+//         case "Coding":
+//             taskList = document.getElementById("task-list");
+//             break;
+//         case "Writing":
+//             taskList = document.getElementById("task-list1");
+//             break;
+//         case "Music":
+//             taskList = document.getElementById("task-list2");
+//             break;
+//         case "Art":
+//             taskList = document.getElementById("task-list3");
+//             break;
+//         case "Misc":
+//             taskList = document.getElementById("task-list4");
+//             break;
+//         default:
+//             console.error("Unknown category:", catagory);
+//     }   
+
+//     const taskItem = document.createElement("div");
+//     taskItem.classList.add("task");
+
+//     taskItem.innerHTML =
+//     `   
+//         <button class="mark-done">Mark Done</button>
+//         <button class="demo" onclick="location.href='Timer.html'">Start Subtask</button>
+//         <p>${task}</p>        
+//     `;
+//     taskList.appendChild(taskItem);
+    
+//     taskInput.value = "";
+//     catagoryInput.value = "Coding";
+
+// });

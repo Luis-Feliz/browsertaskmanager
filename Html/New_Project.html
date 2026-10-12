@@ -53,30 +53,14 @@
 <body>
 <h1>New Project</h1>
 <p>Values needed for the new project.</p>
-name|description|time|sub_code|sub_write|sub_music|sub_art|sub_misc
+    name|description|time|sub_code|sub_write|sub_music|sub_art|sub_misc
     <form id="userForm">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
         <label for="description">Description:</label>
         <input type="text" id="description" name="description" required>
-        
-        <table>
-            <tr>
-                <th>Code</th>
-                <th>Write</th>
-                <th>Music</th>
-                <th>Art</th>
-                <th>Misc</th>
-            </tr>
-            <tr>
-                <td><input type="text" id="sub_code" name="sub_code" required></td>
-                <td><input type="text" id="sub_write" name="sub_write" required></td>
-                <td><input type="text" id="sub_music" name="sub_music" required></td>
-                <td><input type="text" id="sub_art" name="sub_art" required></td>
-                <td><input type="text" id="sub_misc" name="sub_misc" required></td>
-            </tr>
-        </table>
+
         <br>
         <button type="submit">Submit</button>
     </form>
@@ -89,14 +73,8 @@ name|description|time|sub_code|sub_write|sub_music|sub_art|sub_misc
         form.addEventListener('submit', async (e) => {
             e.preventDefault(); // Prevent standard page reload
 
-            const nameValue = document.getElementById('name').value;
-            const descriptionValue = document.getElementById('description').value;
-            const subCodeValue = document.getElementById('sub_code').value;
-            const subWriteValue = document.getElementById('sub_write').value;
-            const subMusicValue = document.getElementById('sub_music').value;
-            const subArtValue = document.getElementById('sub_art').value;
-            const subMiscValue = document.getElementById('sub_misc').value;
-
+            const newnameValue = document.getElementById('name').value;
+            const newdescriptionValue = document.getElementById('description').value;
             responseMsg.textContent = 'Loading...';
             
             try {
@@ -105,7 +83,7 @@ name|description|time|sub_code|sub_write|sub_music|sub_art|sub_misc
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ name: nameValue, description: descriptionValue, sub_code: subCodeValue, sub_write: subWriteValue, sub_music: subMusicValue, sub_art: subArtValue, sub_misc: subMiscValue })
+                    body: JSON.stringify({ title: 'newproject', newname: newnameValue, newdescription: newdescriptionValue })
                 });
                 
                 const result = await response.json();
@@ -116,7 +94,7 @@ name|description|time|sub_code|sub_write|sub_music|sub_art|sub_misc
                     form.reset();
                 } else {
                     responseMsg.style.color = 'red';
-                    responseMsg.textContent = 'Failed to save data.';
+                    responseMsg.textContent = 'Failed to save data.' + (result.message ? ` Server message: ${result.message}` : '');
                 }
             } catch (error) {
                 console.error('Error:', error);

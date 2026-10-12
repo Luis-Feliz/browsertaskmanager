@@ -61,16 +61,24 @@
         const projectTable = document.getElementById('project-table');
         
         data.projects.forEach(row => {
-          const completionPercentage = (+row.sub_code + +row.sub_write + +row.sub_music + +row.sub_art + +row.sub_misc) / 5;
-          const totalTime = JSON.stringify(row.time); // Assuming row.time is in the format "HH:MM:SS"
-
+          //complete numerator must be calculated using the completed variables, and the denominator must be calculated using the total variables.
+          
+          const completionNumerator = row.finished_tasks; // Assuming each subtask contributes equally to completion
+          const completionDenominator = (+row.sub_code + +row.sub_write + +row.sub_music + +row.sub_art + +row.sub_misc);
+          const completionPercentage = ((completionNumerator / completionDenominator)).toFixed(2) + '%';
+          
+          
+          const totalTimeHours = row.proj_time.hours; // Assuming row.time is in the format "HH:MM:SS"
+          const totalTimeMinutes = row.proj_time.minutes;
+          const totalTimeSeconds = row.proj_time.seconds;
+          
           
           projectTable.innerHTML += `
             <th style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}:</u></H1></th>
             <tr style="border: 1px solid black;">
               <td style="width: 20%; height: 100%; border: 1px solid black">${completionPercentage}</td>
               <td style="width: 60%; height: 100%; border: 1px solid black;">${row.description}</td>
-              <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">${totalTime}</td>
+              <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">${row.proj_time.hours + 'h: ' + row.proj_time.minutes + 'm: ' + row.proj_time.seconds + 's'}</td>
             </tr>
             <tr>
               <td colspan="3">

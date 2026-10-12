@@ -20,25 +20,135 @@ const pool = new Pool({
 
 // POST endpoint to handle form submission
 app.post('/api/users', async (req, res) => {
-  try {
-    const { name } = req.body; // Extract data from HTML input
+
+    const title = req.body.title; // Extract the title from the request body
+    switch (title) {
+        case 'newproject':
+            const { newname, newdescription } = req.body; // Extract data from HTML input
+            const projectTEXT = `
+                INSERT INTO projects (name, description)
+                VALUES (\$1, \$2)
+            `;
+            console.log(`Received project data: ${newname}, ${newdescription}`);
+            try {
+                await pool.query(projectTEXT, [newname, newdescription]);
+                res.status(200).json({ success: true, message: "Project added successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
+            break;
+
+
+
+
+            
+        case 'newsubtask':
+            const { name, catagory, description, proj_id } = req.body; // Extract data from HTML input
+            const subtaskTEXT = `
+                INSERT INTO subtasks (proj_id, name, catagory, description)
+                VALUES (\$1, \$2, \$3, \$4)
+            `;
+            const subtaskTEXT2 = ``;
+            switch (catagory) {
+                case "Coding":
+                    // Handle coding category if needed
+                    subtaskTEXT2 = `
+                        UPDATE projects
+                        SET sub_code = sub_code + 1 
+                        WHERE id = \$1
+                    `;
+                    break;
+                case "Writing":
+                    // Handle writing category if needed
+                    subtaskTEXT2 = `
+                        UPDATE projects
+                        SET sub_write = sub_write + 1 
+                        WHERE id = \$1
+                    `;
+                    break;
+                case "Music":
+                    // Handle music category if needed
+                    subtaskTEXT2 = `
+                        UPDATE projects
+                        SET sub_music = sub_music + 1 
+                        WHERE id = \$1
+                    `;
+                    break;
+                case "Art":
+                    // Handle art category if needed
+                    subtaskTEXT2 = `
+                        UPDATE projects
+                        SET sub_art = sub_art + 1 
+                        WHERE id = \$1
+                    `;
+                    break;
+                case "Misc":
+                    // Handle misc category if needed
+                    subtaskTEXT2 = `
+                        UPDATE projects
+                        SET sub_misc = sub_misc + 1 
+                        WHERE id = \$1
+                    `;
+                    break;
+                default:
+                    console.error("Unknown category:", catagory);
+            }
+            console.log(`Received subtask data: ${name}, ${catagory}, ${description} for Project ID: ${proj_id}`);
+            try {
+                await pool.query(subtaskTEXT, [proj_id, name, catagory, description]);
+                await pool.query(subtaskTEXT2, [proj_id]); // Initialize project time to 0
+                res.status(200).json({ success: true, message: "Subtask added successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
+            break;
+
+        // case 'finishsubtask':
+        //     const { subtaskId } = req.body; // Extract data from HTML input
+        //     const finishSubtaskTEXT = `
+        //         UPDATE subtasks
+        //         SET is_finished = TRUE
+        //         WHERE id = \$1
+        //     `;
+        //     console.log(`Received finish request for Subtask ID: ${subtaskId}`);
+        //     try {
+        //         await pool.query(finishSubtaskTEXT, [subtaskId]);
+        //         res.status(200).json({ success: true, message: "Subtask marked as finished." });
+        //     } catch (err) {
+        //         console.error("Database Error:", err); // Log the actual error for debugging
+        //         res.status(500).json({ success: false, message: "Database error." });
+        //     }
+        //     break;
+
+
+        case 'timer':
+            const { hours, minutes, seconds, projid, sub_id } = req.body; // Extract data from HTML input
+            const queryTEXT = `
+                UPDATE projects
+                SET proj_time = proj_time + (\$1 || ' hours ' || \$2 || ' minutes ' || \$3 || ' seconds')::INTERVAL 
+                WHERE id = \$4
+            `;
+            const queryTEXT2 = `
+                UPDATE subtasks
+                SET sub_time = sub_time + (\$1 || ' hours ' || \$2 || ' minutes ' || \$3 || ' seconds')::INTERVAL 
+                WHERE id = \$4
+            `;
+            console.log(`Received time data: ${hours}h ${minutes}m ${seconds}s for Project ID: ${projid}, Subtask ID: ${sub_id}`);
+            try {
+                await pool.query(queryTEXT, [hours || 0, minutes || 0, seconds || 0, projid]);
+                await pool.query(queryTEXT2, [hours || 0, minutes || 0, seconds || 0, sub_id]);
+                res.status(200).json({ success: true, message: "Time updated successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
+            break;
+        default:
+            res.status(400).json({ success: false, message: "Invalid title." });
+    }   
     
-    //todo//
-    // Insert into database using a parameterized query for safety
-    /*
-    const query = 'INSERT INTO projects VALUES (\$1, \$2) RETURNING *';
-    const query2 = 'INSERT INTO subtasks VALUES (\$3, \$4, \$5) RETURNING *';
-    const values = [req.body.ids, req.body.stat1, req.body.stat2];
-    const result = await pool.query(query, query2, values);
-    */
-    res.status(201).json({ 
-      message: 'Data saved successfully!', 
-      data: result.rows[0] 
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
 });
 
 app.listen(port, () => {
