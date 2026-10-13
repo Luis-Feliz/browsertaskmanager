@@ -9,50 +9,57 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
     />
-    <title>Task Management Demo</title>
+    <title>TimeDoc</title>
     <meta
       name="description"
       content="High-performance HTML based website template."
     />
+    <p>Timedoc Logo header</p>
 </head>
 
 <body>
     <table style="width: 816px; height: 1056px; text-align: center; margin: 0 auto; border: 1px solid black;">
-        <thead class="TableH" style="border: 1px solid black;">
-            <th id="Proj_Name">#Project Name#</th>
+        <thead style="border: 1px solid black;">
+            <h1>Project:</h1><h1 id="Proj_Name">#Project Name#</h1>
+            <p id="description"> #Description for task# </p>
         </thead>
         <tbody class="TableB" style="border: 1px solid black;">
-            <tr>
+            <h3>Project Subtasks:</h3>
+            <tr style="border: 1px solid black;">
                 <th>SubTask</th><th>Catagory</th><th>Time</th>
             </tr>
-            <tr id="timedoc_body" style="border: 1px solid black;"  >
+            <tr style="border: 1px solid black;" id="timedoc_body" style="border: 1px solid black;"  >
                 <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
             </tr>
         </tbody>
         <tfoot class="TableF" style="border: 1px solid black;">
-            <tr>
-                <th>Stats</th>
-            </tr>
-            <tr>
-                <th> Longest SubTask </th>
-            </tr>
-            <tr>
+            <h3>Fun Facts & Insights:</h3>
+            <table>
+                <th> LONGEST SUBTASK: </th>
                 <td id="total_time_name">#SubTask Name#</td>
                 <td id="total_time">#SubTask Time#</td>
-            </tr>
-            <tr>
-                <th>Most Used Category</th>
+            </table>
+            <table>
+                <th> MOST USED CATEGORY </th>
                 <td id="catagory">#Catagory Name#</td>
-            </tr>
-            <tr>
-                <th>In memory of those who inspired us to create</th>
-            </tr>
+                <td id="total_cat_tasks">#Total Catagory Tasks#</td>
+                <td id="total_cat_time">#Total Catagory Time#</td>
+            </table>
+            <table>
+                <th> TOTAL SUBTASKS: </th>
+                <td id="total_subtasks">#Total Subtasks#</td>
+            </table>
+            <table>
+                <th> UNSURE 4TH CATEGORY </th>
+            </table>
+            <table>
+                <th> FINAL STATUS </th>
+                <td>PROJECT STATUS:</td><td id="project_status">#Project Status#</td><br>
+                <td>TOTAL TIME TAKEN:</td><td id="total time">#Total Project Time#</td>
+            </table>
         </tfoot>
         
     </table>
-
-
-
     <script>
         async function fetchPostgresData() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -103,8 +110,8 @@
         }
         fetchPostgresData();
     </script>
-
 </body>
+<footer><p>In memory of those who inspired us to create</p></footer>
 
 <!-- 
 <!DOCTYPE html>
