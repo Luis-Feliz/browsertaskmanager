@@ -53,7 +53,7 @@
 <body>
     <!-- Display the received number -->
     <span id="project-number">I WANT THIS TO CHANGE TO NUMBER BAISED ON HOW I CLICK THIS PAGE</span>
-
+    
     
     
     <!-- Demo Table -->
@@ -72,11 +72,18 @@
                 </ul>
             </td>
             <td style="width: 50%; border: 1px solid black; text-align: right;">
-                <button class="demo" onclick="location.href='../Html/TimeDoc.html'"><strong>Finished Project</strong></button>
+                <button class="demo" onclick="location.href='../Html/TimeDoc.html?projectId=' + receivedNumber"><strong>Finished Project</strong></button>
             </td>
         </tr>
     </table>
-
+    <script>
+        // Get the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const receivedNumber = urlParams.get('projectId');
+        
+        // Display the received number in the span element
+        document.getElementById('project-number').textContent = `Project ID: ${receivedNumber}`;
+    </script>
     <div>
         <form id="add-task">
             <input type="text" id="task" placeholder="Enter subtaskname..." required />

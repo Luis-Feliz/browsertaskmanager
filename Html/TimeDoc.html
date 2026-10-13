@@ -25,7 +25,7 @@
             <tr>
                 <th>SubTask</th><th>Catagory</th><th>Time</th>
             </tr>
-            <tr id="timedoc_body">
+            <tr id="timedoc_body" style="border: 1px solid black;"  >
                 <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
             </tr>
         </tbody>
@@ -55,6 +55,9 @@
 
     <script>
         async function fetchPostgresData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const receivedNumber = urlParams.get('projectId'); //number to compare with proj_id to determine what tasks to show
+
             try {
                 const response = await fetch('http://localhost:3000/api/data');
                 const data = await response.json();
@@ -69,16 +72,17 @@
 
                 //data.projects.forEach(row => {
                 data.subtasks.forEach(row => {
-                    if(recevedNumber === row.proj_id){
+                    if(receivedNumber == row.proj_id){
+                        
                         bodytable.innerHTML += `
                             <tr>
-                                <td>${row.name}</td><td>${row.category}</td><td>${row.time}</td>
+                                <td>${row.name}</td><td>${row.catagory}</td><td>${JSON.stringify(row.sub_time)}</td>
                             </tr>
                         `;
                         
-                        if (row.time > highesttime){
+                        if (row.sub_time > highesttime){
                             highesttimename = row.name;
-                            highesttime = row.time;
+                            highesttime = row.sub_time;
                         }
                         total_time_name.textContent = `${highesttimename}`;
                         total_time_name.textContent = `${highesttime}`;
@@ -86,7 +90,7 @@
                 });
 
                 data.project.forEach(row => {
-                    if(recevedNumber === row.id){
+                    if(receivedNumber === row.id){
                         const data = [row.sub_code, row.sub_write, row.sub_music, row.sub_art, row.sub_misc];
                         const maxInt = Math.max(data.filter(item => typeof item === 'number' && Number.isSafeInteger(item)));  
                         catagory.textContent = `${maxInt}`;
