@@ -105,22 +105,22 @@ app.post('/api/users', async (req, res) => {
             }
             break;
 
-        // case 'finishsubtask':
-        //     const { subtaskId } = req.body; // Extract data from HTML input
-        //     const finishSubtaskTEXT = `
-        //         UPDATE subtasks
-        //         SET is_finished = TRUE
-        //         WHERE id = \$1
-        //     `;
-        //     console.log(`Received finish request for Subtask ID: ${subtaskId}`);
-        //     try {
-        //         await pool.query(finishSubtaskTEXT, [subtaskId]);
-        //         res.status(200).json({ success: true, message: "Subtask marked as finished." });
-        //     } catch (err) {
-        //         console.error("Database Error:", err); // Log the actual error for debugging
-        //         res.status(500).json({ success: false, message: "Database error." });
-        //     }
-        //     break;
+        case 'finishsubtask':
+            const { subtaskId } = req.body; // Extract data from HTML input
+            const finishSubtaskTEXT = `
+                UPDATE subtasks
+                SET is_finished = TRUE
+                WHERE id = \$1
+            `;
+            console.log(`Received finish request for Subtask ID: ${subtaskId}`);
+            try {
+                await pool.query(finishSubtaskTEXT, [subtaskId]);
+                res.status(200).json({ success: true, message: "Subtask marked as finished." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
+            break;
 
 
         case 'timer':

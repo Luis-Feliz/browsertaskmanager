@@ -65,11 +65,7 @@ fetchPostgresData();
 // Event listener for the "Add Task" button
 addTaskButton.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent standard page reload
-    
-    const projectId = receivedNumber; // Use the received project ID from the URL
-    const name = document.getElementById('task').value;
-    const catagory = document.getElementById('catagory').value;
-    const description = document.getElementById('description').value;
+    //make value as done. increment project finish by 1 and flip the boolean 
 
     try {
         const input = await fetch('http://localhost:3050/api/users', {
@@ -96,39 +92,32 @@ addTaskButton.addEventListener('submit', async (e) => {
 });
 
 // Event listener for the "Add Task" button
-// finish-form.addEventListener('submit', async (e) => {
-//     e.preventDefault(); // Prevent standard page reload
-    
-    
-//     // have values to make so Sub task isn't shown in databse once finished
-//     const projectId = receivedNumber; // Use the received project ID from the URL
-//     const name = document.getElementById('task').value;
-//     const catagory = document.getElementById('catagory').value;
-//     const description = document.getElementById('description').value;
+finish-form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent standard page reload
 
-//     try {
-//         const input = await fetch('http://localhost:3050/api/users', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({title: 'finishsubtask', name: name, catagory: catagory, description: description, proj_id: projectId}) // Send the time data as JSON
-//         });
-//         const result = await input.json();
+    try {
+        const input = await fetch('http://localhost:3050/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({title: 'finishsubtask', name: name, catagory: catagory, description: description, proj_id: projectId}) // Send the time data as JSON
+        });
+        const result = await input.json();
 
-//         if (input.ok) {
-//             responseMsg.style.color = 'green';
-//             responseMsg.textContent = result.message + "Refresh the page to see the new subtask.";
-//         } else {
-//             responseMsg.style.color = 'red';
-//             responseMsg.textContent = 'result.message: ' + result.message;
-//         }
-//     } catch (error) {
-//         console.error('Error:', error);
-//         responseMsg.style.color = 'red';
-//         responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
-//     }  
-// });
+        if (input.ok) {
+            responseMsg.style.color = 'green';
+            responseMsg.textContent = result.message + "Refresh the page to see the new subtask.";
+        } else {
+            responseMsg.style.color = 'red';
+            responseMsg.textContent = 'result.message: ' + result.message;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        responseMsg.style.color = 'red';
+        responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+    }  
+});
 
 
 
