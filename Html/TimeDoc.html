@@ -19,21 +19,20 @@
 
 <body>
     <table style="width: 816px; height: 1056px; text-align: center; margin: 0 auto; border: 1px solid black;">
-        <thead style="border: 1px solid black;">
+        <thead style="border: 1px solid black; height: 20%">
             <th>Project:</th><th id="Proj_Name">#Project Name#</th>
             <td id="description"> #Description for task# </td>
         </thead>
-        <tbody class="TableB" style="border: 1px solid black;">
+        <tbody style="border: 1px solid black; height: 70%"">
             <th>Project Subtasks:</th>
             <tr style="border: 1px solid black;">
-                <th>SubTask</th><th>Catagory</th><th>Time</th>
+                <th>SubTask Name</th> <th>Catagory</th> <th>Time</th>
             </tr>
             <tr style="border: 1px solid black;" id="timedoc_body" style="border: 1px solid black;"  >
                 <td>#Task 1 Name#</td><td>#Task 1 Category#</td><td>#Tast 1 Time#</td>
             </tr>
-        </tbody>
-        <tfoot class="TableF" style="border: 1px solid black;">
-            <th style="border: 1px solid black;>FUN FACTS AND STATS:
+
+            <th style="border: 1px solid black;">FUN FACTS AND STATS:
                 <table>
                     <th> LONGEST SUBTASK: </th>
                     <td id="total_time_name">#SubTask Name#</td>
@@ -73,6 +72,9 @@
                     <td>TOTAL TIME TAKEN:</td><td id="total time">#Total Project Time#</td>
                 </table>
             </th>
+        </tbody>
+        <tfoot class="TableF" style="border: 1px solid black; height: 10%">
+            <p>In memory of those who inspired us to create</p>
         </tfoot>
     </table>
     <script>
@@ -126,7 +128,6 @@
         fetchPostgresData();
     </script>
 </body>
-<footer><p>In memory of those who inspired us to create</p></footer>
 
 <!-- 
 <!DOCTYPE html>
