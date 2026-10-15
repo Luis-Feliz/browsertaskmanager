@@ -14,12 +14,19 @@
       name="description"
       content="High-performance HTML based website template."
     />
-    <p>Timedoc Logo header</p>
+    <style>
+        table, th, td {
+        border:1px solid black;
+    }
+    </style>
 </head>
 
 <body>
-    <table style="width: 816px; height: 1056px; text-align: center; margin: 0 auto; border: 1px solid black;">
-        <thead style="border: 1px solid black; height: 20%">
+    <table style="width: 816px; height: 1056px; text-align: center; margin: 0 auto;"> 
+        <thead>
+            <tr>
+                <th>Timedoc Logo header</th>
+            </tr>
             <tr>
                 <th>Project:</th>
                 <th id="Proj_Name">#Project Name#</th>
@@ -28,68 +35,59 @@
                 <td id="description"> #Description for task# </td>
             </tr>
         </thead>
-        <tbody style="border: 1px solid black; height: 70%"">
+        <tbody>
             <tr>
                 <th>Project Subtasks:</th>
             </tr>
-            <tr style="border: 1px solid black;">
-                <th>SubTask Name</th> 
-                <th>Catagory</th> 
-                <th>Time</th>
-            </tr>
-            <tr style="border: 1px solid black;" id="timedoc_body" style="border: 1px solid black;"  >
-                <td>#Task 1 Name#</td>
-                <td>#Task 1 Category#</td>
-                <td>#Tast 1 Time#</td>
-            </tr>
-
-
-
-            
-            <th style="border: 1px solid black;">FUN FACTS AND STATS:</th>
             <tr>
-                <table>
-                    <th> LONGEST SUBTASK: </th>
-                    <td id="total_time_name">#SubTask Name#</td>
-                    <td id="total_time">#SubTask Time#</td>
-                </table>
-                
-                <table>
-                    <th style="border: 1px solid black;">MOST USED CATEGORY</tr>
-                    <td id="catagory">#Catagory Name#</td>
-                    <td id="total_cat_tasks">#Total Catagory Tasks#</td>
-                    <td id="total_cat_time">#Total Catagory Time#</td>
-                </table>
+                <td>SubTask Name</td> 
+                <td>Catagory</td> 
+                <td>Time</td>
             </tr>
-
-
-            <br>
-            
-            
-            <th style="border: 1px solid black;">TOTAL SUBTASKS:
-                <table> 
-                <td id="total_subtasks">#Total Subtasks#</td>
-                </table>
-            </th>
-            <th style="border: 1px solid black;">
-                <table>
-                 UNSURE 4TH CATEGORY 
-                </table>
-            </th>
-            
-            
-            <br>
-            
-            
-            <th style="border: 1px solid black;">FINAL STATUS 
-                <table>
-                    <td>PROJECT STATUS:</td><td id="project_status">#Project Status#</td><br>
-                    <td>TOTAL TIME TAKEN:</td><td id="total time">#Total Project Time#</td>
-                </table>
-            </th>
+            <tr id="timedoc_body"></tr>
         </tbody>
-        <tfoot style="border: 1px solid black; height: 10%">
-            <td>In memory of those who inspired us to create</td>
+        <tfoot>
+            <tr>
+                <td>FUN FACTS AND STATS:</td>
+            </tr>
+            <tr>
+                <th> LONGEST SUBTASK: 
+                    <table>
+                        <td id="total_time_name">#SubTask Name#</td>
+                        <td id="total_time">#SubTask Time#</td>
+                    </table>
+                </th>
+                <th>MOST USED CATEGORY:
+                    <table>
+                        <td id="catagory">#Catagory Name#</td>
+                        <td id="total_cat_tasks">#Total Catagory Tasks#</td>
+                        <td id="total_cat_time">#Total Catagory Time#</td>
+                    </table>
+                </th>
+            </tr>
+            <tr>
+                <th>TOTAL SUBTASKS:
+                    <table>                    
+                        <td id="total_subtasks">#Total Subtasks#</td>
+                    </table>
+                </th>
+                <th>UNSURE 4TH CATEGORY:
+                     <table><td></td></table>
+                </th>
+            </tr>
+            <tr>
+                <th>FINAL STATUS 
+                    <table>
+                        <td>PROJECT STATUS:</td>
+                        <td id="project_status">#Project Status#</td>
+                        <td>TOTAL TIME TAKEN:</td>
+                        <td id="total time">#Total Project Time#</td>
+                    </table>                
+                </th>
+            </tr>
+            <tr>
+                <td>In memory of those who inspired us to create</td>
+            </tr>
         </tfoot>
     </table>
     <script>
@@ -112,10 +110,11 @@
                 //data.projects.forEach(row => {
                 data.subtasks.forEach(row => {
                     if(receivedNumber == row.proj_id){
-                        
                         bodytable.innerHTML += `
                             <tr>
-                                <td>${row.name}</td><td>${row.catagory}</td><td>${JSON.stringify(row.sub_time)}</td>
+                                <td>${row.name}</td>
+                                <td>${row.catagory}</td>
+                                <td>${JSON.stringify(row.sub_time)}</td>
                             </tr>
                         `;
                         
