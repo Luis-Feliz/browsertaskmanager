@@ -28,8 +28,7 @@
                 <th>Timedoc Logo header</th>
             </tr>
             <tr>
-                <th>Project:</th>
-                <th id="Proj_Name">#Project Name#</th>
+                <th id="proj_name">Project: #Project Name#</th>
             </tr>
             <tr>
                 <td id="description"> #Description for task# </td>
@@ -53,8 +52,8 @@
             <tr>
                 <th> LONGEST SUBTASK: 
                     <table>
-                        <td id="total_time_name">#SubTask Name#</td>
-                        <td id="total_time">#SubTask Time#</td>
+                        <td id="total_sub_name">#SubTask Name#</td>
+                        <td id="total_sub_time">#SubTask Time#</td>
                     </table>
                 </th>
                 <th>MOST USED CATEGORY:
@@ -81,7 +80,7 @@
                         <td>PROJECT STATUS:</td>
                         <td id="project_status">#Project Status#</td>
                         <td>TOTAL TIME TAKEN:</td>
-                        <td id="total time">#Total Project Time#</td>
+                        <td id="total_time">#Total Project Time#</td>
                     </table>                
                 </th>
             </tr>
@@ -99,15 +98,56 @@
                 const response = await fetch('http://localhost:3000/api/data');
                 const data = await response.json();
 
+                const projectname = document.getElementById('proj_name');
+                const description = document.getElementById('description');
                 const bodytable = document.getElementById('timedoc_body');
-                const totalname = document.getElementById('total_time_name');
-                const totaltime = document.getElementById('total_time');
+                const totalsubname = document.getElementById('total_sub_name');
+                const totalsubtime = document.getElementById('total_sub_time');
                 const catagory = document.getElementById('catagory');
-                
+                const totalcatagorytasks = document.getElementById('total_cat_tasks');
+                const totalcatagorytime = document.getElementById('total_cat_time');
+                const totalsubtasks = document.getElementById('total_subtasks');
+                const projectstatus = document.getElementById('project_status');
+                const totaltime = document.getElementById('total_time');
+
                 const highesttime = 0;
                 const highesttimename = null;
 
                 //data.projects.forEach(row => {
+
+                data.projects.forEach(row => {
+                    if(receivedNumber == row.id){
+                        projectname.innerHTML = `Project: ${row.name}`
+                        description.innerHTML = `${row.description}`
+
+                        const subdata = [row.sub_code, row.sub_write, row.sub_music, row.sub_art, row.sub_misc];
+
+                        //What catagory is the most used
+                        catagory.innerHTML = `0`;
+                        //total tasks from category
+                        totalcatagorytasks.innerHTML = `1`;
+                        //total time in catagory
+                        totalcatagorytime.innerHTML = `2`;
+                        
+                        const subtasktotal = row.sub_code + row.sub_write + row.sub_music + row.sub_art + row.sub_misc;
+                        totalsubtasks.innerHTML = subtasktotal;
+
+                        if (row.finished){
+                            projectstatus.style.color = 'green';
+                            projectstatus.innerHTML = `
+                                <td> Value: ${row.finished} </td>
+                            `;
+                        }
+                        else{
+                            projectstatus.style.color = 'red';
+                            projectstatus.innerHTML = `
+                                <td> Value: ${row.finished} </td>
+                            `;
+                        }
+                        
+                        totaltime.innerHTML = `${JSON.stringify(row.proj_time)}`
+                    }   
+                });
                 data.subtasks.forEach(row => {
                     if(receivedNumber == row.proj_id){
                         bodytable.innerHTML += `
@@ -117,23 +157,16 @@
                                 <td>${JSON.stringify(row.sub_time)}</td>
                             </tr>
                         `;
-                        
-                        if (row.sub_time > highesttime){
+                        if (row.sub_time < highesttime){
                             highesttimename = row.name;
                             highesttime = row.sub_time;
                         }
-                        total_time_name.textContent = `${highesttimename}`;
-                        total_time_name.textContent = `${highesttime}`;
-                    }   
-                });
 
-                data.project.forEach(row => {
-                    if(receivedNumber === row.id){
-                        const data = [row.sub_code, row.sub_write, row.sub_music, row.sub_art, row.sub_misc];
-                        const maxInt = Math.max(data.filter(item => typeof item === 'number' && Number.isSafeInteger(item)));  
-                        catagory.textContent = `${maxInt}`;
+                        totalsubname.innerHTML = `0`;
+                        totalsubtime.innerHTML = `1`;
                     }   
                 });
+                
             } 
             catch (error) {
                 console.error('Error fetching data from API:', error);
@@ -142,129 +175,3 @@
         fetchPostgresData();
     </script>
 </body>
-
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Printable & Downloadable Document</title>
-    <style>
-        /* --- General Layout Styles --- */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .download-btn {
-            background-color: #28a745;
-        }
-        .download-btn:hover {
-            background-color: #218838;
-        }
-        .content-area {
-            border: 1px solid #ddd;
-            padding: 30px;
-            border-radius: 5px;
-            background: #f9f9f9;
-        }
-
-        /* --- Print Styles Configuration --- */
-        @media print {
-            /* Hide the web buttons entirely during physical print/PDF save */
-            .action-buttons {
-                display: none;
-            }
-            body {
-                margin: 0;
-                padding: 0;
-                color: #000;
-                background: #fff;
-            }
-            .content-area {
-                border: none;
-                padding: 0;
-                background: transparent;
-            }
-            /* Explicit page rules for cleaner paper format margins */
-            @page {
-                size: A4;
-                margin: 20mm;
-            }
-        }
-    </style>
-</head>
-<body>
--->
-    <!-- Action panel excluded automatically during print output -->
-<!--
-    <div class="action-buttons">
-        <button onclick="window.print()">🖨️ Print to Paper or PDF</button>
-        <button class="download-btn" onclick="downloadContent()">💾 Download Raw Text</button>
-    </div>
--->
-    <!-- The physical document container target -->
-<!--    <div class="content-area" id="printable-document">
-        <h1>Monthly Executive Report</h1>
-        <p><strong>Date:</strong> September 2026</p>
-        <hr>
-        <p>This section is optimized cleanly for physical print output. When an end user clicks the print command or invokes standard keyboard control paths (Ctrl+P / Cmd+P), the layout removes the control buttons above and shifts structural margins into a precise alignment profile ready for desktop document rendering software.</p>
-        
-        <h2>Key Metrics</h2>
-        <ul>
-            <li>User Retention: Up 14%</li>
-            <li>Operational Latency: Down 40ms</li>
-            <li>Completed Deliverables: 42 units</li>
-        </ul>
-    </div>
--->
-    <!-- Handling Client-Side Export Downloads safely -->
-<!--    <script>
-        function downloadContent() {
-            // Target content payload extraction
-            const documentElement = document.getElementById('printable-document');
-            const documentText = documentElement.innerText;
-            
-            // Build temporary virtual file object mapping raw system data 
-            const textBlob = new Blob([documentText], { type: 'text/plain' });
-            const fileDownloadUrl = URL.createObjectURL(textBlob);
-            
-            // Generate virtual downstream action element triggering execution behavior
-            const virtualAnchor = document.createElement('a');
-            virtualAnchor.href = fileDownloadUrl;
-            virtualAnchor.download = 'Executive_Report_Summary.txt';
-            
-            // Execute automated layout trigger path sequence safely
-            document.body.appendChild(virtualAnchor);
-            virtualAnchor.click();
-            
-            // Clean up persistent runtime structures cleanly
-            document.body.removeChild(virtualAnchor);
-            URL.revokeObjectURL(fileDownloadUrl);
-        }
-    </script>
-</body>
-</html> 
--->
