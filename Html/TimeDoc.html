@@ -113,24 +113,12 @@
                 const highesttime = 0;
                 const highesttimename = null;
 
-                //data.projects.forEach(row => {
-
                 data.projects.forEach(row => {
                     if(receivedNumber == row.id){
+                        //Project Name
                         projectname.innerHTML = `Project: ${row.name}`
+                        //Project Description
                         description.innerHTML = `${row.description}`
-
-                        const subdata = [row.sub_code, row.sub_write, row.sub_music, row.sub_art, row.sub_misc];
-
-                        //What catagory is the most used
-                        catagory.innerHTML = `0`;
-                        //total tasks from category
-                        totalcatagorytasks.innerHTML = `1`;
-                        //total time in catagory
-                        totalcatagorytime.innerHTML = `2`;
-                        
-                        const subtasktotal = row.sub_code + row.sub_write + row.sub_music + row.sub_art + row.sub_misc;
-                        totalsubtasks.innerHTML = subtasktotal;
 
                         if (row.finished){
                             projectstatus.style.color = 'green';
@@ -148,6 +136,25 @@
                         totaltime.innerHTML = `${JSON.stringify(row.proj_time)}`
                     }   
                 });
+                //integers to determine the size of categories
+                let codeInt = 0;
+                let writeInt = 0;
+                let musicInt = 0;
+                let artInt = 0;
+                let miscInt = 0;
+
+                //integers to determine the time of categories
+                let codeTime = 0;
+                let writeTime = 0;
+                let musicTime = 0;
+                let artTime = 0;
+                let miscTime = 0;
+
+
+
+
+
+
                 data.subtasks.forEach(row => {
                     if(receivedNumber == row.proj_id){
                         bodytable.innerHTML += `
@@ -157,11 +164,71 @@
                                 <td>${JSON.stringify(row.sub_time)}</td>
                             </tr>
                         `;
+                        switch (row.catagory) {
+                        case "Coding":
+                            codeInt += 1;
+                            codeTime += row.sub_time;
+                            break;
+                        case "Writing":
+                            writeInt += 1;
+                            codeTime += row.sub_time;
+                            break;
+                        case "Music":
+                            musicInt += 1;
+                            musicTime += row.sub_time;
+                            break;
+                        case "Art":
+                            artInt += 1;
+                            artTime += row.sub_time;
+                            break;
+                        case "Misc":
+                            miscInt += 1;
+                            miscTime += row.sub_time;
+                            break;
+                        }
+                        //What catagory is the most used
+                        // 1. Store your 5 integers in an object
+                        const variables = { Coding: codeInt, Writing: writeInt, Music: musicInt, Art: artInt, Misc: miscInt};
+                        // 2. Find the highest value out of the object's values
+                        const highestValue = Math.max(...Object.values(variables));
+                        // 3. Find the key (name) that matches that highest value
+                        const highestName = Object.keys(variables).find(key => variables[key] === highestValue);
+                        catagory.innerHTML = highestName;
+
+                        //total tasks from category
+                        switch(highestName){
+                        case "Coding":
+                            totalcatagorytasks.innerHTML = codeInt + ' Subtasks';
+                            totalcatagorytime.innerHTML = JSON.stringify(codeTime) + ' Time';
+                            break;
+                        case "Writing":
+                            totalcatagorytasks.innerHTML = writeInt;
+                            totalcatagorytime.innerHTML = writeTime;
+                            break;
+                        case "Music":
+                            totalcatagorytasks.innerHTML = musicInt;
+                            totalcatagorytime.innerHTML = musicTime;
+                            break;
+                        case "Art":
+                            totalcatagorytasks.innerHTML = artInt;
+                            totalcatagorytime.innerHTML = artTime;
+                            break;
+                        case "Misc":
+                            totalcatagorytasks.innerHTML = miscInt;
+                            totalcatagorytime.innerHTML = miscTime;
+                            break;
+                        }
+
+                        //Total Subtask Time
+                        const subtasktotal = +codeInt + +writeInt + +musicInt + +artInt + +miscInt;
+                        totalsubtasks.innerHTML = subtasktotal;
+
+
                         if (row.sub_time < highesttime){
                             highesttimename = row.name;
                             highesttime = row.sub_time;
                         }
-
+                        
                         totalsubname.innerHTML = `0`;
                         totalsubtime.innerHTML = `1`;
                     }   
