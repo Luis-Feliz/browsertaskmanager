@@ -42,12 +42,27 @@ async function fetchPostgresData() {
                 const taskItem = document.createElement("div");
                 taskItem.classList.add("task");
 
-                taskItem.innerHTML =
-                `   <form id="finish-form" method="POST">
-                        <button class="mark-done">Mark Done</button>
-                    </form>
-                    <button class="demo" onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
-                    <p>${row.name}</p>        
+                taskItem.innerHTML =`
+                    <table class="task">
+                        <tr>
+                            <td>Name:</td>
+                            <td>${row.name}</td>
+                        </tr>
+                        <tr>
+                            <td style="display: flex; align-items: flex-start;">Description: /td>
+                            <td>${row.description}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <form id="finish-form" method="POST">
+                                    <button class="mark-done">Mark Done</button>
+                                </form>
+                            </td>
+                            <td style="width: 50%;">
+                                <button class="task button" onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
+                            </td>
+                        </tr>
+                    </table>          
                 `;
                 taskList.appendChild(taskItem);    
             }                
