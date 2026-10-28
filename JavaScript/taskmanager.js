@@ -2,10 +2,12 @@ const taskInput = document.getElementById("task");
 const catagoryInput = document.getElementById("catagory");
 // const deadlineInput = document.getElementById("deadline");
 const addTaskButton = document.getElementById("add-task");
-// Parse the URL parameters
-const urlParams = new URLSearchParams(window.location.search);
-const receivedNumber = urlParams.get('projectId');
+
+
+
 const finishForm = document.getElementById("finish-form");
+let taskList = document.getElementById("task");;
+
 
 // Display it on the page
 document.getElementById('project-number').innerText = receivedNumber;
@@ -15,10 +17,6 @@ async function fetchPostgresData() {
     try {
         const response = await fetch('http://localhost:3000/api/data');
         const data = await response.json();
-
-        // Parse the URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const receivedNumber = urlParams.get('projectId'); //number to compare with proj_id to determine what tasks to show
 
         data.subtasks.forEach(row => {
             if(receivedNumber == row.proj_id) { //only show tasks that match the project number
@@ -68,7 +66,7 @@ addTaskButton.addEventListener('submit', async (e) => {
     //make value as done. increment project finish by 1 and flip the boolean 
 
     try {
-        const input = await fetch('http://localhost:3050/api/users', {
+        const input = await fetch('http://localhost:3000/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -91,33 +89,33 @@ addTaskButton.addEventListener('submit', async (e) => {
     }  
 });
 
-// Event listener for the "Add Task" button
-finish-form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent standard page reload
+// // Event listener for the "Add Task" button
+// finish-form.addEventListener('submit', async (e) => {
+//     e.preventDefault(); // Prevent standard page reload
 
-    try {
-        const input = await fetch('http://localhost:3050/api/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({title: 'finishsubtask', name: name, catagory: catagory, description: description, proj_id: projectId}) // Send the time data as JSON
-        });
-        const result = await input.json();
+//     try {
+//         const input = await fetch('http://localhost:3000/api/users', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({title: 'finishsubtask', name: name, catagory: catagory, description: description, proj_id: projectId}) // Send the time data as JSON
+//         });
+//         const result = await input.json();
 
-        if (input.ok) {
-            responseMsg.style.color = 'green';
-            responseMsg.textContent = result.message + "Refresh the page to see the new subtask.";
-        } else {
-            responseMsg.style.color = 'red';
-            responseMsg.textContent = 'result.message: ' + result.message;
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        responseMsg.style.color = 'red';
-        responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
-    }  
-});
+//         if (input.ok) {
+//             responseMsg.style.color = 'green';
+//             responseMsg.textContent = result.message + "Refresh the page to see the new subtask.";
+//         } else {
+//             responseMsg.style.color = 'red';
+//             responseMsg.textContent = 'result.message: ' + result.message;
+//         }
+//     } catch (error) {
+//         console.error('Error:', error);
+//         responseMsg.style.color = 'red';
+//         responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+//     }  
+// });
 
 
 
