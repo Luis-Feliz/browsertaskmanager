@@ -110,8 +110,8 @@
                 const projectstatus = document.getElementById('project_status');
                 const totaltime = document.getElementById('total_time');
 
-                const highesttime = 0;
-                const highesttimename = null;
+                const highesttime = { hr: 0, min: 0, sec: 0};
+                const highesttimename = 'Test Name';
 
                 data.projects.forEach(row => {
                     if(receivedNumber == row.id){
@@ -144,19 +144,18 @@
                 let miscInt = 0;
 
                 //integers to determine the time of categories
-                let codeTime = 0;
-                let writeTime = 0;
-                let musicTime = 0;
-                let artTime = 0;
-                let miscTime = 0;
-
-
+                const codeTime  =   { hr: 0, min: 0, sec: 0};
+                const writeTime =   { hr: 0, min: 0, sec: 0};
+                const musicTime =   { hr: 0, min: 0, sec: 0};
+                const artTime   =   { hr: 0, min: 0, sec: 0};
+                const miscTime  =   { hr: 0, min: 0, sec: 0};
 
 
 
 
                 data.subtasks.forEach(row => {
                     if(receivedNumber == row.proj_id){
+                        //DISPLAY EVRY SUBTASK DONE IN PROJECT
                         bodytable.innerHTML += `
                             <tr>
                                 <td>${row.name}</td>
@@ -164,10 +163,37 @@
                                 <td>${JSON.stringify(row.sub_time)}</td>
                             </tr>
                         `;
+
+                        // // LONGEST SUBTASK
+                        // if (row.sub_time.hours > highesttime.hr){
+                        //     highesttimename = row.name;
+                        //     highesttime = row.sub_time;
+
+                        // }
+                        // else if(row.sub_time.hours == highesttime.hr){
+                        //     if(row.sub_time.minutes > highesttime.min){
+                        //         highesttimename = row.name;
+                        //         highesttime = row.sub_time;
+
+                        //     }
+                        //     else if(row.sub_time.min == highesttime.min){
+                        //         if(row.sub_time.seconds > highesttime.sec){
+                        //             highesttimename = row.name;
+                        //             highesttime = row.sub_time;
+
+                        //         }
+                        //     }
+                        // }
+                        totalsubname.innerHTML = highesttimename;
+                        totalsubtime.innerHTML = JSON.stringify(highesttime);
+                        // MOST USED CATEGORY
                         switch (row.catagory) {
                         case "Coding":
                             codeInt += 1;
-                            codeTime += row.sub_time;
+                            codeTime.hr += row.sub_time.hours;
+                            codeTime.min += row.sub_time.minutes;
+                            codeTime.sec += row.sub_time.seconds;
+                            
                             break;
                         case "Writing":
                             writeInt += 1;
@@ -199,38 +225,32 @@
                         switch(highestName){
                         case "Coding":
                             totalcatagorytasks.innerHTML = codeInt + ' Subtasks';
-                            totalcatagorytime.innerHTML = JSON.stringify(codeTime) + ' Time';
+                            totalcatagorytime.innerHTML = codeTime.hr + ' Hrs Total';
                             break;
                         case "Writing":
-                            totalcatagorytasks.innerHTML = writeInt;
-                            totalcatagorytime.innerHTML = writeTime;
+                            totalcatagorytasks.innerHTML = writeInt + ' Subtasks';
+                            totalcatagorytime.innerHTML = writeTime.hr + ' Hrs Total';
                             break;
                         case "Music":
-                            totalcatagorytasks.innerHTML = musicInt;
-                            totalcatagorytime.innerHTML = musicTime;
+                            totalcatagorytasks.innerHTML = musicInt + ' Subtasks';
+                            totalcatagorytime.innerHTML = musicTime.hr + ' Hrs Total';
                             break;
                         case "Art":
-                            totalcatagorytasks.innerHTML = artInt;
-                            totalcatagorytime.innerHTML = artTime;
+                            totalcatagorytasks.innerHTML = artInt + ' Subtasks';
+                            totalcatagorytime.innerHTML = artTime.hr + ' Hrs Total';
                             break;
                         case "Misc":
-                            totalcatagorytasks.innerHTML = miscInt;
-                            totalcatagorytime.innerHTML = miscTime;
+                            totalcatagorytasks.innerHTML = miscInt + ' Subtasks';
+                            totalcatagorytime.innerHTML = miscTime.hr + ' Hrs Total';
                             break;
                         }
 
-                        //Total Subtask Time
+
+                        //TOTAL SUBTASKS
                         const subtasktotal = +codeInt + +writeInt + +musicInt + +artInt + +miscInt;
                         totalsubtasks.innerHTML = subtasktotal;
 
-
-                        if (row.sub_time < highesttime){
-                            highesttimename = row.name;
-                            highesttime = row.sub_time;
-                        }
-                        
-                        totalsubname.innerHTML = `0`;
-                        totalsubtime.innerHTML = `1`;
+                        //POTENTAL 4TH BOX
                     }   
                 });
                 

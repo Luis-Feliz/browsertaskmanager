@@ -6,7 +6,7 @@ const addTaskButton = document.getElementById("add-task");
 const urlParams = new URLSearchParams(window.location.search);
 const receivedNumber = urlParams.get('projectId');
 const finishForm = document.getElementById("finish-form");
-        
+
 // Display it on the page
 document.getElementById('project-number').innerText = receivedNumber;
 
@@ -19,7 +19,7 @@ async function fetchPostgresData() {
         // Parse the URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const receivedNumber = urlParams.get('projectId'); //number to compare with proj_id to determine what tasks to show
-        
+
         data.subtasks.forEach(row => {
             if(receivedNumber == row.proj_id) { //only show tasks that match the project number
                 switch (row.catagory) {
@@ -166,8 +166,6 @@ taskList.addEventListener("click", (event) => {
 //         <p>${task}</p>        
 //     `;
 //     taskList.appendChild(taskItem);
-    
+
 //     taskInput.value = "";
 //     catagoryInput.value = "Coding";
-
-// });

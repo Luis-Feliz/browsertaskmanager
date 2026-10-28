@@ -90,6 +90,49 @@
                 <td style="width:20%; border: 1px solid #ccc;">
                     <h3>Coding</h3>
                     <div class="task-list" id="task-list">
+                        <table class="task">
+                            <tr>
+                                <td>Name: </td>
+                                <td>TimeDoc</td>
+                            </tr>
+                            <tr>
+                                <td style="display: flex; align-items: flex-start;">Description:</td>
+                                <td>Serving as a default list for us to see how the row's would work once I get all the code working</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%;">
+                                    <form id="finish-form" method="POST">
+                                        <button class="task button">Mark Done</button>
+                                    </form>
+                                </td>
+                                <td style="width: 50%;">
+                                    <button class="task button" onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="task">
+                            <tr>
+                                <td>Name: </td>
+                                <td>TimeDoc</td>
+                            </tr>
+                            <tr>
+                                <td style="display: flex; align-items: flex-start;">Description:</td>
+                                <td>Serving as a default list for us to see how the row's would work once I get all the code working</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%;">
+                                    <form id="finish-form" method="POST">
+                                        <button class="task button">Mark Done</button>
+                                    </form>
+                                </td>
+                                <td style="width: 50%;">
+                                    <button class="task button" onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- 
+                        <button class="demo" onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
+                        <p>${row.name}</p>     -->
                         <!-- Tasks will be added here dynamically -->
                     </div>
                 </td>
@@ -119,7 +162,6 @@
                 </td>
             </tr>
         </table>
-        <script src="../JavaScript/taskmanager.js"></script>
     </main>
 </body>
 
