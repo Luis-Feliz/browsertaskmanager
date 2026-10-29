@@ -8,9 +8,12 @@ const addTaskButton = document.getElementById("add-task");
 const finishForm = document.getElementById("finish-form");
 let taskList = document.getElementById("task");;
 
-
-// Display it on the page
-document.getElementById('project-number').innerText = receivedNumber;
+// Get the URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const receivedNumber = urlParams.get('projectId');
+        
+// Display the received number in the span element
+document.getElementById('project-number').textContent = `Project ID: ${receivedNumber}`;
 
 
 async function fetchPostgresData() {
@@ -49,8 +52,9 @@ async function fetchPostgresData() {
                             <td>${row.name}</td>
                         </tr>
                         <tr>
-                            <td style="display: flex; align-items: flex-start;">Description: /td>
+                            <td style="display: flex; align-items: flex-start;">Description:</td>
                             <td>${row.description}</td>
+                            <td> <button class="delete">delete button</button></td>
                         </tr>
                         <tr>
                             <td style="width: 50%;">
@@ -79,14 +83,16 @@ fetchPostgresData();
 addTaskButton.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent standard page reload
     //make value as done. increment project finish by 1 and flip the boolean 
-
+    const subName = document.getElementById('task').value;
+    const subCat = document.getElementById('catagory').value;
+    const subDes = document.getElementById('description').value;
     try {
-        const input = await fetch('http://localhost:3000/api/users', {
+        const input = await fetch('http://localhost:3050/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({title: 'newsubtask', name: name, catagory: catagory, description: description, proj_id: projectId}) // Send the time data as JSON
+            body: JSON.stringify({title: 'newsubtask', proj_id: receivedNumber, name: subName, catagory: subCat, description: subDes}) // Send the time data as JSON
         });
         const result = await input.json();
 

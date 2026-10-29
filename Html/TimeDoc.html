@@ -34,17 +34,8 @@
                 <td id="description"> #Description for task# </td>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <th>Project Subtasks:</th>
-            </tr>
-            <tr>
-                <td>SubTask Name</td> 
-                <td>Catagory</td> 
-                <td>Time</td>
-            </tr>
-            <tr id="timedoc_body"></tr>
-        </tbody>
+
+        <tbody id="timedoc_body"></tbody>
         <tfoot>
             <tr>
                 <td>FUN FACTS AND STATS:</td>
@@ -113,6 +104,7 @@
                 const highesttime = { hr: 0, min: 0, sec: 0};
                 const highesttimename = 'Test Name';
 
+
                 data.projects.forEach(row => {
                     if(receivedNumber == row.id){
                         //Project Name
@@ -150,9 +142,17 @@
                 const artTime   =   { hr: 0, min: 0, sec: 0};
                 const miscTime  =   { hr: 0, min: 0, sec: 0};
 
+                 bodytable.innerHTML = `
 
-
-
+                    <tr>
+                        <th>Project Subtasks:</th>
+                    </tr>
+                    <tr>
+                        <td>SubTask Name</td> 
+                        <td>Catagory</td> 
+                        <td>Time</td>
+                    </tr>
+                `
                 data.subtasks.forEach(row => {
                     if(receivedNumber == row.proj_id){
                         //DISPLAY EVRY SUBTASK DONE IN PROJECT
@@ -164,26 +164,26 @@
                             </tr>
                         `;
 
-                        // // LONGEST SUBTASK
-                        // if (row.sub_time.hours > highesttime.hr){
-                        //     highesttimename = row.name;
-                        //     highesttime = row.sub_time;
+                        // LONGEST SUBTASK
+                        if (row.sub_time.hours > highesttime.hr){
+                            highesttimename = row.name;
+                            highesttime = row.sub_time;
 
-                        // }
-                        // else if(row.sub_time.hours == highesttime.hr){
-                        //     if(row.sub_time.minutes > highesttime.min){
-                        //         highesttimename = row.name;
-                        //         highesttime = row.sub_time;
+                        }
+                        else if(row.sub_time.hours == highesttime.hr){
+                            if(row.sub_time.minutes > highesttime.min){
+                                highesttimename = row.name;
+                                highesttime = row.sub_time;
 
-                        //     }
-                        //     else if(row.sub_time.min == highesttime.min){
-                        //         if(row.sub_time.seconds > highesttime.sec){
-                        //             highesttimename = row.name;
-                        //             highesttime = row.sub_time;
+                            }
+                            else if(row.sub_time.min == highesttime.min){
+                                if(row.sub_time.seconds > highesttime.sec){
+                                    highesttimename = row.name;
+                                    highesttime = row.sub_time;
 
-                        //         }
-                        //     }
-                        // }
+                                }
+                            }
+                        }
                         totalsubname.innerHTML = highesttimename;
                         totalsubtime.innerHTML = JSON.stringify(highesttime);
                         // MOST USED CATEGORY

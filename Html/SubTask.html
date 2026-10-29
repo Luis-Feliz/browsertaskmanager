@@ -76,14 +76,6 @@
             </td>
         </tr>
     </table>
-    <script>
-        // Get the URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const receivedNumber = urlParams.get('projectId');
-        
-        // Display the received number in the span element
-        document.getElementById('project-number').textContent = `Project ID: ${receivedNumber}`;
-    </script>
     <div>
         <form id="add-task">
             <input type="text" id="task" placeholder="Enter subtaskname..." required />

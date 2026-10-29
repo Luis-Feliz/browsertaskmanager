@@ -50,55 +50,9 @@ app.post('/api/users', async (req, res) => {
                 INSERT INTO subtasks (proj_id, name, catagory, description)
                 VALUES (\$1, \$2, \$3, \$4)
             `;
-            const subtaskTEXT2 = ``;
-            switch (catagory) {
-                case "Coding":
-                    // Handle coding category if needed
-                    subtaskTEXT2 = `
-                        UPDATE projects
-                        SET sub_code = sub_code + 1 
-                        WHERE id = \$1
-                    `;
-                    break;
-                case "Writing":
-                    // Handle writing category if needed
-                    subtaskTEXT2 = `
-                        UPDATE projects
-                        SET sub_write = sub_write + 1 
-                        WHERE id = \$1
-                    `;
-                    break;
-                case "Music":
-                    // Handle music category if needed
-                    subtaskTEXT2 = `
-                        UPDATE projects
-                        SET sub_music = sub_music + 1 
-                        WHERE id = \$1
-                    `;
-                    break;
-                case "Art":
-                    // Handle art category if needed
-                    subtaskTEXT2 = `
-                        UPDATE projects
-                        SET sub_art = sub_art + 1 
-                        WHERE id = \$1
-                    `;
-                    break;
-                case "Misc":
-                    // Handle misc category if needed
-                    subtaskTEXT2 = `
-                        UPDATE projects
-                        SET sub_misc = sub_misc + 1 
-                        WHERE id = \$1
-                    `;
-                    break;
-                default:
-                    console.error("Unknown category:", catagory);
-            }
             console.log(`Received subtask data: ${name}, ${catagory}, ${description} for Project ID: ${proj_id}`);
             try {
                 await pool.query(subtaskTEXT, [proj_id, name, catagory, description]);
-                await pool.query(subtaskTEXT2, [proj_id]); // Initialize project time to 0
                 res.status(200).json({ success: true, message: "Subtask added successfully." });
             } catch (err) {
                 console.error("Database Error:", err); // Log the actual error for debugging
