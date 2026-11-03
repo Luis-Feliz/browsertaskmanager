@@ -40,10 +40,6 @@ app.post('/api/users', async (req, res) => {
             }
             break;
 
-
-
-
-            
         case 'newsubtask':
             const { name, catagory, description, proj_id } = req.body; // Extract data from HTML input
             const subtaskTEXT = `
@@ -61,23 +57,43 @@ app.post('/api/users', async (req, res) => {
             break;
 
         case 'finishsubtask':
-            const { subtaskId } = req.body; // Extract data from HTML input
+            const subtaskId = req.body.id; // Extract data from HTML input
             const finishSubtaskTEXT = `
                 UPDATE subtasks
-                SET is_finished = TRUE
+                SET complete = TRUE
                 WHERE id = \$1
             `;
             console.log(`Received finish request for Subtask ID: ${subtaskId}`);
             try {
-                await pool.query(finishSubtaskTEXT, [subtaskId]);
+                await pool.query(finishSubtaskTEXT, [subtaskId]);                
                 res.status(200).json({ success: true, message: "Subtask marked as finished." });
             } catch (err) {
                 console.error("Database Error:", err); // Log the actual error for debugging
                 res.status(500).json({ success: false, message: "Database error." });
             }
             break;
-
-
+        case 'finishproject':
+            const projectId = req.body.id; // Extract data from HTML input
+            const queryTEXTproj = `
+                UPDATE projects
+                SET finished = TRUE 
+                WHERE id = \$1
+            `;
+            const queryTEXTsub = `
+                UPDATE subtasks
+                SET complete = TRUE 
+                WHERE proj_id = \$1
+            `;
+            console.log(`Received final data for project & subtask ID: ${projectId}`);
+            try {
+                await pool.query(queryTEXTproj, [projectId]);
+                await pool.query(queryTEXTsub, [projectId]);
+                res.status(200).json({ success: true, message: "Time updated successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
+            break;
         case 'timer':
             const { hours, minutes, seconds, projid, sub_id } = req.body; // Extract data from HTML input
             const queryTEXT = `
@@ -99,6 +115,14 @@ app.post('/api/users', async (req, res) => {
                 console.error("Database Error:", err); // Log the actual error for debugging
                 res.status(500).json({ success: false, message: "Database error." });
             }
+            break;
+        case 'editproject':
+            break
+        case 'editsubproject':
+            break
+        case 'deleteproject':
+            break;
+        case 'deletesubproject':
             break;
         default:
             res.status(400).json({ success: false, message: "Invalid title." });
