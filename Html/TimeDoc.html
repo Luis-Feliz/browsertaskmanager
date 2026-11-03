@@ -124,28 +124,35 @@
                                 <td> Value: ${row.finished} </td>
                             `;
                         }
-                        
-                        totaltime.innerHTML = `${JSON.stringify(row.proj_time)}`
+                        let rowHours   = row?.proj_time?.hours   ?? 0;
+                        let rowMinutes = row?.proj_time?.minutes ?? 0;
+                        let rowSeconds = row?.proj_time?.seconds ?? 0;
+                        totaltime.innerHTML = `
+                            ${rowHours} Hrs<br>
+                            ${rowMinutes} Mins<br> 
+                            ${rowSeconds} Secs
+                        `
                         if(!row.finished){finishbutton.innerHTML = `<button onclick = "finishProject(${receivedNumber})">Finish button</button>`;}
                     }   
                 });
                 //integers to determine the size of categories
-                let codeInt = 0;
-                let writeInt = 0;
-                let musicInt = 0;
-                let artInt = 0;
-                let miscInt = 0;
+                let codeInt     = 0;
+                let writeInt    = 0;
+                let musicInt    = 0;
+                let artInt      = 0;
+                let miscInt     = 0;
 
                 //integers to determine the time of categories
-                const codeTime  =   { hr: 0, min: 0, sec: 0};
-                const writeTime =   { hr: 0, min: 0, sec: 0};
-                const musicTime =   { hr: 0, min: 0, sec: 0};
-                const artTime   =   { hr: 0, min: 0, sec: 0};
-                const miscTime  =   { hr: 0, min: 0, sec: 0};
+                let codeTime        = 0;
+                let writeTime       = 0;
+                let musicTime       = 0;
+                let artTime         = 0;
+                let miscTime        = 0;
+                let catagoryTime    = 0;
 
-                const highesttime = { hr: 0, min: 0, sec: 0};
-                const highesttimename = 'Test Name';
-
+                let highestTotalSeconds = 0;
+                let highesttimename = 'Test Name';
+                
                 bodytable.innerHTML = `
 
                     <tr>
@@ -161,76 +168,93 @@
                 data.subtasks.forEach(row => {
                     if(receivedNumber == row.proj_id){
                         //DISPLAY EVRY SUBTASK DONE IN PROJECT
+                        let rowHours   = row?.sub_time?.hours   ?? 0;
+                        let rowMinutes = row?.sub_time?.minutes ?? 0;
+                        
                         bodytable.innerHTML += `
                             <tr>
                                 <td>${row.name}</td>
                                 <td>${row.catagory}</td>
-                                <td>${JSON.stringify(row.sub_time)}</td>
+                                <td>${rowHours} hrs ${rowMinutes} mins </td>
                             </tr>
                         `;
                     }
                 });
+
                 //Run through subtask data to gather all aditional fun facts
                 data.subtasks.forEach(row => {
                     if(receivedNumber == row.proj_id){
                         // LONGEST SUBTASK
-                        if (row.sub_time.hours > highesttime.hr){
+                        let rowHours   = row?.sub_time?.hours   ?? 0;
+                        let rowMinutes = row?.sub_time?.minutes ?? 0;
+                        let rowSeconds = row?.sub_time?.seconds ?? 0;
+                        // 1. Convert both times to total seconds for an easy, accurate comparison
+                        let currentTotalSeconds = (rowHours * 3600) + (rowMinutes * 60) + rowSeconds;
+
+                        if (currentTotalSeconds > highestTotalSeconds) {
                             highesttimename = row.name;
-                            highesttime = row.sub_time;
-
+                            highestTotalSeconds = currentTotalSeconds;
                         }
-                        else if(row.sub_time.hours == highesttime.hr){
-                            if(row.sub_time.minutes > highesttime.min){
-                                highesttimename = row.name;
-                                highesttime = row.sub_time;
-
-                            }
-                            else if(row.sub_time.min == highesttime.min){
-                                if(row.sub_time.seconds > highesttime.sec){
-                                    highesttimename = row.name;
-                                    highesttime = row.sub_time;
-
-                                }
-                            }
-                        }
-                        totalsubname.innerHTML = highesttimename;
-                        totalsubtime.innerHTML = JSON.stringify(highesttime);
                     }
+                    
+                    //run check to see if value is greater than an hour
+                    
+                    
+                    //totalsubtime.innerHTML = highestTotalSeconds;
                 });
+
+                if (highestTotalSeconds < 3600){
+                    //time is less than an hour. check for mins
+                    if(highestTotalSeconds < 60){
+                        //time is less than a minute. check for sec
+                        totalsubtime.innerHTML = Math.floor(highestTotalSeconds) + " secs";
+                    }
+                    else{
+                        highestTotalSeconds = highestTotalSeconds / 60;
+                        totalsubtime.innerHTML = Math.floor(highestTotalSeconds) + " mins";
+                    }
+                }
+                else{
+                    highestTotalSeconds = highestTotalSeconds / 3600;
+                    totalsubtime.innerHTML = Math.floor(highestTotalSeconds) + " hrs";
+                }
+                totalsubname.innerHTML = highesttimename;
+
+
+
+
+
                 data.subtasks.forEach(row => {
                     if(receivedNumber == row.proj_id){
                         // MOST USED CATEGORY
+                        // creating variable to assign time and also define any undefines as 0
+                        let rowHours   = row?.sub_time?.hours   ?? 0;
+                        let rowMinutes = row?.sub_time?.minutes ?? 0;
+                        let rowSeconds = row?.sub_time?.seconds ?? 0;
+
+                        let currentTotalSeconds = (rowHours * 3600) + (rowMinutes * 60) + rowSeconds;
+
                         switch (row.catagory) {
                         case "Coding":
                             codeInt += 1;
-                            codeTime.hr += row.sub_time.hours;
-                            codeTime.min += row.sub_time.minutes;
-                            codeTime.sec += row.sub_time.seconds;
+                            codeTime += currentTotalSeconds;
                             
                             break;
                         case "Writing":
                             writeInt += 1;
-                            writeTime.hr += row.sub_time.hours;
-                            writeTime.min += row.sub_time.minutes;
-                            writeTime.sec += row.sub_time.seconds;
+                            writeTime += currentTotalSeconds;
                             break;
                         case "Music":
                             musicInt += 1;
-                            musicTime.hr += row.sub_time.hours;
-                            musicTime.min += row.sub_time.minutes;
-                            musicTime.sec += row.sub_time.seconds;
+                            musicTime += currentTotalSeconds;
                             break;
                         case "Art":
                             artInt += 1;
-                            artTime.hr += row.sub_time.hours;
-                            artTime.min += row.sub_time.minutes;
-                            artTime.sec += row.sub_time.seconds;
+                            artTime += currentTotalSeconds;
                             break;
                         case "Misc":
                             miscInt += 1;
-                            miscTime.hr += row.sub_time.hours;
-                            miscTime.min += row.sub_time.minutes;
-                            miscTime.sec += row.sub_time.seconds;
+                            miscTime += currentTotalSeconds;
                             break;
                         }
                         //What catagory is the most used
@@ -241,29 +265,30 @@
                         // 3. Find the key (name) that matches that highest value
                         const highestName = Object.keys(variables).find(key => variables[key] === highestValue);
                         catagory.innerHTML = highestName;
-
+                        
+                        
 
                         //total tasks from category
                         switch(highestName){
                         case "Coding":
                             totalcatagorytasks.innerHTML = codeInt + ' Subtasks';
-                            totalcatagorytime.innerHTML = JSON.stringify(codeTime.sec) + ' Hrs Total';
+                            catagoryTime = codeTime;
                             break;
                         case "Writing":
                             totalcatagorytasks.innerHTML = writeInt + ' Subtasks';
-                            totalcatagorytime.innerHTML = +writeTime.hr + ' Hrs Total';
+                            catagoryTime = writeTime;
                             break;
                         case "Music":
                             totalcatagorytasks.innerHTML = musicInt + ' Subtasks';
-                            totalcatagorytime.innerHTML = +musicTime.hr + ' Hrs Total';
+                            catagoryTime = musTime;
                             break;
                         case "Art":
                             totalcatagorytasks.innerHTML = artInt + ' Subtasks';
-                            totalcatagorytime.innerHTML = +artTime.hr + ' Hrs Total';
+                            catagoryTime = artTime;
                             break;
                         case "Misc":
                             totalcatagorytasks.innerHTML = miscInt + ' Subtasks';
-                            totalcatagorytime.innerHTML = +miscTime.hr + ' Hrs Total';
+                            catagoryTime = miscTime;
                             break;
                         }
 
@@ -275,7 +300,21 @@
                         //POTENTAL 4TH BOX
                     }   
                 });
-                
+                if (catagoryTime < 3600){
+                    //time is less than an hour. check for mins
+                    if(catagoryTime < 60){
+                        //time is less than a minute. check for sec
+                        totalcatagorytime.innerHTML = Math.floor(catagoryTime) + " secs";
+                    }
+                    else{
+                        catagoryTime = catagoryTime / 60;
+                        totalcatagorytime.innerHTML = Math.floor(catagoryTime) + " mins";
+                    }
+                }
+                else{
+                    catagoryTime = catagoryTime / 3600;
+                    totalcatagorytime.innerHTML = Math.floor(catagoryTime) + " hrs";
+                }
             } 
             catch (error) {
                 console.error('Error fetching data from API:', error);
