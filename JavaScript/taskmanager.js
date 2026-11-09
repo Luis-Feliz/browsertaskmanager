@@ -65,7 +65,7 @@ async function fetchPostgresData() {
                             </tr>
                             <tr>
                                 <td style="width: 50%;">
-                                    <button id="mark-done", onclick = "finishSubtask(${row.id})">Mark Done: ${row.id}</button
+                                    <button onclick = "finishSubtask(${row.id})">Mark Done: ${row.id}</button
                                 </td>
                                 <td style="width: 50%;">
                                     <button onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
@@ -115,6 +115,7 @@ addTaskButton.addEventListener('submit', async (e) => {
         responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
     }  
 });
+
 async function finishSubtask(subtaskID) {
     try {
         const input = await fetch('http://localhost:3050/api/users', {

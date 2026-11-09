@@ -48,6 +48,7 @@
 
 <body>
   <h1 style="text-align: center"><u>Projects</u></h1>
+  <p id ="responseMsg" style="text-align: center"></p>
   <!-- Demo Table -->
 
     <!-- Actual Project -->
@@ -59,30 +60,36 @@
         const data = await response.json();
 
         const projectTable = document.getElementById('project-table');
-        let percenrtageCompletion = 0;
-        let numerator = 0;
-        let denominator = 0;
+        
         data.projects.forEach(row => {
           let rowHours   = row?.proj_time?.hours   ?? 0;
           let rowMinutes = row?.proj_time?.minutes ?? 0;
           let rowSeconds = row?.proj_time?.seconds ?? 0;
 
+          let numerator = 0;
+          let denominator = 0;
+
           data.subtasks.forEach(subrow => {
             if (subrow.proj_id == row.id) {
               // You can perform any additional logic here if needed
-              denuminator++; // Increment denominator for each subtask under the same project
-              if (subrow.finished) {
-                numerator++; // Increment numerator for each finished subtask
+              denominator += 1;
+              if (subrow.complete == true) {
+                numerator += 1;
               }
             }
           });          
-          percenrtageCompletion = (numerator / denuminator) * 100; // Calculate percentage completion
+          const completedTasks = (numerator / denominator) * 100;
           projectTable.innerHTML += `
-            <th style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}:</u></H1></th>
+            <th id="projectName_${row.id}"; style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}:</u></H1></th> 
+            <td style="text-align: right; vertical-align: top;"><button onclick = "editProj(${row.id}, '${row.name}', '${row.description}')">Edit ${row.id}</button></td>
+            <td style="text-align: right; vertical-align: top;"><button onclick ="deleteProj(${row.id})">Delete ${row.id}</button></td>
             <tr style="border: 1px solid black;">
-              <td style="width: 20%; height: 100%; border: 1px solid black">percenrtageCompletion</td>
-              <td style="width: 60%; height: 100%; border: 1px solid black;">${row.description}</td>
-              <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">${rowHours + 'h: ' + rowMinutes + 'm: ' + rowSeconds + 's'}</td>
+              <td style="width: 20%; height: 100%; border: 1px solid black">Total Time: ${rowHours + 'h: ' + rowMinutes + 'm: ' + rowSeconds + 's'}</td>
+              <td style="width: 60%; height: 100%; border: 1px solid black"; id="projectDes_${row.id}";>${row.description}</td>
+              <td style="width: 20%; height: 100%; border: 1px solid black">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
+            </tr>
+            <tr>
+              <td id="button_${row.id}"></td>
             </tr>
             <tr>
               <td colspan="3">
@@ -91,32 +98,116 @@
             </tr>
           `;
         });
-
-
-        let completionNumerator = 0;
-        let completionDenominator = 0;
-        let projectLength = data.projects.length;
-        
-        data.subtasks.forEach(row => {
-          // find way to calculate the completion percentage based on the finished tasks and total tasks for each project. You can use the following formula:
-          //Total tasks marked completed under the same project ID devided by the total number of tasks under the same project ID
-          if (projectLength == row.proj_id){
-         
-          }
-          document.getElementById("completion-percentage").textContent = 1;
-          //complete numerator must be calculated using the completed variables, and the denominator must be calculated using the total variables.
-          
-          // const completionNumerator = row.finished_tasks; // Assuming each subtask contributes equally to completion
-          // const completionDenominator = (+row.sub_code + +row.sub_write + +row.sub_music + +row.sub_art + +row.sub_misc);
-          // const completionPercentage = ((completionNumerator / completionDenominator)).toFixed(2) + '%';
-         });
       } 
       catch (error) {
           console.error('Error fetching data from API:', error);
       }
     }
 
-  fetchPostgresData();
+    fetchPostgresData();
+
+    async function deleteProj(id){
+      const userConfirmed = window.confirm("Are you sure you want to delete this project? This action cannot be undone.");
+      if (userConfirmed) {
+        try {
+          const input = await fetch('http://localhost:3050/api/users', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({title: 'deleteproject', id: +id}) // Send the time data as JSON
+          });
+          const result = await input.json();
+
+          if (input.ok) {
+              responseMsg.style.color = 'green';
+              responseMsg.textContent = result.message + "Project with Id #" + id + " has been deleted";
+          } else {
+              responseMsg.style.color = 'red';
+              responseMsg.textContent = 'result.message: ' + result.message;
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          responseMsg.style.color = 'red';
+          responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+        }  
+      }
+    }
+
+    async function editProj(id, oldName, oldDes){
+      const projectName = document.getElementById(`projectName_${id}`);
+      const projectDes = document.getElementById(`projectDes_${id}`);
+      const buttonDiv = document.getElementById(`button_${id}`);
+      
+      projectName.innerHTML = `<input id="projectNameInput" placeholder="Old name value is: ${oldName}" />`
+      projectDes.innerHTML = `<input type = "text" id="projectDesInput" placeholder="Old des value is: ${oldDes}" />`
+      buttonDiv.innerHTML = `<button onclick ="editProj2(${id}, '${oldName}', '${oldDes}')">Submit</button>`
+    }
+
+    async function editProj2(id, oldName, oldDes){
+      const projectNameInput = document.getElementById('projectNameInput');
+      const projectDesInput = document.getElementById('projectDesInput');
+
+      const newProjectName = projectNameInput.value;
+      const newProjectDes = projectDesInput.value;
+      
+      if (!projectNameInput.value && !projectDesInput.value) {
+        responseMsg.style.color = 'red';
+        responseMsg.textContent = 'Please fill at least one of the field.';
+        return;
+      }
+      else if (!projectNameInput.value) {
+        try {
+          const input = await fetch('http://localhost:3050/api/users', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({title: 'editproject', id: +id, editName: oldName, editDescription: newProjectDes}) // Send the time data as JSON
+          });
+          const result = await input.json();
+          window.location.reload();
+        } catch (error) {
+          console.error('Error:', error);
+          responseMsg.style.color = 'red';
+          responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+        }
+      }
+      else if (!projectDesInput.value) {
+        try {
+          const input = await fetch('http://localhost:3050/api/users', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({title: 'editproject', id: +id, editName: newProjectName, editDescription: oldDes}) // Send the time data as JSON
+          });
+          const result = await input.json();
+          window.location.reload();
+        } catch (error) {
+          console.error('Error:', error);
+          responseMsg.style.color = 'red';
+          responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+        }
+      }
+      else {
+        try {
+          const input = await fetch('http://localhost:3050/api/users', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({title: 'editproject', id: +id, editName: newProjectName, editDescription: newProjectDes}) // Send the time data as JSON
+          });
+          const result = await input.json();
+          window.location.reload();
+        } catch (error) {
+          console.error('Error:', error);
+          responseMsg.style.color = 'red';
+          responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+        }  
+      }
+    }
   </script>
 
 

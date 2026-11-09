@@ -68,16 +68,6 @@ app.post('/api/users', async (req, res) => {
             `;
             //TODO//
             // code nessisary to calculate the completion percentage
-
-
-
-
-
-
-
-
-
-
             console.log(`Received finish request for Subtask ID: ${subtaskId}`);
             try {
                 await pool.query(finishSubtaskTEXT, [subtaskId]);                
@@ -132,17 +122,63 @@ app.post('/api/users', async (req, res) => {
             }
             break;
         case 'editproject':
-            
-            break
+            const { id, editName, editDescription } = req.body; // Extract data from HTML input
+            const editTEXTproj = `
+                UPDATE projects
+                SET name = \$1, description = \$2
+                WHERE id = \$3
+            `;
+            console.log(`Received edit data: ${editName}, ${editDescription} for Project ID: ${id}`);
+            try {
+                await pool.query(editTEXTproj, [editName, editDescription, id]);
+                res.status(200).json({ success: true, message: "Project updated successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
+            break;
         case 'editsubproject':
             break
         case 'deleteproject':
+            const projId = req.body.id; // Extract data from HTML input
+            const projDelTEXT = `
+                DELETE FROM projects 
+                WHERE id =\$1;
+            `;
+            const projDelTEXT2 = `
+                DELETE FROM subtasks 
+                WHERE proj_id =\$1;
+            `;
+            console.log(`Received id data: ${projId} commencing deletion of project and associated subtasks`);
+            try {
+                await pool.query(projDelTEXT, [projId]);
+                await pool.query(projDelTEXT2, [projId]);
+                res.status(200).json({ success: true, message: "Deletion updated successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
             break;
         case 'deletesubproject':
-            //Make sure to adjust project completion percentage here as well.
-
-
-            
+            // //Make sure to adjust project completion percentage here as well.
+            // const projId = req.body.id; // Extract data from HTML input
+            // const projDelTEXT = `
+            //     DELETE FROM projects 
+            //     WHERE id =\$1;
+            // `;
+            // const projDelTEXT2 = `
+            //     DELETE FROM subtasks 
+            //     WHERE proj_id =\$1;
+            // `;
+            // console.log(`Received id data: ${projId} commencing deletion of project and associated subtasks`);
+            // try {
+            //     await pool.query(projDelTEXT, [projId]);
+            //     await pool.query(projDelTEXT2, [projId]);
+            //     res.status(200).json({ success: true, message: "Deletion updated successfully." });
+            // } catch (err) {
+            //     console.error("Database Error:", err); // Log the actual error for debugging
+            //     res.status(500).json({ success: false, message: "Database error." });
+            // }
             break;
         default:
             res.status(400).json({ success: false, message: "Invalid title." });
