@@ -170,14 +170,14 @@ async function finishSubtask(subtaskID) {
 
 
 
-//This marks the completion of the task
-finishForm.addEventListener("click", (event) => {
-    if (event.target.classList.contains("mark-done")) {
-        const taskItem = event.target.parentElement;
-        taskItem.style.backgroundColor = "#f2f2f2";
-        event.target.disabled = true;
-    }
-});
+// //This marks the completion of the task
+// finishForm.addEventListener("click", (event) => {
+//     if (event.target.classList.contains("mark-done")) {
+//         const taskItem = event.target.parentElement;
+//         taskItem.style.backgroundColor = "#f2f2f2";
+//         event.target.disabled = true;
+//     }
+// });
 
 
 

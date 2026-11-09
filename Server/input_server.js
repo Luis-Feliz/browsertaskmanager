@@ -46,6 +46,9 @@ app.post('/api/users', async (req, res) => {
                 INSERT INTO subtasks (proj_id, name, catagory, description)
                 VALUES (\$1, \$2, \$3, \$4)
             `;
+            //TODO//
+            // code nessisary to calculate the completion percentage
+
             console.log(`Received subtask data: ${name}, ${catagory}, ${description} for Project ID: ${proj_id}`);
             try {
                 await pool.query(subtaskTEXT, [proj_id, name, catagory, description]);
@@ -63,6 +66,18 @@ app.post('/api/users', async (req, res) => {
                 SET complete = TRUE
                 WHERE id = \$1
             `;
+            //TODO//
+            // code nessisary to calculate the completion percentage
+
+
+
+
+
+
+
+
+
+
             console.log(`Received finish request for Subtask ID: ${subtaskId}`);
             try {
                 await pool.query(finishSubtaskTEXT, [subtaskId]);                
@@ -117,12 +132,17 @@ app.post('/api/users', async (req, res) => {
             }
             break;
         case 'editproject':
+            
             break
         case 'editsubproject':
             break
         case 'deleteproject':
             break;
         case 'deletesubproject':
+            //Make sure to adjust project completion percentage here as well.
+
+
+            
             break;
         default:
             res.status(400).json({ success: false, message: "Invalid title." });

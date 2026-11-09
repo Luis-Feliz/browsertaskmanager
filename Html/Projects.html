@@ -59,26 +59,30 @@
         const data = await response.json();
 
         const projectTable = document.getElementById('project-table');
-        
+        let percenrtageCompletion = 0;
+        let numerator = 0;
+        let denominator = 0;
         data.projects.forEach(row => {
-          //complete numerator must be calculated using the completed variables, and the denominator must be calculated using the total variables.
-          
-          const completionNumerator = row.finished_tasks; // Assuming each subtask contributes equally to completion
-          const completionDenominator = (+row.sub_code + +row.sub_write + +row.sub_music + +row.sub_art + +row.sub_misc);
-          const completionPercentage = ((completionNumerator / completionDenominator)).toFixed(2) + '%';
-          
-          
-          const totalTimeHours = row.proj_time.hours; // Assuming row.time is in the format "HH:MM:SS"
-          const totalTimeMinutes = row.proj_time.minutes;
-          const totalTimeSeconds = row.proj_time.seconds;
-          
-          
+          let rowHours   = row?.proj_time?.hours   ?? 0;
+          let rowMinutes = row?.proj_time?.minutes ?? 0;
+          let rowSeconds = row?.proj_time?.seconds ?? 0;
+
+          data.subtasks.forEach(subrow => {
+            if (subrow.proj_id == row.id) {
+              // You can perform any additional logic here if needed
+              denuminator++; // Increment denominator for each subtask under the same project
+              if (subrow.finished) {
+                numerator++; // Increment numerator for each finished subtask
+              }
+            }
+          });          
+          percenrtageCompletion = (numerator / denuminator) * 100; // Calculate percentage completion
           projectTable.innerHTML += `
             <th style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}:</u></H1></th>
             <tr style="border: 1px solid black;">
-              <td style="width: 20%; height: 100%; border: 1px solid black">${completionPercentage}</td>
+              <td style="width: 20%; height: 100%; border: 1px solid black">percenrtageCompletion</td>
               <td style="width: 60%; height: 100%; border: 1px solid black;">${row.description}</td>
-              <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">${row.proj_time.hours + 'h: ' + row.proj_time.minutes + 'm: ' + row.proj_time.seconds + 's'}</td>
+              <td style="width: 20%; height: 100%; border: 1px solid black; text-align: right">${rowHours + 'h: ' + rowMinutes + 'm: ' + rowSeconds + 's'}</td>
             </tr>
             <tr>
               <td colspan="3">
@@ -87,6 +91,25 @@
             </tr>
           `;
         });
+
+
+        let completionNumerator = 0;
+        let completionDenominator = 0;
+        let projectLength = data.projects.length;
+        
+        data.subtasks.forEach(row => {
+          // find way to calculate the completion percentage based on the finished tasks and total tasks for each project. You can use the following formula:
+          //Total tasks marked completed under the same project ID devided by the total number of tasks under the same project ID
+          if (projectLength == row.proj_id){
+         
+          }
+          document.getElementById("completion-percentage").textContent = 1;
+          //complete numerator must be calculated using the completed variables, and the denominator must be calculated using the total variables.
+          
+          // const completionNumerator = row.finished_tasks; // Assuming each subtask contributes equally to completion
+          // const completionDenominator = (+row.sub_code + +row.sub_write + +row.sub_music + +row.sub_art + +row.sub_misc);
+          // const completionPercentage = ((completionNumerator / completionDenominator)).toFixed(2) + '%';
+         });
       } 
       catch (error) {
           console.error('Error fetching data from API:', error);
