@@ -55,17 +55,17 @@ async function fetchPostgresData() {
                         <table class="task">
                             <tr>
                                 <td>Name:</td>
-                                <td>${row.name}</td>
-                                <td><button> edit button </button></td>
+                                <td id = "subtaskName_${row.id}">${row.name}</td>
+                                <td><button onclick = "editSubtask(${row.id}, '${row.name}', '${row.description}')"> edit button </button></td>
                             </tr>
                             <tr>
                                 <td style="display: flex; align-items: flex-start;">Description:</td>
-                                <td>${row.description}</td>
-                                <td> <button class="delete">delete button</button></td>
+                                <td id = "subtaskDes_${row.id}">${row.description}</td>
+                                <td> <button onclick = "deleteSubtask(${row.id})">delete button</button></td>
                             </tr>
                             <tr>
-                                <td style="width: 50%;">
-                                    <button onclick = "finishSubtask(${row.id})">Mark Done: ${row.id}</button
+                                <td style="width: 50%;" id = "subtaskButton_${row.id}">
+                                    <button onclick = "finishSubtask(${row.id})">Mark Done: ${row.id}</button>
                                 </td>
                                 <td style="width: 50%;">
                                     <button onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
@@ -140,6 +140,111 @@ async function finishSubtask(subtaskID) {
         responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
     }  
 }
+
+async function editSubtask(subtaskID, oldName, oldDes) {
+    // Implement the logic to edit a subtask here
+    const projectName = document.getElementById(`subtaskName_${subtaskID}`);
+    const projectDes = document.getElementById(`subtaskDes_${subtaskID}`);
+    const buttonDiv = document.getElementById(`subtaskButton_${subtaskID}`);
+      
+    projectName.innerHTML = `<input id="projectNameInput" placeholder="Old name value is: ${oldName}" />`
+    projectDes.innerHTML = `<input type = "text" id="projectDesInput" placeholder="Old des value is: ${oldDes}" />`
+    buttonDiv.innerHTML = `<button onclick ="editSubtask2(${subtaskID}, '${oldName}', '${oldDes}')">Submit</button>`
+}
+async function editSubtask2(subtaskID, oldName, oldDes) {
+    // Implement the logic to edit a subtask here
+    const projectNameInput = document.getElementById('projectNameInput');
+    const projectDesInput = document.getElementById('projectDesInput');
+
+    const newProjectName = projectNameInput.value;
+    const newProjectDes = projectDesInput.value;
+      
+      if (!projectNameInput.value && !projectDesInput.value) {
+        responseMsg.style.color = 'red';
+        responseMsg.textContent = 'Please fill at least one of the field.';
+        return;
+      }
+      else if (!projectNameInput.value) {
+        try {
+          const input = await fetch('http://localhost:3050/api/users', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({title: 'editsubproject', subId: +subtaskID, editsubName: oldName, editsubDescription: newProjectDes}) // Send the time data as JSON
+          });
+          const result = await input.json();
+          window.location.reload();
+        } catch (error) {
+          console.error('Error:', error);
+          responseMsg.style.color = 'red';
+          responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+        }
+      }
+      else if (!projectDesInput.value) {
+        try {
+          const input = await fetch('http://localhost:3050/api/users', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({title: 'editsubproject', subId: +subtaskID, editsubName: newProjectName, editsubDescription: oldDes}) // Send the time data as JSON
+          });
+          const result = await input.json();
+          window.location.reload();
+        } catch (error) {
+          console.error('Error:', error);
+          responseMsg.style.color = 'red';
+          responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+        }
+      }
+      else {
+        try {
+          const input = await fetch('http://localhost:3050/api/users', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({title: 'editsubproject', subId: +subtaskID, editsubName: newProjectName, editsubDescription: newProjectDes}) // Send the time data as JSON
+          });
+          const result = await input.json();
+          window.location.reload();
+        } catch (error) {
+          console.error('Error:', error);
+          responseMsg.style.color = 'red';
+          responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+        }  
+      }
+    }
+async function deleteSubtask(subtaskID) {
+    // Implement the logic to delete a subtask here
+    const userConfirmed = window.confirm("Are you sure you want to delete this SubTask? This action cannot be undone.");
+      if (userConfirmed) {
+        try {
+          const input = await fetch('http://localhost:3050/api/users', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({title: 'deletesubproject', id: +subtaskID}) // Send the time data as JSON
+          });
+          const result = await input.json();
+
+          if (input.ok) {
+              responseMsg.style.color = 'green';
+              responseMsg.textContent = result.message + "SubTask with Id #" + subtaskID + " has been deleted";
+          } else {
+              responseMsg.style.color = 'red';
+              responseMsg.textContent = 'result.message: ' + result.message;
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          responseMsg.style.color = 'red';
+          responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+        }  
+      }
+    }
+
 // // Event listener for the "Add Task" button
 // finishForm.addEventListener('mark-done', async (e) => {
 //     e.preventDefault(); // Prevent standard page reload

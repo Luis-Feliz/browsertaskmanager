@@ -138,7 +138,21 @@ app.post('/api/users', async (req, res) => {
             }
             break;
         case 'editsubproject':
-            break
+            const { subId, editsubName, editsubDescription } = req.body; // Extract data from HTML input
+            const editTEXTsub = `
+                UPDATE subtasks
+                SET name = \$1, description = \$2
+                WHERE id = \$3
+            `;
+            console.log(`Received edit data: ${editsubName}, ${editsubDescription} for Subtask ID: ${subId}`);
+            try {
+                await pool.query(editTEXTsub, [editsubName, editsubDescription, subId]);
+                res.status(200).json({ success: true, message: "Subtask updated successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
+            break;
         case 'deleteproject':
             const projId = req.body.id; // Extract data from HTML input
             const projDelTEXT = `
@@ -160,25 +174,19 @@ app.post('/api/users', async (req, res) => {
             }
             break;
         case 'deletesubproject':
-            // //Make sure to adjust project completion percentage here as well.
-            // const projId = req.body.id; // Extract data from HTML input
-            // const projDelTEXT = `
-            //     DELETE FROM projects 
-            //     WHERE id =\$1;
-            // `;
-            // const projDelTEXT2 = `
-            //     DELETE FROM subtasks 
-            //     WHERE proj_id =\$1;
-            // `;
-            // console.log(`Received id data: ${projId} commencing deletion of project and associated subtasks`);
-            // try {
-            //     await pool.query(projDelTEXT, [projId]);
-            //     await pool.query(projDelTEXT2, [projId]);
-            //     res.status(200).json({ success: true, message: "Deletion updated successfully." });
-            // } catch (err) {
-            //     console.error("Database Error:", err); // Log the actual error for debugging
-            //     res.status(500).json({ success: false, message: "Database error." });
-            // }
+            const delSubtaskId = req.body.id; // Extract data from HTML input
+            const subDelTEXT = `
+                DELETE FROM subtasks 
+                WHERE id =\$1;
+            `;
+            console.log(`Received id data: ${delSubtaskId} commencing deletion of subtask`);
+            try {
+                await pool.query(subDelTEXT, [delSubtaskId]);
+                res.status(200).json({ success: true, message: "Deletion updated successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
             break;
         default:
             res.status(400).json({ success: false, message: "Invalid title." });
