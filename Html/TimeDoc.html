@@ -327,7 +327,7 @@
         const userConfirmed = window.confirm("Look through the task once more. Name right? Description correct? Remeber once added, this cannot be deleted.");
         if (userConfirmed) {
             try {
-            const input = await fetch('http://localhost:3050/api/users', {
+            const input = await fetch('http://localhost:3000/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -93,7 +93,7 @@ addTaskButton.addEventListener('submit', async (e) => {
     const subCat = document.getElementById('catagory').value;
     const subDes = document.getElementById('description').value;
     try {
-        const input = await fetch('http://localhost:3050/api/users', {
+        const input = await fetch('http://localhost:3000/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ addTaskButton.addEventListener('submit', async (e) => {
 
 async function finishSubtask(subtaskID) {
     try {
-        const input = await fetch('http://localhost:3050/api/users', {
+        const input = await fetch('http://localhost:3000/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -172,7 +172,7 @@ async function editSubtask2(subtaskID, oldName, oldDes) {
       }
       else if (!projectNameInput.value) {
         try {
-          const input = await fetch('http://localhost:3050/api/users', {
+          const input = await fetch('http://localhost:3000/api/users', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -189,7 +189,7 @@ async function editSubtask2(subtaskID, oldName, oldDes) {
       }
       else if (!projectDesInput.value) {
         try {
-          const input = await fetch('http://localhost:3050/api/users', {
+          const input = await fetch('http://localhost:3000/api/users', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -206,7 +206,7 @@ async function editSubtask2(subtaskID, oldName, oldDes) {
       }
       else {
         try {
-          const input = await fetch('http://localhost:3050/api/users', {
+          const input = await fetch('http://localhost:3000/api/users', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -227,7 +227,7 @@ async function deleteSubtask(subtaskID) {
     const userConfirmed = window.confirm("Are you sure you want to delete this SubTask? This action cannot be undone.");
       if (userConfirmed) {
         try {
-          const input = await fetch('http://localhost:3050/api/users', {
+          const input = await fetch('http://localhost:3000/api/users', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -257,7 +257,7 @@ async function deleteSubtask(subtaskID) {
 
 //     responseMsg.textContent = 'finish form button has been pressed';
 //     // try {
-//     //     const input = await fetch('http://localhost:3050/api/users', {
+//     //     const input = await fetch('http://localhost:3000/api/users', {
 //     //         method: 'POST',
 //     //         headers: {
 //     //             'Content-Type': 'application/json'

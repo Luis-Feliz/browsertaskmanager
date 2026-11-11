@@ -84,7 +84,7 @@ buttons.addEventListener('submit', async (e) => {
     responseMsg.textContent = `Current Time: ${currentHour}h ${currentMinute}m ${currentSecond}s`;
 
     try {
-        const input = await fetch('http://localhost:3050/api/users', {
+        const input = await fetch('http://localhost:3000/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
