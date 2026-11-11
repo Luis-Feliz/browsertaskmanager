@@ -81,8 +81,8 @@
           const completedTasks = (numerator / denominator) * 100;
           projectTable.innerHTML += `
             <th id="projectName_${row.id}"; style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}:</u></H1></th> 
-            <td style="text-align: right; vertical-align: top;"><button onclick = "editProj(${row.id}, '${row.name}', '${row.description}')">Edit ${row.id}</button></td>
-            <td style="text-align: right; vertical-align: top;"><button onclick ="deleteProj(${row.id})">Delete ${row.id}</button></td>
+            <td id = "noshow1_${row.id}"; style="text-align: right; vertical-align: top;"><button onclick = "editProj(${row.id}, '${row.name}', '${row.description}')">Edit ${row.id}</button></td>
+            <td id = "noshow2_${row.id}"; style="text-align: right; vertical-align: top;"><button onclick ="deleteProj(${row.id})">Delete ${row.id}</button></td>
             <tr style="border: 1px solid black;">
               <td style="width: 20%; height: 100%; border: 1px solid black">Total Time: ${rowHours + 'h: ' + rowMinutes + 'm: ' + rowSeconds + 's'}</td>
               <td style="width: 60%; height: 100%; border: 1px solid black"; id="projectDes_${row.id}";>${row.description}</td>
@@ -139,8 +139,13 @@
       const projectDes = document.getElementById(`projectDes_${id}`);
       const buttonDiv = document.getElementById(`button_${id}`);
       
-      projectName.innerHTML = `<input id="projectNameInput" placeholder="Old name value is: ${oldName}" />`
-      projectDes.innerHTML = `<input type = "text" id="projectDesInput" placeholder="Old des value is: ${oldDes}" />`
+      const noshowButton1 = document.getElementById(`noshow1_${id}`);
+      const noshowButton2 = document.getElementById(`noshow2_${id}`);
+      noshowButton1.style.display = 'none'; // Hide the "edit" button
+      noshowButton2.style.display = 'none'; // Hide the "delete" button
+      
+      projectName.innerHTML = `<input id="projectNameInput" placeholder="Old name value is: ${oldName}"</input>`
+      projectDes.innerHTML = `<input style: " width = 100% "; type = "text"; id="projectDesInput" placeholder="Old des value is: ${oldDes}"</input>`
       buttonDiv.innerHTML = `<button onclick ="editProj2(${id}, '${oldName}', '${oldDes}')">Submit</button>`
     }
 

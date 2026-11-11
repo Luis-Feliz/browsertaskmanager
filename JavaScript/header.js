@@ -8,6 +8,8 @@
 
 class MyHeader extends HTMLElement
 {
+    
+
     connectedCallback()
     {
         this.innerHTML = 
@@ -22,12 +24,14 @@ class MyHeader extends HTMLElement
                     <div class="bar3"></div>
                     </div>
                 </div>
-                
+            </th>
+            <th>
                 <div id="mySidenav" class="sidenav">
-                    <a href="#">About</a>
-                    <a href="#">Services</a>
-                    <a href="#">Clients</a>
-                    <a href="#">Contact</a>
+                    <a href="../index.html">Home Page</a>
+                    <a href="../Html/Projects.html">Projects</a>
+                    <div class="line" style="background-color: white;"></div>
+                    <div id="projectList" style="margin-top: 3px; height: 50%; overflow-y: auto;"></div>
+                    <div style="background-color: gray;">box</div>
                 </div>
             </th>
             <th style="text-align: right;">
@@ -39,3 +43,37 @@ class MyHeader extends HTMLElement
 }
 
 customElements.define('my-header', MyHeader);
+
+async function fetchPostgresData() {
+    try {
+        const response = await fetch('http://localhost:3000/api/data');
+        const data = await response.json();
+
+        const Sidenav = document.getElementById('projectList');
+        
+        data.projects.forEach(row => {
+          let numerator = 0;
+          let denominator = 0;
+          data.subtasks.forEach(subrow => {
+            if (subrow.proj_id == row.id) {
+              // You can perform any additional logic here if needed
+              denominator += 1;
+              if (subrow.complete == true) {
+                numerator += 1;
+              }
+            }
+          });          
+          const completedTasks = (numerator / denominator) * 100;
+          Sidenav.innerHTML += `
+            <tr>
+              <td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
+              <td style="width: 20%; height: 100%; border: 1px solid black">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
+            </tr>
+          `;
+        });
+      } 
+      catch (error) {
+          console.error('Error fetching data from API:', error);
+      }
+}
+fetchPostgresData();

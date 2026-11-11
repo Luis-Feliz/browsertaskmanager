@@ -56,19 +56,19 @@ async function fetchPostgresData() {
                             <tr>
                                 <td>Name:</td>
                                 <td id = "subtaskName_${row.id}">${row.name}</td>
-                                <td><button onclick = "editSubtask(${row.id}, '${row.name}', '${row.description}')"> edit button </button></td>
+                                <td><button id = "noshow1_${row.id}"; onclick = "editSubtask(${row.id}, '${row.name}', '${row.description}')"> edit button </button></td>
                             </tr>
                             <tr>
                                 <td style="display: flex; align-items: flex-start;">Description:</td>
                                 <td id = "subtaskDes_${row.id}">${row.description}</td>
-                                <td> <button onclick = "deleteSubtask(${row.id})">delete button</button></td>
+                                <td> <button id = "noshow2_${row.id}"; onclick = "deleteSubtask(${row.id})">delete button</button></td>
                             </tr>
                             <tr>
                                 <td style="width: 50%;" id = "subtaskButton_${row.id}">
                                     <button onclick = "finishSubtask(${row.id})">Mark Done: ${row.id}</button>
                                 </td>
                                 <td style="width: 50%;">
-                                    <button onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
+                                    <button id = "noshow3_${row.id}"; onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
                                 </td>
                             </tr>
                         </table>          
@@ -146,6 +146,12 @@ async function editSubtask(subtaskID, oldName, oldDes) {
     const projectName = document.getElementById(`subtaskName_${subtaskID}`);
     const projectDes = document.getElementById(`subtaskDes_${subtaskID}`);
     const buttonDiv = document.getElementById(`subtaskButton_${subtaskID}`);
+    const noshowButton1 = document.getElementById(`noshow1_${subtaskID}`);
+    const noshowButton2 = document.getElementById(`noshow2_${subtaskID}`);
+    const noshowButton3 = document.getElementById(`noshow3_${subtaskID}`);
+    noshowButton1.style.display = 'none'; // Hide the "edit" button
+    noshowButton2.style.display = 'none'; // Hide the "edit" button
+    noshowButton3.style.display = 'none'; // Hide the "edit" button
       
     projectName.innerHTML = `<input id="projectNameInput" placeholder="Old name value is: ${oldName}" />`
     projectDes.innerHTML = `<input type = "text" id="projectDesInput" placeholder="Old des value is: ${oldDes}" />`
