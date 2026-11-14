@@ -31,7 +31,7 @@ class MyHeader extends HTMLElement
                     <a href="../Html/Projects.html">Projects</a>
                     <div class="line" style="background-color: white;"></div>
                     <div id="projectList" style="margin-top: 3px; height: 50%; overflow-y: auto;">
-                        <div style="height: 20%; text-align: left"><H1><u>Project Name</u></H1></div>
+                        <div style="color: white; height: 20%; text-align: left"><H1><u>Project Name</u></H1></div>
                         <div id="myBar">10%</div>
                     </div>
                     <div style="background-color: gray;">box</div>
@@ -46,24 +46,8 @@ class MyHeader extends HTMLElement
 }
 
 customElements.define('my-header', MyHeader);
-var i = 0;
+
 async function fetchPostgresData() {
-    if (i == 0) {
-        i = 1;
-        var elem = document.getElementById("myBar");
-        var width = 10;
-        var id = setInterval(frame, 10);
-        function frame() {
-        if (width >= 100) {
-            clearInterval(id);
-            i = 0;
-        } else {
-            width++;
-            elem.style.width = width + "%";
-            elem.innerHTML = width + "%";
-        }
-        }
-    }
     try {
         const response = await fetch('http://localhost:3000/api/data');
         const data = await response.json();
