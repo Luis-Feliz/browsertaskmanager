@@ -61,7 +61,7 @@ x.classList.toggle("change");
         var width = 0;
         var id = setInterval(frame, 10);
         function frame() {
-            if (width >= 100) {
+            if (width >= 50) {
                 clearInterval(id);
                 i = 0;
             } else {
