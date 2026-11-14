@@ -31,8 +31,18 @@ class MyHeader extends HTMLElement
                     <a href="../Html/Projects.html">Projects</a>
                     <div class="line" style="background-color: white;"></div>
                     <div id="projectList" style="margin-top: 3px; height: 50%; overflow-y: auto;">
-                        <div style="color: white; height: 20%; text-align: left"><H1><u>Project Name</u></H1></div>
-                        <div id="myBar">10%</div>
+                    <tr>
+                        <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name1</u></H1></div>
+                        <div id="myBar">20</div>
+                    <tr>                    
+                    <tr>
+                        <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name2</u></H1></div>
+                        <div id="myBar">10</div>
+                    <tr>
+                    <tr>
+                        <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name3</u></H1></div>
+                        <div id="myBar">50</div>
+                    <tr>
                     </div>
                     <div style="background-color: gray;">box</div>
                 </div>
@@ -53,10 +63,11 @@ x.classList.toggle("change");
     if (i == 0) {
     i = 1;
     var elem = document.getElementById("myBar");
+    var value = document.getElementById("myBar").value;
     var width = 0;
     var id = setInterval(frame, 10);
     function frame() {
-        if (width >= 100) {
+        if (width >= value) {
             clearInterval(id);
             i = 0;
         } else {
@@ -114,7 +125,7 @@ async function fetchPostgresData() {
           Sidenav.innerHTML += `
             <tr>
               <td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
-              <td style="width: 20%; height: 100%; border: 1px solid black">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
+              <td style="width: 20%; height: 100%; border: 1px solid black">${completedTasks.toFixed(0)}%</td>
             </tr>
           `;
         });
