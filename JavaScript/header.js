@@ -34,15 +34,15 @@ class MyHeader extends HTMLElement
                     <tr>
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name1</u></H1></div>
                         <div id="myBar">20</div>
-                    <tr>                    
+                    </tr>                    
                     <tr>
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name2</u></H1></div>
                         <div id="myBar">10</div>
-                    <tr>
+                    </tr>
                     <tr>
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name3</u></H1></div>
                         <div id="myBar">50</div>
-                    <tr>
+                    </tr>
                     </div>
                     <div style="background-color: gray;">box</div>
                 </div>
