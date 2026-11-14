@@ -66,8 +66,8 @@ x.classList.toggle("change");
                 i = 0;
             } else {
                 width++;
-                elem.style.width = width + "%";
-                elem.innerHTML = width + "%";
+                elem.style.width = value + "%";
+                elem.innerHTML = value + "%";
             }
         }
     }
