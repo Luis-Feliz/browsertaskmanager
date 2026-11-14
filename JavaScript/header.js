@@ -55,21 +55,21 @@ var i = 0;
 function myFunction(x) {
 x.classList.toggle("change");
     if (i == 0) {
-    i = 1;
-    var elem = document.getElementById("myBar");
-    var value = document.getElementById("myBar").value;
-    var width = 0;
-    var id = setInterval(frame, 10);
-    function frame() {
-        if (width >= value) {
-            clearInterval(id);
-            i = 0;
-        } else {
-            width++;
-            elem.style.width = width + "%";
-            elem.innerHTML = width + "%";
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var value = document.getElementById("myBar").value;
+        var width = 0;
+        var id = setInterval(frame, value);
+        function frame() {
+            if (width >= value) {
+                clearInterval(id);
+                i = 0;
+            } else {
+                width++;
+                elem.style.width = width + "%";
+                elem.innerHTML = width + "%";
+            }
         }
-    }
     }
 }
 function toggleNav() {
