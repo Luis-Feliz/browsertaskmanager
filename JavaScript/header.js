@@ -33,7 +33,7 @@ class MyHeader extends HTMLElement
                     <div id="projectList" style="margin-top: 3px; height: 50%; overflow-y: auto;">
                         <tr>
                             <td style="height: 20%; text-align: left"><H1><u>Project Name</u></H1></td> 
-                            <td id="myBar"> 10% </td>
+                            <td> 10% </td>
                         </tr>
                     </div>
                     <div style="background-color: gray;">box</div>
