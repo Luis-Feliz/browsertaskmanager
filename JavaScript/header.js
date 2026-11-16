@@ -30,7 +30,7 @@ class MyHeader extends HTMLElement
                     <a href="../index.html" style="height: 10%;">Home Page</a>
                     <a href="../Html/Projects.html" style="height: 10%;">Projects</a>
                     <div class="line" style="background-color: white;"></div>
-                    <div id="projectList" style="margin-top: 3px; height: 70%; overflow-y: auto;">
+                    <div id="projectList" style="margin-top: 3px; height: 60%; overflow-y: auto;">
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name1</u></H1></div>
                         <div id="myBar">20</div>
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name2</u></H1></div>
@@ -48,7 +48,7 @@ class MyHeader extends HTMLElement
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name3</u></H1></div>
                         <div id="myBar">50</div>
                     </div>
-                    <div style="background-color: gray; position: bottom; height: 10%">box</div>
+                    <div style="background-color: gray; position: bottom; height: 5%">box</div>
                 </div>
             </th>
             <th style="position: sticky; left: 0; right: 0; ">
