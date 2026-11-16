@@ -27,10 +27,10 @@ class MyHeader extends HTMLElement
             </th>
             <th>
                 <div id="mySidenav" class="sidenav">
-                    <a href="../index.html" style="height: 10%;">Home Page</a>
-                    <a href="../Html/Projects.html" style="height: 10%;">Projects</a>
+                    <a href="../index.html" style="height: 5%;">Home Page</a>
+                    <a href="../Html/Projects.html" style="height: 5%;">Projects</a>
                     <div class="line" style="background-color: white;"></div>
-                    <div id="projectList" style="margin-top: 3px; height: 60%; overflow-y: auto;">
+                    <div id="projectList" style="margin-top: 3px; height: 75%; overflow-y: auto;">
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name1</u></H1></div>
                         <div id="myBar">20</div>
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name2</u></H1></div>
