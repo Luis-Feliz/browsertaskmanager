@@ -41,6 +41,9 @@ class MyHeader extends HTMLElement
                     <div style="background-color: gray;">box</div>
                 </div>
             </th>
+            <th>
+                <td> Logo Here </td>
+            </th>
             <th style="text-align: right;">
                 <button class="demo" onclick="location.href='../Html/New_Project.html'" style="text-align: justify;"> New Project</button>
             </th>
