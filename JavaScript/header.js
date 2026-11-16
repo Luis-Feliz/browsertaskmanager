@@ -41,7 +41,7 @@ class MyHeader extends HTMLElement
                     <div style="background-color: gray;">box</div>
                 </div>
             </th>
-            <th>
+            <th style = "position: sticky;">
                 <td> Logo Here </td>
             </th>
             <th style="text-align: right;">
