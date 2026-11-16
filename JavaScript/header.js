@@ -41,7 +41,7 @@ class MyHeader extends HTMLElement
                     <div style="background-color: gray;">box</div>
                 </div>
             </th>
-            <th style = "position: sticky;">
+            <th style="position: sticky; left: 0; right: 0; ">
                 <td> Logo Here </td>
             </th>
             <th style="text-align: right;">
@@ -69,8 +69,8 @@ x.classList.toggle("change");
                 i = 0;
             } else {
                 width++;
-                elem.style.width = elem + "%";
-                elem.innerHTML = elem + "%";
+                elem.style.width = width + "%";
+                elem.innerHTML = width + "%";
             }
         }
     }
