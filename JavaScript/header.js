@@ -59,7 +59,7 @@ x.classList.toggle("change");
         var elem = document.getElementById("myBar");
         var value = document.getElementById("myBar").value;
         var width = 0;
-        var id = setInterval(frame, 10);
+        var id = setInterval(frame, 50);
         function frame() {
             if (width >= 50) {
                 clearInterval(id);
