@@ -36,6 +36,16 @@ class MyHeader extends HTMLElement
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name2</u></H1></div>
                         <div id="myBar">10</div>
                         <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name3</u></H1></div>
+                        <div id="myBar">50</div><div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name1</u></H1></div>
+                        <div id="myBar">20</div>
+                        <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name2</u></H1></div>
+                        <div id="myBar">10</div>
+                        <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name3</u></H1></div>
+                        <div id="myBar">50</div><div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name1</u></H1></div>
+                        <div id="myBar">20</div>
+                        <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name2</u></H1></div>
+                        <div id="myBar">10</div>
+                        <div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name3</u></H1></div>
                         <div id="myBar">50</div>
                     </div>
                     <div style="background-color: gray;">box</div>
@@ -64,7 +74,7 @@ x.classList.toggle("change");
         var width = 0;
         var id = setInterval(frame, 10);
         function frame() {
-            if (width >= 50) {
+            if (width >= 100) {
                 clearInterval(id);
                 i = 0;
             } else {
