@@ -117,24 +117,24 @@ async function fetchPostgresData() {
         const Sidenav = document.getElementById('projectList');
         
         data.projects.forEach(row => {
-          let numerator = 0;
-          let denominator = 0;
-          data.subtasks.forEach(subrow => {
-            if (subrow.proj_id == row.id) {
-              // You can perform any additional logic here if needed
-              denominator += 1;
-              if (subrow.complete == true) {
-                numerator += 1;
-              }
-            }
-          });          
-          const completedTasks = (numerator / denominator) * 100;
-          Sidenav.innerHTML += `
-            <tr>
-              <td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
-              <td style="width: 20%; height: 100%; border: 1px solid black">${completedTasks.toFixed(0)}%</td>
-            </tr>
-          `;
+            let numerator = 0;
+            let denominator = 0;
+            data.subtasks.forEach(subrow => {
+                if (subrow.proj_id == row.id) {
+                    // You can perform any additional logic here if needed
+                    denominator += 1;
+                    if (subrow.complete == true) {
+                        numerator += 1;
+                    }
+                }
+            });          
+            const completedTasks = (numerator / denominator) * 100;
+            Sidenav.innerHTML += `
+                <div style="color: gray; height: 5%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></div>
+                <div id="myBar_${row.id}"></div>
+            `;
+            var i = 0;
+            barFunc(completedTasks, row.id);
         });
       } 
       catch (error) {
@@ -142,3 +142,23 @@ async function fetchPostgresData() {
       }
 }
 fetchPostgresData();
+
+async function barFunc(percent, id) {
+    if (i == 0) {
+        i = 1;
+        var elem = document.getElementById(`myBar_${id}`);
+        //var value = document.getElementById("myBar").value;
+        var width = 0;
+        var id = setInterval(frame, 10);
+        function frame() {
+            if (width >= percent) {
+                clearInterval(id);
+                i = 0;
+            } else {
+                width++;
+                elem.style.width = width + "%";
+                elem.innerHTML = width + "%";
+            }
+        }
+    }
+}
