@@ -8,8 +8,6 @@
 
 class MyHeader extends HTMLElement
 {
-    
-
     connectedCallback()
     {
         this.innerHTML = 
@@ -30,24 +28,7 @@ class MyHeader extends HTMLElement
                     <a href="../index.html" style="height: 5%;">Home Page</a>
                     <a href="../Html/Projects.html" style="height: 5%;">Projects</a>
                     <div class="line" style="background-color: white;"></div>
-                    <div id="projectList" style="margin-top: 3px; height: 75%; overflow-y: auto;">
-                        <div style="color: gray; height: 5%; text-align: left"><H1><u>Project Name1</u></H1></div>
-                        <div id="myBar">20</div>
-                        <div style="color: gray; height: 5%; text-align: left"><H1><u>Project Name2</u></H1></div>
-                        <div id="myBar">10</div>
-                        <div style="color: gray; height: 5%; text-align: left"><H1><u>Project Name3</u></H1></div>
-                        <div id="myBar">50</div><div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name1</u></H1></div>
-                        <div id="myBar">20</div>
-                        <div style="color: gray; height: 5%; text-align: left"><H1><u>Project Name2</u></H1></div>
-                        <div id="myBar">10</div>
-                        <div style="color: gray; height: 5%; text-align: left"><H1><u>Project Name3</u></H1></div>
-                        <div id="myBar">50</div><div style="color: gray; height: 20%; text-align: left"><H1><u>Project Name1</u></H1></div>
-                        <div id="myBar">20</div>
-                        <div style="color: gray; height: 5%; text-align: left"><H1><u>Project Name2</u></H1></div>
-                        <div id="myBar">10</div>
-                        <div style="color: gray; height: 5%; text-align: left"><H1><u>Project Name3</u></H1></div>
-                        <div id="myBar">50</div>
-                    </div>
+                    <div id="projectList" style="margin-top: 3px; height: 75%; overflow-y: auto;"></div>
                     <div style="background-color: gray; position: bottom; height: 5%">box</div>
                 </div>
             </th>
@@ -64,27 +45,27 @@ class MyHeader extends HTMLElement
 
 customElements.define('my-header', MyHeader);
 
-var i = 0;
-function myFunction(x) {
-x.classList.toggle("change");
-    if (i == 0) {
-        i = 1;
-        var elem = document.getElementById("myBar");
-        //var value = document.getElementById("myBar").value;
-        var width = 0;
-        var id = setInterval(frame, 10);
-        function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-                i = 0;
-            } else {
-                width++;
-                elem.style.width = width + "%";
-                elem.innerHTML = width + "%";
-            }
-        }
-    }
-}
+// var i = 0;
+// function myFunction(x) {
+// x.classList.toggle("change");
+//     if (i == 0) {
+//         i = 1;
+//         var elem = document.getElementById("myBar");
+//         //var value = document.getElementById("myBar").value;
+//         var width = 0;
+//         var id = setInterval(frame, 10);
+//         function frame() {
+//             if (width >= 100) {
+//                 clearInterval(id);
+//                 i = 0;
+//             } else {
+//                 width++;
+//                 elem.style.width = width + "%";
+//                 elem.innerHTML = width + "%";
+//             }
+//         }
+//     }
+// }
 function toggleNav() {
     var element = document.getElementById("mySidenav"); 
     /*if the element is open close it*/  
