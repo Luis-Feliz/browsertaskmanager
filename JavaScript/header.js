@@ -33,7 +33,7 @@ class MyHeader extends HTMLElement
                 </div>
             </th>
             <th style="position: sticky; left: 0; right: 0; ">
-                <td> Logo Here </td>
+                <td><img src="\image placeholder.png" alt="A placeholder for the image"></td>
             </th>
             <th style="text-align: right;">
                 <button class="demo" onclick="location.href='../Html/New_Project.html'" style="text-align: justify;"> New Project</button>
