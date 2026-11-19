@@ -68,6 +68,7 @@
 
           let numerator = 0;
           let denominator = 0;
+          let curSubtask = null;
 
           data.subtasks.forEach(subrow => {
             if (subrow.proj_id == row.id) {
@@ -76,6 +77,8 @@
               if (subrow.complete == true) {
                 numerator += 1;
               }
+              // if (subrow.active)
+              // {}
             }
           });          
           const completedTasks = (numerator / denominator) * 100;
@@ -98,6 +101,9 @@
             </tr>
           `;
         });
+        // <table style="border: 1px solid black; text-align: center; width: 100%;">
+        //       <th>Current task: </th>
+        // </table>   
       } 
       catch (error) {
           console.error('Error fetching data from API:', error);
@@ -238,7 +244,7 @@
       </td>
     </tr>
   </table>
-    <table style="border: 1px solid black; text-align: center; width: 100%;">
+  <table style="border: 1px solid black; text-align: center; width: 100%;">
     <th>Current task:</th>
   </table>   
 </body>
