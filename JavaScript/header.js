@@ -8,8 +8,6 @@
 
 class MyHeader extends HTMLElement
 {
-    
-
     connectedCallback()
     {
         this.innerHTML = 
@@ -18,7 +16,7 @@ class MyHeader extends HTMLElement
             <th style= "text-align: left"><!-- 1 -->
                 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
                 <div id="main">
-                    <div class="container" onclick="myFunction(this); toggleNav()">
+                    <div class="container" onclick="toggleNav()">
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                     <div class="bar3"></div>
@@ -27,20 +25,15 @@ class MyHeader extends HTMLElement
             </th>
             <th>
                 <div id="mySidenav" class="sidenav">
-                    <table style="width: 100%; height: 15%">
-                        <td style="text-align: center;">
-                            <a href="../index.html">Home Page</a>
-                            <a href="../Html/Projects.html">Projects</a>
-                            <div class="line" style="background-color: white;"></div>
-                        </td>
-                    </table>
-                    <table style= "height: 80%; overflow-y: auto;">
-                        <td>
-                            <div id="projectList"></div>
-                        </td>
-                    </table>
-                    <div style="position: sticky; bottom: 0; width: 100%; height: 5%; background-color: gray;">box</div>
+                    <a href="../index.html">Home Page</a>
+                    <a href="../Html/Projects.html">Projects</a>
+                    <div class="line" style="background-color: white;"></div>
+                    <div id="projectList" style="margin-top: 3px; height: 50%; overflow-y: auto;"></div>
+                    <div style="background-color: gray;">box</div>
                 </div>
+            </th>
+            <th style="position: sticky; left: 0; right: 0; ">
+                <td><img src="../Image/image placeholder.png" alt="A placeholder for the image" width="8%" height="4%"></td>
             </th>
             <th style="text-align: right;">
                 <button class="demo" onclick="location.href='../Html/New_Project.html'" style="text-align: justify;"> New Project</button>
@@ -52,6 +45,51 @@ class MyHeader extends HTMLElement
 }
 
 customElements.define('my-header', MyHeader);
+
+// var i = 0;
+// function myFunction(x) {
+// x.classList.toggle("change");
+//     if (i == 0) {
+//         i = 1;
+//         var elem = document.getElementById("myBar");
+//         //var value = document.getElementById("myBar").value;
+//         var width = 0;
+//         var id = setInterval(frame, 10);
+//         function frame() {
+//             if (width >= 100) {
+//                 clearInterval(id);
+//                 i = 0;
+//             } else {
+//                 width++;
+//                 elem.style.width = width + "%";
+//                 elem.innerHTML = width + "%";
+//             }
+//         }
+//     }
+// }
+function toggleNav() {
+    var element = document.getElementById("mySidenav"); 
+    /*if the element is open close it*/  
+    if (document.getElementById("mySidenav").style.width == "250px") {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    } else {
+    /*if element closed, open it*/
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    }
+}
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
 
 async function fetchPostgresData() {
     try {
@@ -76,9 +114,7 @@ async function fetchPostgresData() {
           Sidenav.innerHTML += `
             <tr>
               <td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
-              <td style="height: 20%; border: 1px solid white"">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td><td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
-              <td style="height: 20%; border: 1px solid white">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td><td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
-              <td style="height: 20%; border: 1px solid white">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
+              <td style="width: 20%; height: 100%; border: 1px solid black">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
             </tr>
           `;
         });
@@ -88,3 +124,23 @@ async function fetchPostgresData() {
       }
 }
 fetchPostgresData();
+
+async function barFunc(percent, id) {
+    if (i == 0) {
+        i = 1;
+        var elem = document.getElementById(`myBar_${id}`);
+        //var value = document.getElementById("myBar").value;
+        var width = 0;
+        var id = setInterval(frame, 10);
+        function frame() {
+            if (width >= percent) {
+                clearInterval(id);
+                i = 0;
+            } else {
+                width++;
+                elem.style.width = width + "%";
+                elem.innerHTML = width + "%";
+            }
+        }
+    }
+}
