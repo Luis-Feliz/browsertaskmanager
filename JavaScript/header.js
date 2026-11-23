@@ -27,15 +27,24 @@ class MyHeader extends HTMLElement
             </th>
             <th>
                 <div id="mySidenav" class="sidenav">
-                    <a href="../index.html">Home Page</a>
-                    <a href="../Html/Projects.html">Projects</a>
-                    <div class="line" style="background-color: white;"></div>
-                    <div id="projectList" style="margin-top: 3px; height: 50%; overflow-y: auto;"></div>
-                    <div style="background-color: gray;">box</div>
+                    <table style="width: 100%; height: 15%">
+                        <td style="text-align: center;">
+                            <a href="../index.html">Home Page</a>
+                            <a href="../Html/Projects.html">Projects</a>
+                            <div class="line" style="background-color: white;"></div>
+                        </td>
+                    </table>
+                    <table style= "height: 80%; overflow-y: auto;">
+                        <td>
+                            <div id="projectList"></div>
+                        </td>
+                    </table>
+                    <div style="position: sticky; bottom: 0; width: 100%; height: 5%; background-color: gray;">box</div>
                 </div>
             </th>
             <th style="text-align: right;">
                 <button class="demo" onclick="location.href='../Html/New_Project.html'" style="text-align: justify;"> New Project</button>
+                
             </th>
             </table>
         `
@@ -67,7 +76,9 @@ async function fetchPostgresData() {
           Sidenav.innerHTML += `
             <tr>
               <td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
-              <td style="width: 20%; height: 100%; border: 1px solid black">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
+              <td style="height: 20%; border: 1px solid white"">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td><td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
+              <td style="height: 20%; border: 1px solid white">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td><td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
+              <td style="height: 20%; border: 1px solid white">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
             </tr>
           `;
         });
