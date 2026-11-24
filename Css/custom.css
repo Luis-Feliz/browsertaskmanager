@@ -12,7 +12,9 @@ body{
 */
 footer{
   width: 100%; 
-  background-color: red; 
+  background-color: red; ;
+  bottom: 0;
+  left: 0;
 }
 /*********************************************************************************************************************************************************/
 
@@ -48,7 +50,8 @@ footer{
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding-left: 8px;
+  padding-right: 8px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;
@@ -139,6 +142,11 @@ footer{
 /*******************************************************************************/
 /* Taskmanager Css */
 
+.task-table {
+    overflow-x: auto;
+    max-width: 90px;
+    padding-right: 10px;
+}
 
 .task-form {
     display: flex;
@@ -149,8 +157,9 @@ footer{
 .task-list {
     border: 1px solid #ddd;
     padding: 10px;
-    max-height: 200px;
-    height: 200px;
+    max-height: 250px;
+    height: 40%;
+    overflow-y: auto;
 }
 
 .task {
@@ -170,4 +179,59 @@ footer{
     border-radius: 3px;
     cursor: pointer;
     width: 100%;
+}
+/* Progress Bar CSS */
+
+.progress-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 24px;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  font-family: sans-serif;
+  font-size: 14px;
+  /*transition: width 0.2s ease; /* Smooth animation */
+}
+
+/* Circular Progress Bar CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --progress-bar-width: 200px;
+  --progress-bar-height: 200px;
+  --font-size: 2rem;
+}
+
+.circular-progress {
+  width: var(--progress-bar-width);
+  height: var(--progress-bar-height);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inner-circle {
+  position: absolute;
+  width: calc(var(--progress-bar-width) - 30px);
+  height: calc(var(--progress-bar-height) - 30px);
+  border-radius: 50%;
+  background-color: lightgrey;
+}
+
+.percentage {
+  position: relative;
+  font-size: var(--font-size);
+  color: rgb(0, 0, 0, 0.8);
 }

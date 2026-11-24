@@ -26,11 +26,13 @@ class MyHeader extends HTMLElement
             <th>
                 <div id="mySidenav" class="sidenav">
                     <div style="height: 10%; position: sticky; top: 0; background-color: white; text-align: center;">
-                        <a href="../index.html" style="text-decoration: underline;">Home Page</a>
-                        <a href="../Html/Projects.html" style="text-decoration: underline;">Projects</a>
+                        <a href="../index.html" style=" padding-top: 5%; text-decoration: underline;">Home Page</a>
+                        <a href="../Html/Projects.html" style=" padding-top: 5%; text-decoration: underline;">Projects</a>
                     </div>
 
                     <div style="height: 85%; overflow-y: auto;" id="projectList"></div>
+                    
+                    
 
                     <div style="background-color: gray; position: sticky; bottom: 0; height: 5%;">box</div>
                 </div>
@@ -49,27 +51,6 @@ class MyHeader extends HTMLElement
 
 customElements.define('my-header', MyHeader);
 
-// var i = 0;
-// function myFunction(x) {
-// x.classList.toggle("change");
-//     if (i == 0) {
-//         i = 1;
-//         var elem = document.getElementById("myBar");
-//         //var value = document.getElementById("myBar").value;
-//         var width = 0;
-//         var id = setInterval(frame, 10);
-//         function frame() {
-//             if (width >= 100) {
-//                 clearInterval(id);
-//                 i = 0;
-//             } else {
-//                 width++;
-//                 elem.style.width = width + "%";
-//                 elem.innerHTML = width + "%";
-//             }
-//         }
-//     }
-// }
 function toggleNav() {
     var element = document.getElementById("mySidenav"); 
     /*if the element is open close it*/  
@@ -114,12 +95,14 @@ async function fetchPostgresData() {
             }
           });          
           const completedTasks = (numerator / denominator) * 100;
+          
           Sidenav.innerHTML += `
             <tr style="">
               <td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
-              <td style="width: 20%; height: 100%; border: 1px solid black">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
+              <td style="height: 20%; text-align: left"><div id="myBar_${row.id}" class="progress-fill">0%</div></td>
             </tr>
           `;
+          barFunc(completedTasks, row.id);
         });
       } 
       catch (error) {
@@ -128,22 +111,13 @@ async function fetchPostgresData() {
 }
 fetchPostgresData();
 
-async function barFunc(percent, id) {
-    if (i == 0) {
-        i = 1;
-        var elem = document.getElementById(`myBar_${id}`);
-        //var value = document.getElementById("myBar").value;
-        var width = 0;
-        var id = setInterval(frame, 10);
-        function frame() {
-            if (width >= percent) {
-                clearInterval(id);
-                i = 0;
-            } else {
-                width++;
-                elem.style.width = width + "%";
-                elem.innerHTML = width + "%";
-            }
-        }
+function barFunc(percent, id) {
+    const bar = document.getElementById(`myBar_${id}`);
+    
+    let width = 0;
+    for (let i = 0; i < percent; i++) {
+        width++;
+        bar.style.width = width + "%";
+        bar.textContent = width + "%";
     }
 }
