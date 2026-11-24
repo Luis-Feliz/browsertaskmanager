@@ -68,7 +68,7 @@ async function fetchPostgresData() {
                                     <button onclick = "finishSubtask(${row.id})">Mark Done: ${row.id}</button>
                                 </td>
                                 <td style="width: 50%;">
-                                    <button id = "noshow3_${row.id}"; onclick="location.href='../Html/Timer.html?subId=${row.id}&projectId=${row.proj_id}'">Start Subtask: ${row.id}</button>
+                                    <button id = "noshow3_${row.id}"; onclick="activeStart(${row.proj_id}, ${row.id})">Start Subtask: ${row.id}</button>
                                 </td>
                             </tr>
                         </table>          
@@ -81,9 +81,37 @@ async function fetchPostgresData() {
     catch (error) {
         console.error('Error fetching data from API:', error);
     }
+    
 }
 fetchPostgresData();
 
+async function activeStart(projectId, subtaskId)
+{
+    try {
+        const input = await fetch('http://localhost:3000/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+        },
+            body: JSON.stringify({title: 'changeActive', p_id: +projectId, s_id: +subtaskId}) // Send the time data as JSON
+        });
+        const result = await input.json();
+
+        if (input.ok) {
+            responseMsg.style.color = 'green';
+            responseMsg.textContent = result.message + "Value has been changed to active for subtaskId: " + subtaskId;
+        } else {
+            responseMsg.style.color = 'red';
+            responseMsg.textContent = 'result.message: ' + result.message;
+        }
+    } 
+    catch (error) {
+            console.error('Error:', error);
+            responseMsg.style.color = 'red';
+            responseMsg.textContent = 'Could not connect to the server. ' + error.stack;
+    }  
+    location.href=`../Html/Timer.html?subId=${subtaskId}&projectId=${projectId}`;
+}
 
 // Event listener for the "Add Task" button
 addTaskButton.addEventListener('submit', async (e) => {

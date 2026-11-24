@@ -25,11 +25,14 @@ class MyHeader extends HTMLElement
             </th>
             <th>
                 <div id="mySidenav" class="sidenav">
-                    <a href="../index.html">Home Page</a>
-                    <a href="../Html/Projects.html">Projects</a>
-                    <div class="line" style="background-color: white;"></div>
-                    <div id="projectList" style="margin-top: 3px; height: 50%; overflow-y: auto;"></div>
-                    <div style="background-color: gray;">box</div>
+                    <div style="height: 10%; position: sticky; top: 0; background-color: white; text-align: center;">
+                        <a href="../index.html" style="text-decoration: underline;">Home Page</a>
+                        <a href="../Html/Projects.html" style="text-decoration: underline;">Projects</a>
+                    </div>
+
+                    <div style="height: 85%; overflow-y: auto;" id="projectList"></div>
+
+                    <div style="background-color: gray; position: sticky; bottom: 0; height: 5%;">box</div>
                 </div>
             </th>
             <th style="position: sticky; left: 0; right: 0; ">
@@ -112,7 +115,7 @@ async function fetchPostgresData() {
           });          
           const completedTasks = (numerator / denominator) * 100;
           Sidenav.innerHTML += `
-            <tr>
+            <tr style="">
               <td style="height: 20%; text-align: left"><H1><u><a href="../Html/SubTask.html?projectId=${row.id}">${row.name}</u></H1></td> 
               <td style="width: 20%; height: 100%; border: 1px solid black">${numerator} / ${denominator} = ${completedTasks.toFixed(2)}%</td>
             </tr>

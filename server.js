@@ -96,6 +96,24 @@ app.post('/api/users', async (req, res) => {
                 res.status(500).json({ success: false, message: "Database error." });
             }
             break;
+        case 'changeActive':
+            const { p_id, s_id } = req.body;
+            const activeTEXT = `
+                UPDATE subtasks
+                SET active = CASE 
+                    WHEN id = \$2 THEN TRUE  -- Set the specified subtask as active
+                    ELSE FALSE                -- Set all other subtasks in the project as inactive
+                END
+                WHERE proj_id = \$1
+            `;
+            try {
+                await pool.query(activeTEXT, [p_id, s_id]);
+                res.status(200).json({ success: true, message: "Active status updated successfully." });
+            } catch (err) {
+                console.error("Database Error:", err); // Log the actual error for debugging
+                res.status(500).json({ success: false, message: "Database error." });
+            }
+            break;
         case 'timer':
             const { hours, minutes, seconds, projid, sub_id } = req.body; // Extract data from HTML input
             const queryTEXT = `
