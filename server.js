@@ -17,7 +17,16 @@ const pool = new Pool({
     password: '',  //
     port: 5432,                 // Default PostgreSQL port
 });
+
 // POST endpoint to handle form submission
+// app.post('/api/projects', async (req, res) => {
+//     try {}
+//     catch (err) {
+//         console.error(err.message);
+//         res.status(500).send('Server error');
+//     }
+// }
+// app.post('/api/subtasks', async (req, res) => {}
 app.post('/api/users', async (req, res) => {
     const title = req.body.title; // Extract the title from the request body
     switch (title) {

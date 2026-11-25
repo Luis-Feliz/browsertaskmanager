@@ -119,7 +119,7 @@
             const innerCircle = progressBar.querySelector(".inner-circle");
             let startValue = 0,
             endValue = Number(progressBar.getAttribute("data-percentage")),
-            speed = 50,
+            speed = 2000 / endValue,
             progressColor = progressBar.getAttribute("data-progress-color");
 
             const progress = setInterval(() => {

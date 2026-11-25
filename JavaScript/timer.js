@@ -33,12 +33,12 @@ async function fetchPostgresData() {
                 const titleElement = document.getElementById("title");
                 if (titleElement) {
                     titleElement.innerHTML = `
+                        
                         Name: ${row.name} <br>
                         Description: ${row.description}<br>
                         Catagory: ${row.catagory}<br>
-                        Target: ${row.target}<br>
                         Complete: ${row.complete}<br>
-                        Subtask Time: ${row.sub_time.hours}h ${row.sub_time.minutes}m ${row.sub_time.seconds}s<br>
+                        Subtask Time: ${row.sub_time.hours || 0}h ${row.sub_time.minutes || 0}m ${row.sub_time.seconds || 0}s<br>
                     `; //change title to subtask name
                 }
             }                
