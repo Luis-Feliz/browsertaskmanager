@@ -2,8 +2,9 @@
 // 1. Link this file to the main project database
 // 2. Create Error Handling for when the database is not available
 // 3. Make a progress bar on most recently used project
-// 4. 
-// 5. 
+// 4. ceb280
+// 5. abab82
+// 6. f3e2c6
 
 
 class MyHeader extends HTMLElement
@@ -12,7 +13,7 @@ class MyHeader extends HTMLElement
     {
         this.innerHTML = 
         `                
-            <table style="width: 100%; background-color: gray; text-align: center; position: sticky; top: 0;">
+            <table style="width: 100%; background-color: #522519 ; text-align: center; position: sticky; top: 0;">
             <th style= "text-align: left"><!-- 1 -->
                 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
                 <div id="main">
@@ -44,7 +45,7 @@ class MyHeader extends HTMLElement
                 <button class="demo" onclick="location.href='../Html/New_Project.html'" style="text-align: justify;"> New Project</button>
                 
             </th>
-            </table>
+        </table>
         `
     }
 }

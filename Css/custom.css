@@ -1,6 +1,6 @@
 head{
   width: 100%; 
-  background-color: gray;
+  background-color: #addae6;
   border: 1px solid black;  
 }
 
@@ -12,9 +12,7 @@ body{
 */
 footer{
   width: 100%; 
-  background-color: red; ;
-  bottom: 0;
-  left: 0;
+  background-color: #addae6;
 }
 /*********************************************************************************************************************************************************/
 h1, h2{
